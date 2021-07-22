@@ -72,4 +72,3 @@ ssh -i "${SITES_SSH_KEY}" -o BatchMode=yes \
 
 echo "===================================================="
 echo "Done deploying ${FOLDER}"
-
