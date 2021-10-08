@@ -139,7 +139,7 @@ return [
             'file' => $path . '2021-09-27_RGL_anom-rice.csv',
             'kind' => 'Rice',
             'country' => 'Tanzania',
-            'company' => 'RGL',
+            'company' => 'RGL Anom Rice',
             'case_number' => null,
             'cascade' => [
                 'name' => 'pi_location_cascade_1_Mkoa',
@@ -155,7 +155,7 @@ return [
             'file' => $path . '2021-09-27_RGL_anom-beans.csv',
             'kind' => 'Beans',
             'country' => 'Tanzania',
-            'company' => 'RGL',
+            'company' => 'RGL Anom Beans',
             'case_number' => null,
             'cascade' => [
                 'name' => 'pi_location_cascade_1_Mkoa',
