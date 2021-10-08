@@ -22,7 +22,7 @@ class SeedController extends Controller
         return "finish";
     }
 
-    private function createForm($data)
+    public function createForm($data)
     {
         $form = \App\Models\Form::updateOrCreate([
             'fid' => $data['fid'],
