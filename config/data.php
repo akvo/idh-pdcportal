@@ -133,6 +133,38 @@ return [
             ],
             'report_url' => '/files/Data-delivery-EU-Tanzania_v1_Njombe_nonIkanga_farmers.html',
         ],
+        [
+            'sid' => 195440268,
+            'fid' => 193410232,
+            'file' => $path . '2021-09-27_RGL_anom-rice.csv',
+            'kind' => 'Rice',
+            'country' => 'Tanzania',
+            'company' => 'RGL',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_1_Mkoa',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed RGL Anom Rice Data", "to" => ".xlsx" ],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 202340055,
+            'fid' => 179600043,
+            'file' => $path . '2021-09-27_RGL_anom-beans.csv',
+            'kind' => 'Beans',
+            'country' => 'Tanzania',
+            'company' => 'RGL',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_1_Mkoa',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed RGL Anom Beans Data", "to" => ".xlsx" ],
+            ],
+            'report_url' => null,
+        ],
 
         // Not Onboard
         // [

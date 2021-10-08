@@ -68,6 +68,9 @@ $new_variable_with_diff_county['pi_location_cascade_county'] = 'pi_location_casc
 $new_variable_wit_diff_county_and_hh_age_farmer = $new_variable_with_diff_county;
 $new_variable_wit_diff_county_and_hh_age_farmer['hh_age_farmer'] = 'cal_hh_farmer_age';
 
+$new_variable_wit_rgl_county = $new_variable;
+$new_variable_wit_rgl_county['pi_location_cascade_county'] = 'pi_location_cascade_1_Mkoa';
+
 return [
     'old_variable' => $old_variable,
     'fids' => [143920001, 145035285, 139002776, 150980836, 151280148],
@@ -96,6 +99,16 @@ return [
         [
             'fid' => 151280148,
             'variable' => $new_variable_wit_diff_county_and_hh_age_farmer,
+        ],
+        // RGL Anom Tanzania Rice
+        [
+            'fid' => 193410232,
+            'variable' => $new_variable_wit_rgl_county,
+        ],
+        // RGL Anom Tanzania Beans
+        [
+            'fid' => 179600043,
+            'variable' => $new_variable_wit_rgl_county,
         ],
     ],
     'number_type' => [
