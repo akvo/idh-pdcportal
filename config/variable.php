@@ -68,12 +68,18 @@ $new_variable_with_diff_county['pi_location_cascade_county'] = 'pi_location_casc
 $new_variable_wit_diff_county_and_hh_age_farmer = $new_variable_with_diff_county;
 $new_variable_wit_diff_county_and_hh_age_farmer['hh_age_farmer'] = 'cal_hh_farmer_age';
 
-$new_variable_wit_rgl_county = $new_variable;
-$new_variable_wit_rgl_county['pi_location_cascade_county'] = 'pi_location_cascade_1_Mkoa';
+$new_variable_for_rgl_data = $new_variable;
+$new_variable_for_rgl_data['pi_location_cascade_county'] = 'pi_location_cascade_1_Mkoa';
+$new_variable_for_rgl_data['hh_age_farmer'] = 'hh_head_age';
+$new_variable_for_rgl_data['f_crops'] = 'f_number_of_crops';
+$new_variable_for_rgl_data['f_size (acre)'] = null;
+$new_variable_for_rgl_data['f_sdm_size (acre)'] = 'f_focus_crop_size..acre.';
+$new_variable_for_rgl_data['f_lost (kilograms)'] = 'f_focus_quant_lost';
+$new_variable_for_rgl_data['f_other_crop_income'] = 'f_other_crop_income';
 
 return [
     'old_variable' => $old_variable,
-    'fids' => [143920001, 145035285, 139002776, 150980836, 151280148],
+    'fids' => [143920001, 145035285, 139002776, 150980836, 151280148, 193410232, 179600043],
     'mapping' => [
         // Smart logistics - Beans
         [
@@ -103,12 +109,12 @@ return [
         // RGL Anom Tanzania Rice
         [
             'fid' => 193410232,
-            'variable' => $new_variable_wit_rgl_county,
+            'variable' => $new_variable_for_rgl_data,
         ],
         // RGL Anom Tanzania Beans
         [
             'fid' => 179600043,
-            'variable' => $new_variable_wit_rgl_county,
+            'variable' => $new_variable_for_rgl_data,
         ],
     ],
     'number_type' => [
@@ -204,5 +210,9 @@ return [
         'cs_sdm_company_services_years',
         'cs_sdm_company_yrs_selling',
         'cs_sdm_company_contract_durations',
+        'hh_head_age',
+        'f_number_of_crops',
+        'f_focus_crop_size..acre.',
+        'f_focus_quant_lost',
     ],
 ];
