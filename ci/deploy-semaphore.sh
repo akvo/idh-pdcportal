@@ -10,7 +10,7 @@ sudo chown "${USER}:" . -R
 
 echo "Deploying site..."
 
-if [[ "${TRAVIS_BRANCH}" != "main" ||  "${TRAVIS_BRANCH}" != "develop"]]; then
+if [[ "${TRAVIS_BRANCH}" != "main" &&  "${TRAVIS_BRANCH}" != "develop"]]; then
     exit 0
 fi
 
@@ -19,7 +19,7 @@ if [[ "${TRAVIS_PULL_REQUEST}" != "false" ]]; then
 fi
 
 FOLDER="idh-demo.tc.akvo.org"
-if [[ "${TRAVIS_BRANCH}" != "main" ]]; then
+if [[ "${TRAVIS_BRANCH}" == "main" ]]; then
     FOLDER="pdcportal.idhtrade.org"
     echo "Deploying Production"
 else
