@@ -35,7 +35,7 @@ rsync \
     --exclude=ci \
     --exclude=node_modules \
     --rsh="ssh -i ${SITES_SSH_KEY} -o BatchMode=yes -p 18765 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" \
-    . u7-nnfq7m4dqfyx@35.214.170.100:/home/customer/www/$FOLDER/public_html/
+    . u7-nnfq7m4dqfyx@35.214.170.100:/home/customer/www/$FOLDER/public_html
 
 echo "Fixing permissions..."
 
