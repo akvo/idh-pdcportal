@@ -29,6 +29,39 @@ $old_variable = [
     'farmer_sample' => 'farmer_sample',
 ];
 
+$standard_variable = [
+    'hh_size' => 'hh_size',
+    'hh_head_gender' => 'hh_head_gender',
+    'hh_size_male' => 'hh_male_nr',
+    'hh_size_female' => 'hh_female_nr',
+    'hh_gender_farmer' => 'hh_farmer_gender',
+    'hh_age_farmer' => 'cal_hh_farmer_age',
+    'hh_education_farmer' => 'hh_education_farmer',
+    'fs_shortage_months' => 'fs_shortage_months',
+    'farmer_sample' => 'farmer_sample',
+    'f_ownership' => 'f_ownership_type',
+    'f_harvests' => 'f_harvest_num',
+    'f_lost (kilograms)' => 'cal_focus_quant_lost',
+    'f_first_crop' => 'f_othermaincrop_1',
+    'f_second_crop' => 'f_othermaincrop_2',
+    'f_third_crop' => null,
+    'f_other_crop_income' => 'cal_other_crop_income',
+    'f_inputs_usage' => 'f_inputs_usage_types',
+    'f_equipment_usage' => [
+        'f_nonmech_equip_type',
+        'f_mech_equip_type',
+        'f_materials_other_type'
+    ],
+    'f_size (acre)' => 'f_size_acre',
+    'f_sdm_size (acre)' => 'f_focus_crop_size_acre',
+    'f_livestock' => 'f_livestock_income_type',
+    'f_crops' => ['f_othermaincrop_1', 'f_othermaincrop_2'],
+    'f_type' => null,
+    'g_education' => 'g_education',
+    'g_reprod_activities' => 'g_reprod_activities',
+    'pi_location_cascade_county' => 'pi_location_cascade_first_level',
+];
+
 $new_variable = [
     'hh_size' => 'hh_size',
     'hh_head_gender' => 'hh_head_gender',
@@ -78,7 +111,7 @@ $new_variable_for_rgl_data['f_lost (kilograms)'] = 'f_focus_quant_lost';
 $new_variable_for_rgl_data['f_other_crop_income'] = 'f_other_crop_income';
 
 return [
-    'old_variable' => $old_variable,
+    'old_variable' => $standard_variable,
     'fids' => [143920001, 145035285, 139002776, 150980836, 151280148, 193410232, 179600043],
     'mapping' => [
         // Smart logistics - Beans
@@ -117,6 +150,7 @@ return [
             'variable' => $new_variable_for_rgl_data,
         ],
     ],
+    // this config used to define value under defined column name are number
     'number_type' => [
         'f_number_of_crops',
         'f_size (acre)',
@@ -214,5 +248,12 @@ return [
         'f_number_of_crops',
         'f_focus_crop_size..acre.',
         'f_focus_quant_lost',
+        'cal_hh_farmer_age',
+        'f_size_acre',
+        'f_focus_crop_size_acre',
+        'cal_focus_quant_prod_kg',
+        'cal_focus_quant_sold_kg',
+        'cal_focus_quant_lost_kg',
+        'cal_focus_quant_own_consumption_kg',
     ],
 ];
