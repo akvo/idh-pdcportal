@@ -20,7 +20,7 @@ fi
 
 FOLDER="idh-demo.tc.akvo.org"
 if [[ "${TRAVIS_BRANCH}" == "main" ]]; then
-    FOLDER="pdcportal.idhtrade.org"
+    FOLDER="idh-prod.tc.akvo.org"
     echo "Deploying Production"
 else
     echo "Deploying Test"
