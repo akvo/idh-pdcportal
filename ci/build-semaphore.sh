@@ -25,3 +25,6 @@ docker run \
        --entrypoint /bin/sh \
        node:14-alpine -c 'npm i && npm run prod'
 
+ls -al
+
+grep -rl 'mix' ./resources | xargs sed -i 's/mix/asset/g'
