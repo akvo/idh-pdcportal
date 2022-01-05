@@ -49,6 +49,7 @@ class DataSync extends Command
             $sources = collect($sources)->where('fid', $fid)->values();
         }
         foreach ($sources as $data) {
+            echo("Seeding Forms fid: ".$data['fid'].PHP_EOL);
             $seeder->createForm($data);
         }
         return "finish";

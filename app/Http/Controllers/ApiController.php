@@ -126,9 +126,7 @@ class ApiController extends Controller
 
     public function countryData(Request $request) {
         $id = (int) $request->id;
-        $form = Form::where('id',$id)
-        ->withCount('formInstances')
-        ->first();
+        $form = Form::where('id',$id)->withCount('formInstances')->first();
         $total = $form->form_instances_count;
         // $household = Utils::getValues($id, 'hh_size');
 
@@ -282,7 +280,7 @@ class ApiController extends Controller
                 ];
             });
 
-            $shortage_months = Utils::getValues($id, $variables['fs_shortage_months'], false, true, false, $variables); // by gender
+            $shortage_months = Utils::getValues($id, $variables['fs_shortage_months'], false, true, true, $variables); // by gender
 
             $hhsize_male = Utils::getValues($id, $variables['hh_size_male'])->sum();
             $hhsize_female = Utils::getValues($id, $variables['hh_size_female'])->sum();
@@ -344,11 +342,13 @@ class ApiController extends Controller
         if ($request->tab === "farmer-profile") {
             $age = Utils::getValues($id, $variables['hh_age_farmer'], false);
             // return value into age instead using year
-            if ($isVariableChange && count($age) > 0 && $age->first()->value > 1000) {
-                $age = $age->map(function ($item) {
-                    $item['value'] = date('Y') - $item['value'];
-                    return $item;
-                });
+            if (count($age) > 0) {
+                if ($isVariableChange && $age->first()->value > 1000) {
+                    $age = $age->map(function ($item) {
+                        $item['value'] = date('Y') - $item['value'];
+                        return $item;
+                    });
+                }
             }
 
             $genderAge = ["data" => []];
@@ -361,6 +361,7 @@ class ApiController extends Controller
             $farmerProfile = [
                 // Cards::create(Utils::getValues($id, 'hh_education_farmer'), 'BAR', 'Education Level', 6),
                 // Cards::create($landownership, 'BAR', "Farmers' land ownership status", 6),
+
                 Cards::create(Utils::getValues($id, $variables['hh_gender_farmer']), 'PIE', "Gender", 6),
                 Cards::create($genderAge, 'HISTOGRAM', 'Age of Farmer', 6),
                 Cards::create(Utils::getValues($id, $variables['hh_education_farmer'], false, true, false, $variables), 'BAR', 'Education Level by Gender (%)', 6),
@@ -377,7 +378,6 @@ class ApiController extends Controller
 
         if ($request->tab === "farm-practices") {
             $f_harvests = Utils::getValues($id, $variables['f_harvests']);
-
             $f_lost_kg = Utils::getValues($id, $variables['f_lost (kilograms)'], false);
             // $f_crop_tmp = ($isVariableChange) ? 'f_second_crop' : 'f_first_crop';
             // $lost_kg = Utils::mergeValues($f_lost_kg, $variables['f_first_crop'], strtolower($form->kind));

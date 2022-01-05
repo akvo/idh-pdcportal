@@ -24,11 +24,17 @@ class SeedController extends Controller
 
     public function createForm($data)
     {
+        // delete if exist, before seed new data
+        $check = \App\Models\Form::where('fid', $data['fid'])->first();
+        if ($check) {
+            $delete = \App\Models\Form::where('fid', $data['fid'])->delete();
+        }
+        // if there's is form with defined id, update else create
         $form = \App\Models\Form::updateOrCreate([
-            'fid' => $data['fid'],
-            'kind' => $data['kind'],
-            'country' => $data['country'],
-            'company' => $data['company']
+                'fid' => $data['fid'],
+                'kind' => $data['kind'],
+                'country' => $data['country'],
+                'company' => $data['company']
         ]);
         $csv = Reader::createFromPath(base_path().$data['file'], 'r');
         $csv->setHeaderOffset(0);
@@ -51,7 +57,7 @@ class SeedController extends Controller
         $variables = collect();
         echo("Seeding Headers".PHP_EOL);
         foreach($headers as $header) {
-            $variable = \App\Models\Variable::updateOrCreate($header);
+            $variable = \App\Models\Variable::updateOrCreate(['name' => $header['name']], ['type' => $header['type']]);
             $variables[$header['name']] = $variable->id;
         }
         echo("Seeding Records".PHP_EOL);
