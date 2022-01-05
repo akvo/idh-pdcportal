@@ -31,12 +31,16 @@ class SeedController extends Controller
             $delete = \App\Models\FormInstance::where('form_id', $check->id)->delete();
         }
         // if there's is form with defined id, update else create
-        $form = \App\Models\Form::updateOrCreate([
+        $form = \App\Models\Form::updateOrCreate(
+            [
                 'fid' => $data['fid'],
+            ],
+            [
                 'kind' => $data['kind'],
                 'country' => $data['country'],
                 'company' => $data['company']
-        ]);
+            ]
+        );
         $csv = Reader::createFromPath(base_path().$data['file'], 'r');
         $csv->setHeaderOffset(0);
         $headers = $csv->getHeader();

@@ -279,8 +279,8 @@ return [
             'report_url' => null,
         ],
         [
-            'sid' => 145290014,
-            'fid' => 137381206,
+            'sid' => 70530002,
+            'fid' => 42870004,
             'file' => $path . '2021-06-29_Alluvial_anom.csv',
             'kind' => 'Rice',
             'country' => 'Nigeria',
@@ -310,5 +310,133 @@ return [
             ],
             'report_url' => null,
         ],
+        [
+            'sid' => 11050005,
+            'fid' => 1040007,
+            'file' => $path . '04102019_AGRI_WALLET_anonymized.csv',
+            'kind' => 'Potatoes',
+            'country' => 'Kenya',
+            'company' => 'Agri Wallet',
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Agri Wallet Potatoes Data", "to" => ".xlsx", "filename" => "04102019_AGRI_WALLET_anonymized"],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 70020001,
+            'fid' => 60130060,
+            'file' => $path . '12122019_Sparkx_Anom.csv',
+            'kind' => 'Rice',
+            'country' => 'Ghana',
+            'company' => 'Sparkx',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Sparkx Rice Data", "to" => ".xlsx", "filename" => "12122019_Sparkx_Anom"],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 11050005,
+            'fid' => 1040007,
+            'file' => $path . '12122019_USOMI.csv',
+            'kind' => 'Millet',
+            'country' => 'Kenya',
+            'company' => 'USOMI',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed USOMI Millet Data", "to" => ".xlsx", "filename" => "12122019_USOMI"],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 20191017, # not real sid from flow
+            'fid' => 17102019, # not real fid from flow
+            'file' => $path . '17102019_NFC.csv',
+            'kind' => 'Tree',
+            'country' => 'Uganda',
+            'company' => 'NFC',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed NFC Tree Data", "to" => ".xlsx", "filename" => "17102019_NFC"],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 102680038,
+            'fid' => 82910030,
+            'file' => $path . '20082020_Batian_Anom.csv',
+            'kind' => 'Macadamia',
+            'country' => 'Kenya',
+            'company' => 'Batian Nuts',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Batian Nuts Macadamia Data", "to" => ".xlsx", "filename" => "20082020_Batian_Anom"],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 28970006,
+            'fid' => 24830008,
+            'file' => $path . '20190904_Bulamu_Anom.csv',
+            'kind' => 'Coffee',
+            'country' => 'Uganda',
+            'company' => 'Bulamu',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Bulamu Coffee Data", "to" => ".xlsx", "filename" => "20190904_Bulamu_Anom"],
+            ],
+            'report_url' => null,
+        ],
+        // [ // no location
+        //     'sid' => 51260001,
+        //     'fid' => 53320001,
+        //     'file' => $path . '26032020_Musoni_Maize.csv',
+        //     'kind' => 'Maize',
+        //     'country' => 'zzz',
+        //     'company' => 'Musoni Maize',
+        //     'case_number' => null,
+        //     'cascade' => [
+        //         'name' => 'pi_location_cascade_first_level',
+        //     ],
+        //     'files' => [
+        //         ["type" => "raw", "text" => "Analyzed Musoni Maize Data", "to" => ".xlsx", "filename" => "26032020_Musoni_Maize"],
+        //     ],
+        //     'report_url' => null,
+        // ],
+
+        // [ // example
+        //     'sid' => xxx,
+        //     'fid' => xxx,
+        //     'file' => $path . 'xvx.csv',
+        //     'kind' => 'zzz',
+        //     'country' => 'zzz',
+        //     'company' => 'zzz',
+        //     'case_number' => null,
+        //     'cascade' => [
+        //         'name' => 'pi_location_cascade_first_level',
+        //     ],
+        //     'files' => [
+        //         ["type" => "raw", "text" => "Analyzed XXX Data", "to" => ".xlsx", "filename" => "xvx"],
+        //     ],
+        //     'report_url' => null,
+        // ],
     ],
 ];
