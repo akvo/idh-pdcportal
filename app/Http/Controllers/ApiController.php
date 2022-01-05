@@ -379,7 +379,6 @@ class ApiController extends Controller
         if ($request->tab === "farm-practices") {
             $f_harvests = Utils::getValues($id, $variables['f_harvests']);
             $f_lost_kg = Utils::getValues($id, $variables['f_lost (kilograms)'], false);
-            // $f_crop_tmp = ($isVariableChange) ? 'f_second_crop' : 'f_first_crop';
             // $lost_kg = Utils::mergeValues($f_lost_kg, $variables['f_first_crop'], strtolower($form->kind));
             if (!$isVariableChange) {
                 $lost_kg = Utils::mergeValues($f_lost_kg, $variables['f_first_crop']);

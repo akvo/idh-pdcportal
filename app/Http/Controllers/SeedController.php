@@ -27,7 +27,8 @@ class SeedController extends Controller
         // delete if exist, before seed new data
         $check = \App\Models\Form::where('fid', $data['fid'])->first();
         if ($check) {
-            $delete = \App\Models\Form::where('fid', $data['fid'])->delete();
+            // delete form instance to clear all the answers
+            $delete = \App\Models\FormInstance::where('form_id', $check->id)->delete();
         }
         // if there's is form with defined id, update else create
         $form = \App\Models\Form::updateOrCreate([
