@@ -45,7 +45,6 @@ class DataSync extends Command
         }
         $sources = config('data.sources');
         if ($fid !== 'all') {
-            echo("Seeding Forms fid: ".$fid.PHP_EOL);
             $sources = collect($sources)->where('fid', $fid)->values();
         }
         foreach ($sources as $data) {

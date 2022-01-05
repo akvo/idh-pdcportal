@@ -112,7 +112,7 @@ $new_variable_for_rgl_data['f_other_crop_income'] = 'f_other_crop_income';
 
 return [
     'old_variable' => $standard_variable,
-    'fids' => [151280148],
+    'fids' => [],
     'mapping' => [
         // Smart logistics - Beans
         [

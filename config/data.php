@@ -117,23 +117,22 @@ return [
             ],
             'report_url' => '/files/Data-delivery-EU-Tanzania_v1_Njombe_Ikanga_farmers.html',
         ],
-        # TODO:::Enable and change dataset
-        // [
-        //     'sid' => 135931326,
-        //     'fid' => 151280148,
-        //     'file' => $path . '2021-06-08_EU_Tea_Tanzania_anom_Njombe_nonIkanga_farmers.csv',
-        //     'kind' => 'Tea',
-        //     'country' => 'Tanzania',
-        //     'company' => 'EU Tanzania Tea Non Ikanga',
-        //     'case_number' => null,
-        //     'cascade' => [
-        //         'name' => 'pi_location_cascade_first_level',
-        //     ],
-        //     'files' => [
-        //         ["type" => "raw", "text" => "Analyzed EU Tanzania Tea Non Ikanga Data", "to" => ".xlsx" ],
-        //     ],
-        //     'report_url' => '/files/Data-delivery-EU-Tanzania_v1_Njombe_nonIkanga_farmers.html',
-        // ],
+        [
+            'sid' => 154440305,
+            'fid' => 161010267,
+            'file' => $path . '2021-06-02_EU_Tea_Tanzania_anom_Njombe_nonIkanga_farmers.csv',
+            'kind' => 'Tea',
+            'country' => 'Tanzania',
+            'company' => 'EU Tanzania Tea Non Ikanga',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed EU Tanzania Tea Non Ikanga Data", "to" => ".xlsx", "filename" => "2021-06-02_EU_Tea_Tanzania_anom_Njombe_nonIkanga_farmers"],
+            ],
+            'report_url' => '/files/Data-delivery-EU-Tanzania_v1_Njombe_nonIkanga_farmers.html',
+        ],
         [
             'sid' => 195440268,
             'fid' => 193410232,

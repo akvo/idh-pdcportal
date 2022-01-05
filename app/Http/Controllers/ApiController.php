@@ -501,8 +501,8 @@ class ApiController extends Controller
                 ];
             });
             $farm_sizes = collect(Utils::mergeValues($farm_sizes, $variables['f_first_crop']));
-            $total_farm_sizes = $farm_sizes['data']->max('total');
-            $only_farm_sizes = $farm_sizes['data']->where('name', strtolower($form->kind))->first();
+            $total_farm_sizes = collect($farm_sizes['data'])->max('total');
+            $only_farm_sizes = collect($farm_sizes['data'])->where('name', strtolower($form->kind))->first();
 
             $second_crop = collect(Utils::getValues($id, $variables['f_second_crop']));
             $total_second_crop_no_filter = $second_crop->pluck('value')->sum();

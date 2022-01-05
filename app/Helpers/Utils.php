@@ -204,10 +204,18 @@ class Utils {
     public static function getLastSubmissionDate($form_id)
     {
         $submission_dates = Utils::getValues($form_id, 'submission date');
-        $date = collect($submission_dates)->map(function ($sbm) {
-            $sbm['name'] = explode(' ', $sbm['name'])[0];
-            return $sbm;
-        })->pluck('name')->sort()->values()->first();
+        $var = Variable::where('name', 'submission date')->first();
+        if ($var->type === 'option') {
+            $date = collect($submission_dates)->map(function ($sbm) {
+                $sbm['name'] = explode(' ', $sbm['name'])[0];
+                return $sbm;
+            })->pluck('name')->sort()->values()->first();
+        }
+        if ($var->type === 'number') {
+            $date = collect($submission_dates)->map(function ($sbm) {
+                return strval((int)$sbm);
+            })->sort()->values()->first();
+        }
         return $date;
     }
 
