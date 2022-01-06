@@ -8,6 +8,7 @@ import {
   backgroundColor,
   splitTitle,
   dataZoom,
+  noDataText,
 } from "../chart-options.js";
 import sum from "lodash/sum";
 import sortBy from "lodash/sortBy";
@@ -21,6 +22,9 @@ export const Bar = (
   unsorted = false,
   compare = false
 ) => {
+  // if (!data.length) {
+  //   return noDataText;
+  // }
   let withGender = some(data, "gender");
   let tableData = sortBy(data, "name");
   tableData = tableData.map((x) => {
