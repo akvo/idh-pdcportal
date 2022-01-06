@@ -181,8 +181,6 @@ return [
             ],
             'report_url' => null,
         ],
-
-        # TODO::Paste New start from here -- 1 NEW DATA START FROM HERE
         [
             'sid' => 134600045,
             'fid' => 148080024,
@@ -296,8 +294,8 @@ return [
             'report_url' => null,
         ],
         [
-            'sid' => 11050005,
-            'fid' => 1040007,
+            'sid' => 4310019,
+            'fid' => 24390001,
             'file' => $path . '04102019_AGRI_WALLET_anonymized.csv',
             'kind' => 'Potatoes',
             'country' => 'Kenya',
@@ -391,24 +389,6 @@ return [
             ],
             'report_url' => null,
         ],
-
-        # TODO::Paste New start from here -- 2 NEW DATA START FROM HERE
-
-    ],
-    'relations' => [
-        [
-            'name' => 'f_first_crop',
-            'level' => 1,
-            'children' => 'f_ownership'
-        ],
-        [
-            'name' => 'f_ownership',
-            'level' => 2,
-            'children' => 'f_sdm_size'
-        ],
-    ],
-    // will add to sources
-    'sources_new' => [
         [
             'sid' => 20191211, # not real id
             'fid' => 11122019, # not real id
@@ -506,5 +486,17 @@ return [
         //     ],
         //     'report_url' => null,
         // ],
+    ],
+    'relations' => [
+        [
+            'name' => 'f_first_crop',
+            'level' => 1,
+            'children' => 'f_ownership'
+        ],
+        [
+            'name' => 'f_ownership',
+            'level' => 2,
+            'children' => 'f_sdm_size'
+        ],
     ],
 ];
