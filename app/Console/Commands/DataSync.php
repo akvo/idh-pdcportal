@@ -49,10 +49,15 @@ class DataSync extends Command
             $sources = collect($sources)->where('fid', $fid)->values();
         }
         foreach ($sources as $key => $data) {
+            $start = microtime(true);
+
             echo(PHP_EOL."Iteration: ".$key.PHP_EOL);
             echo("Seeding Form fid: ".$data['fid'].PHP_EOL);
             $seeder->createForm($data);
             echo("Done: ".$data['fid'].PHP_EOL);
+
+            $time_elapsed_secs = microtime(true) - $start;
+            $this->info("Time : ".date("H:i:s", $time_elapsed_secs));
         }
         return "finish";
     }
