@@ -100,8 +100,9 @@ class Utils {
         $answers = $answers->map(function($a) use ($var, $cnt) {
             $opt = $a->where('variable_id', $var->id)->first();
             $val = $a->where('variable_id', $cnt->id)->first();
+            $option = $opt ? $opt->options->first() : null;
             return [
-                'name' => $opt->options->first()->option->name,
+                'name' =>  $option ? $option->option->name : "NA",
                 'value' => $val->value,
             ];
         })->groupBy('name')->map(function($data, $key){
@@ -152,7 +153,7 @@ class Utils {
         $values = $values->map(function($data) use ($current, $variable) {
             $option = Answer::where('form_instance_id', $data['form_instance_id'])
                 ->where('variable_id', $variable->id)->with('options.option')->first();
-            $option = $option->options->first()->option->name;
+            $option = $option ? $option->options->first()->option->name : "NA";
             return [
                 $variable->name => $option,
                 $current->name => $data['value'],
@@ -221,8 +222,8 @@ class Utils {
 
     public static function setPercentMergeValue($data, $top=false)
     {
-        $total = $data->max('total');
-        $data = $data->transform(function ($item) use ($total) {
+        $total = collect($data)->max('total');
+        $data = collect($data)->transform(function ($item) use ($total) {
             if ($item['name'] !== 'all') {
                 $percent = round(($item['total']/$total)*100, 2);
                 $item['value'] = $percent;

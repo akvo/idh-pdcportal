@@ -490,7 +490,8 @@ class ApiController extends Controller
             $fsdmId = Variable::where('name', $variables['f_sdm_size (acre)'])->first();
             $farm_sizes = Utils::getValues($id, $variables['f_size (acre)'], false)->map(function ($item) use ($fsdmId) {
                 $fsdmVal = Answer::where('form_instance_id', $item['form_instance_id'])
-                    ->where('variable_id', $fsdmId->id)->first()->value;
+                    ->where('variable_id', $fsdmId->id)->first();
+                $fsdmVal = $fsdmVal ? $fsdmVal->value : 0;
                 return [
                     'id' => $item->id,
                     'form_instance_id' => $item->form_instance_id,
@@ -523,13 +524,13 @@ class ApiController extends Controller
                     Cards::create(round(collect($farm_size)->avg(), 2), 'NUM', 'Acres is the average farm size')
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(strval(round($only_farm_sizes['total']/$total_farm_sizes, 2)*100), 'PERCENT', 'Of the farm is on average dedicated to '.$only_farm_sizes['name'])
+                    Cards::create(strval($total_farm_sizes ? round($only_farm_sizes['total']/$total_farm_sizes, 2)*100 : 0), 'PERCENT', 'Of the farm is on average dedicated to '.$only_farm_sizes['name'])
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(round($total_second_crop/$total_second_crop_no_filter, 2)*100, 'PERCENT', 'Of the farmers had more than one crop')
+                    Cards::create(strval(round($total_second_crop/$total_second_crop_no_filter, 2)*100), 'PERCENT', 'Of the farmers had more than one crop')
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(round($total_livestock_filter/$total_livestock_data, 2)*100, 'PERCENT', 'Of the farmers have livestock')
+                    Cards::create(strval(round($total_livestock_filter/$total_livestock_data, 2)*100), 'PERCENT', 'Of the farmers have livestock')
                 ], 'CARDS', false, 3),
             ]);
 

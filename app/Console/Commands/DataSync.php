@@ -40,16 +40,19 @@ class DataSync extends Command
     {
         $fid = $this->argument('form_id');
         $all = $this->option('all');
+        $sources = config('data.sources');
         if ($all) {
             $fid = 'all';
+            echo("Total data to seed: ".count($sources).PHP_EOL);
         }
-        $sources = config('data.sources');
         if ($fid !== 'all') {
             $sources = collect($sources)->where('fid', $fid)->values();
         }
-        foreach ($sources as $data) {
-            echo("Seeding Forms fid: ".$data['fid'].PHP_EOL);
+        foreach ($sources as $key => $data) {
+            echo(PHP_EOL."Iteration: ".$key.PHP_EOL);
+            echo("Seeding Form fid: ".$data['fid'].PHP_EOL);
             $seeder->createForm($data);
+            echo("Done: ".$data['fid'].PHP_EOL);
         }
         return "finish";
     }
