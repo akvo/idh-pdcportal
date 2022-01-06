@@ -182,22 +182,7 @@ return [
             'report_url' => null,
         ],
 
-        # TODO::Paste New start from here
-    ],
-    'relations' => [
-        [
-            'name' => 'f_first_crop',
-            'level' => 1,
-            'children' => 'f_ownership'
-        ],
-        [
-            'name' => 'f_ownership',
-            'level' => 2,
-            'children' => 'f_sdm_size'
-        ],
-    ],
-    // will add to sources
-    'sources_new' => [
+        # TODO::Paste New start from here -- 1 NEW DATA START FROM HERE
         [
             'sid' => 134600045,
             'fid' => 148080024,
@@ -317,6 +302,7 @@ return [
             'kind' => 'Potatoes',
             'country' => 'Kenya',
             'company' => 'Agri Wallet',
+            'case_number' => null,
             'cascade' => [
                 'name' => 'pi_location_cascade_first_level',
             ],
@@ -405,22 +391,104 @@ return [
             ],
             'report_url' => null,
         ],
-        // [ // no location
-        //     'sid' => 51260001,
-        //     'fid' => 53320001,
-        //     'file' => $path . '26032020_Musoni_Maize.csv',
-        //     'kind' => 'Maize',
-        //     'country' => 'zzz',
-        //     'company' => 'Musoni Maize',
-        //     'case_number' => null,
-        //     'cascade' => [
-        //         'name' => 'pi_location_cascade_first_level',
-        //     ],
-        //     'files' => [
-        //         ["type" => "raw", "text" => "Analyzed Musoni Maize Data", "to" => ".xlsx", "filename" => "26032020_Musoni_Maize"],
-        //     ],
-        //     'report_url' => null,
-        // ],
+
+        # TODO::Paste New start from here -- 2 NEW DATA START FROM HERE
+
+    ],
+    'relations' => [
+        [
+            'name' => 'f_first_crop',
+            'level' => 1,
+            'children' => 'f_ownership'
+        ],
+        [
+            'name' => 'f_ownership',
+            'level' => 2,
+            'children' => 'f_sdm_size'
+        ],
+    ],
+    // will add to sources
+    'sources_new' => [
+        [
+            'sid' => 20191211, # not real id
+            'fid' => 11122019, # not real id
+            'file' => $path . '11122019_Coscharis_Anom.csv',
+            'kind' => 'Rice',
+            'country' => 'Nigeria',
+            'company' => 'Coscharis 2',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Coscharis 2 Rice Data", "to" => ".xlsx", "filename" => "11122019_Coscharis_Anom"],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 51260001,
+            'fid' => 53320001,
+            'file' => $path . '26032020_Musoni_Maize.csv',
+            'kind' => 'Maize',
+            'country' => 'Kenya',
+            'company' => 'Musoni Maize',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Musoni Maize Data", "to" => ".xlsx", "filename" => "26032020_Musoni_Maize"],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 512600019, # not real id
+            'fid' => 533200019, # not real id
+            'file' => $path . '26032020_Musoni_Sorghum.csv',
+            'kind' => 'Sorghum',
+            'country' => 'Kenya',
+            'company' => 'Musoni Sorghum',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Musoni Sorghum Data", "to" => ".xlsx", "filename" => "26032020_Musoni_Sorghum"],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 18960013,
+            'fid' => 29060011,
+            'file' => $path . '30012020_McCormick_Anom.csv',
+            'kind' => 'Black Pepper',
+            'country' => 'Uganda',
+            'company' => 'McCormick',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed McCormick Black Pepper Data", "to" => ".xlsx", "filename" => "30012020_McCormick_Anom"],
+            ],
+            'report_url' => null,
+        ],
+        [
+            'sid' => 920191212, # not real id
+            'fid' => 1212201909, # not real id
+            'file' => $path . '12122019_Alluvial.csv',
+            'kind' => 'Rice',
+            'country' => 'Nigeria',
+            'company' => 'Alluvial 2',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Alluvial 2 Rice Data", "to" => ".xlsx", "filename" => "12122019_Alluvial"],
+            ],
+            'report_url' => null,
+        ],
 
         // [ // example
         //     'sid' => xxx,
