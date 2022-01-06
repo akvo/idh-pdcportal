@@ -153,7 +153,7 @@ class Utils {
         $values = $values->map(function($data) use ($current, $variable) {
             $option = Answer::where('form_instance_id', $data['form_instance_id'])
                 ->where('variable_id', $variable->id)->with('options.option')->first();
-            $option = $option ? $option->options->first()->option->name : "NA";
+            $option = $option ? $option->options->first() ? $option->options->first()->option->name : "NA" : "NA";
             return [
                 $variable->name => $option,
                 $current->name => $data['value'],
