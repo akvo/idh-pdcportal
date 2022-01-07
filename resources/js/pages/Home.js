@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { mapStateToProps, mapDispatchToProps } from "../reducers/actions";
-import { Row, Col, Table } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Charts from "../components/Charts";
 import { generateData } from "../charts/chart-generator.js";
 import { flatFilters } from "../data/utils.js";
@@ -221,50 +221,6 @@ class Home extends Component {
                 pagination
               />
             </Col>
-            {/*
-            <Col md={12}>
-              <Table bordered hover size="sm">
-                <thead>
-                  <tr>
-                    <th>No.</th>
-                    <th>Country</th>
-                    <th>Crop</th>
-                    <th>Company</th>
-                    <th>Total Submission</th>
-                    <th>Survey Conducted</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {source.map((x, i) => (
-                    <tr key={"tbl-" + i}>
-                      <td width="35px">{i + 1}</td>
-                      <td>{x.country}</td>
-                      <td>{x.kind}</td>
-                      <td>{x.company}</td>
-                      <td>{x.total}</td>
-                      <td>{x.submission}</td>
-                      <td>
-                        <a
-                          target="_blank"
-                          href={
-                            "/country/" +
-                            x.country.toLowerCase() +
-                            "/" +
-                            x.id +
-                            "/overview"
-                          }
-                          className="btn btn-sm btn-primary btn-block"
-                        >
-                          View
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </Col>
-             */}
           </Row>
         </div>
       </Fragment>
