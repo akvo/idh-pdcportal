@@ -54,6 +54,9 @@ class SeedController extends Controller
             if (collect(config('variable.number_type'))->contains($header)) {
                 $type = 'number';
             }
+            if (collect(config('variable.option_type'))->contains($header)) {
+                $type = 'option';
+            }
             return [
                 'name' => $header,
                 'type' => $type,

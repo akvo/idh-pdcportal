@@ -48,10 +48,11 @@ class ApiController extends Controller
 
         // mapping variable change
         $variableConfig = config('variable');
-        $variables = $variableConfig['old_variable'];
-        $isVariableChange = collect($variableConfig['fids'])->contains($form->fid);
+        $variables = $variableConfig['standard_variable'];
+        $custom_variable_mapping = collect($variableConfig['mapping']);
+        $isVariableChange = collect($custom_variable_mapping->pluck('fid'))->contains($form->fid);
         if ($isVariableChange) {
-            $variables = collect($variableConfig['mapping'])->where('fid', $form->fid)->first()['variable'];
+            $variables = $custom_variable_mapping->where('fid', $form->fid)->first()['variable'];
         }
 
         $first_crop = Utils::getValues($id, $variables['f_first_crop']);
@@ -132,10 +133,11 @@ class ApiController extends Controller
 
         // mapping variable change
         $variableConfig = config('variable');
-        $variables = $variableConfig['old_variable'];
-        $isVariableChange = collect($variableConfig['fids'])->contains($form->fid);
+        $variables = $variableConfig['standard_variable'];
+        $custom_variable_mapping = collect($variableConfig['mapping']);
+        $isVariableChange = collect($custom_variable_mapping->pluck('fid'))->contains($form->fid);
         if ($isVariableChange) {
-            $variables = collect($variableConfig['mapping'])->where('fid', $form->fid)->first()['variable'];
+            $variables = $custom_variable_mapping->where('fid', $form->fid)->first()['variable'];
         }
 
         if ($request->tab === "resources") {
@@ -145,9 +147,9 @@ class ApiController extends Controller
             ];
         }
 
+        # OVERVIEW
         if ($request->tab === "overview") {
             $submission = Utils::getLastSubmissionDate($id);
-            // $submission_month = Carbon::now()->format('m') - Carbon::parse($submission)->format('m');
             $dateNow = date_create(now());
             $submissionDate = date_create($submission);
             $diff = date_diff($dateNow, $submissionDate);
@@ -183,7 +185,7 @@ class ApiController extends Controller
                 strtolower("No Heshe Is An Alternative For A Sample Farmer That Was Unavailable"),
                 strtolower("No, He/She Is An Alternative For A (Sample) Farmer That Was Unavailable")
             ];
-            $farmer_sample = Utils::getValues($id, $variables['farmer_sample'])->map(function ($item) use ($alternatives) {
+            $farmer_sample = collect(Utils::getValues($id, $variables['farmer_sample']))->map(function ($item) use ($alternatives) {
                 if (in_array(strtolower($item['name']), $alternatives)) {
                     $item['name'] = "Alternative";
                 }
@@ -214,6 +216,7 @@ class ApiController extends Controller
             ];
         }
 
+        # HH PROFILE
         if ($request->tab === "hh-profile") {
             /*
             $variableLevels = collect([
@@ -339,11 +342,12 @@ class ApiController extends Controller
             ];
         }
 
+        # FARMER PROFILE
         if ($request->tab === "farmer-profile") {
             $age = Utils::getValues($id, $variables['hh_age_farmer'], false);
             // return value into age instead using year
             if (count($age) > 0) {
-                if ($isVariableChange && $age->first()->value > 1000) {
+                if ($age->first()->value > 1000) {
                     $age = $age->map(function ($item) {
                         $item['value'] = date('Y') - $item['value'];
                         return $item;
@@ -376,6 +380,7 @@ class ApiController extends Controller
             ];
         }
 
+        # FARM PRACTICES
         if ($request->tab === "farm-practices") {
             $f_harvests = Utils::getValues($id, $variables['f_harvests']);
             $f_lost_kg = Utils::getValues($id, $variables['f_lost (kilograms)'], false);
@@ -484,6 +489,7 @@ class ApiController extends Controller
             ];
         }
 
+        # FARM CHARACTERISTICS
         if ($request->tab === "farm-characteristics") {
             $farm_size = Utils::getValues($id, $variables['f_size (acre)']);
 
@@ -587,6 +593,7 @@ class ApiController extends Controller
             ];
         }
 
+        # GENDER
         if ($request->tab === "gender") {
             $female = Utils::getValues($id, $variables['hh_size_female'], false);
             $education_female = Utils::mergeValues($female, $variables['g_education']);
@@ -609,6 +616,7 @@ class ApiController extends Controller
             ];
         }
 
+        # DOWNLOAD
         if ($request->tab === "download") {
             $sources = collect(config('data.sources'));
             $source = $sources->where('fid', $form->fid)->first();
