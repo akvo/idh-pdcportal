@@ -40,6 +40,7 @@ export const Histogram = (title, data) => {
       barMaxWidth: 1,
     };
   });
+  const isLongLegend = legend.length > 10;
   return {
     title: {
       text: splitTitle(title),
@@ -48,7 +49,7 @@ export const Histogram = (title, data) => {
       ...TextStyle,
     },
     grid: {
-      top: 100,
+      top: isLongLegend ? legend.length * 9 : 100,
       right: 30,
       left: 35,
       show: true,
