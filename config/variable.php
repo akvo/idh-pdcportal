@@ -62,93 +62,21 @@ $standard_variable = [
     'pi_location_cascade_county' => 'pi_location_cascade_first_level',
 ];
 
-$new_variable = [
-    'hh_size' => 'hh_size',
-    'hh_head_gender' => 'hh_head_gender',
-    'hh_size_male' => 'hh_male_nr',
-    'hh_size_female' => 'hh_female_nr',
-    'hh_gender_farmer' => 'hh_farmer_gender',
-    'fs_shortage_months' => 'fs_shortage_months',
-    'hh_age_farmer' => 'hh_farmer_age',
-    'hh_education_farmer' => 'hh_education_farmer',
-    'f_ownership' => 'f_ownership_type',
-    'f_harvests' => 'f_harvest_num',
-    'f_lost (kilograms)' => 'cal_focus_quant_lost',
-    'f_first_crop' => 'f_othermaincrop_1',
-    'f_second_crop' => 'f_othermaincrop_2',
-    'f_third_crop' => null,
-    'f_other_crop_income' => 'cal_other_crop_income',
-    'f_inputs_usage' => 'f_inputs_usage',
-    'f_equipment_usage' => [
-        'f_nonmech_equip_type',
-        'f_mech_equip_type',
-        'f_materials_other_type'
-    ],
-    'f_size (acre)' => 'f_size (acre)',
-    'f_sdm_size (acre)' => 'f_focus_crop_size (acre)',
-    'f_livestock' => 'f_livestock_income_type',
-    'f_crops' => ['f_othermaincrop_1', 'f_othermaincrop_2'],
-    'f_type' => null,
-    'g_education' => 'g_education',
-    'g_reprod_activities' => 'g_reprod_activities',
-    'pi_location_cascade_county' => 'pi_location_cascade_county',
-    'farmer_sample' => 'farmer_sample',
-];
-
-$new_variable_with_diff_county = $new_variable;
-$new_variable_with_diff_county['pi_location_cascade_county'] = 'pi_location_cascade_region';
-
-$new_variable_wit_diff_county_and_hh_age_farmer = $new_variable_with_diff_county;
-$new_variable_wit_diff_county_and_hh_age_farmer['hh_age_farmer'] = 'cal_hh_farmer_age';
-
-$new_variable_for_rgl_data = $new_variable;
-$new_variable_for_rgl_data['pi_location_cascade_county'] = 'pi_location_cascade_1_Mkoa';
-$new_variable_for_rgl_data['hh_age_farmer'] = 'hh_head_age';
-$new_variable_for_rgl_data['f_crops'] = 'f_number_of_crops';
-$new_variable_for_rgl_data['f_size (acre)'] = null;
-$new_variable_for_rgl_data['f_sdm_size (acre)'] = 'f_focus_crop_size..acre.';
-$new_variable_for_rgl_data['f_lost (kilograms)'] = 'f_focus_quant_lost';
-$new_variable_for_rgl_data['f_other_crop_income'] = 'f_other_crop_income';
-
 return [
-    'old_variable' => $standard_variable,
-    'fids' => [],
+    'standard_variable' => $standard_variable,
+    // this was used to mapping different variable for each dataset
+    'old_variable' => $old_variable,
     'mapping' => [
-        // Smart logistics - Beans
+        // Example
         [
-            'fid' => 143920001,
-            'variable' => $new_variable,
+            'fid' => 'form id used on data config',
+            'variable' => '', #$new_variable_name
         ],
-        // Syngenta Potatoes
-        [
-            'fid' => 145035285,
-            'variable' => $new_variable,
-        ],
-        // Syngenta Tomatoes
-        [
-            'fid' => 139002776,
-            'variable' => $new_variable,
-        ],
-        // USSL Tanzania - Maize
-        [
-            'fid' => 150980836,
-            'variable' => $new_variable_with_diff_county,
-        ],
-        // EU Tanzania Tea - Ikanga / non Ikanga
-        [
-            'fid' => 151280148,
-            'variable' => $new_variable_wit_diff_county_and_hh_age_farmer,
-        ],
-        // RGL Anom Tanzania Rice
-        [
-            'fid' => 193410232,
-            'variable' => $new_variable_for_rgl_data,
-        ],
-        // RGL Anom Tanzania Beans
-        [
-            'fid' => 179600043,
-            'variable' => $new_variable_for_rgl_data,
-        ],
+    ],
+    // this config used to define value under defined column name are option
+    'option_type' => [
+        'hh_gender_farmer',
+        'hh_farmer_gender',
     ],
     // this config used to define value under defined column name are number
     'number_type' => [
