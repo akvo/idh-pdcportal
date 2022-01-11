@@ -25,7 +25,7 @@ class ApiController extends Controller
             $list = $list->map(function ($item) use ($sources) {
                 $source = $sources->where('fid', $item['fid'])->first();
                 $date = Utils::getLastSubmissionDate($item['id']);
-                if (is_null($date)) {
+                if (is_null($date) || !(int) $date) {
                     $date = $source['submission_date'];
                 }
                 $item['submission'] = Carbon::parse($date)->format('M Y');
@@ -153,7 +153,7 @@ class ApiController extends Controller
         # OVERVIEW
         if ($request->tab === "overview") {
             $submission = Utils::getLastSubmissionDate($id);
-            if (is_null($submission)) {
+            if (is_null($submission) || !(int) $submission) {
                 $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
             }
             $dateNow = date_create(now());

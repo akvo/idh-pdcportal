@@ -84,7 +84,6 @@ class SeedController extends Controller
                 if ($header['type'] === 'text') {
                     // custom only for submission date
                     $value = ($input === "NA" || $input === null || $input === '' || empty($input)) ? null : (float) str_replace("-", "", $input);
-                    dd($value);
                 }
                 if ($header['type'] === 'number') {
                     $value = ($input === "NA" || $input === null || $input === '' || empty($input)) ? null : (float) $input;
