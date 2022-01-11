@@ -25,6 +25,9 @@ class ApiController extends Controller
             $list = $list->map(function ($item) use ($sources) {
                 $source = $sources->where('fid', $item['fid'])->first();
                 $date = Utils::getLastSubmissionDate($item['id']);
+                if (is_null($date)) {
+                    $date = $source['submission_date'];
+                }
                 $item['submission'] = Carbon::parse($date)->format('M Y');
                 $item['case_number'] = $source['case_number'];
                 $item['date'] = Carbon::parse($date)->format('Y-m-d');
@@ -150,6 +153,9 @@ class ApiController extends Controller
         # OVERVIEW
         if ($request->tab === "overview") {
             $submission = Utils::getLastSubmissionDate($id);
+            if (is_null($submission)) {
+                $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+            }
             $dateNow = date_create(now());
             $submissionDate = date_create($submission);
             $diff = date_diff($dateNow, $submissionDate);

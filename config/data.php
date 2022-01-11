@@ -20,6 +20,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Mwea Rice Data", "to" => ".xlsx", "filename" => "11082020_Mwea_Anom"],
             ],
             'report_url' => '/files/Data-delivery-Mwea.html',
+            'submission_date' => "2020-08-01",
         ],
         [
             'sid' => 66630001,
@@ -36,6 +37,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed E-granary Data", "to" => ".xlsx", "filename" => "04022020_Egranary_Anom"],
             ],
             'report_url' => '/files/Data-delivery-Egranary.html',
+            'submission_date' => "2020-01-22",
         ],
         [
             'sid' => 147070008,
@@ -52,6 +54,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Smart Logistics Data", "to" => ".xlsx", "filename" => "2021-03-19_smart_logistics_anom"],
             ],
             'report_url' => '',
+            'submission_date' => null,
         ],
         [
             'sid' => 158095822,
@@ -68,6 +71,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Syngenta Potatoes Data", "to" => ".xlsx", "filename" => "kenya-syngenta_potatoes"],
             ],
             'report_url' => '',
+            'submission_date' => null,
         ],
         [
             'sid' => 131442923,
@@ -84,6 +88,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Syngenta Tomatoes Data", "to" => ".xlsx" , "filename" => "kenya-syngenta_tomatoes"],
             ],
             'report_url' => '',
+            'submission_date' => null,
         ],
         [
             'sid' => 93551183,
@@ -100,6 +105,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed USSL Data", "to" => ".xlsx", "filename" => "2021_tanzania-ussl"],
             ],
             'report_url' => '/files/Data-delivery-USSL.html',
+            'submission_date' => null,
         ],
         [
             'sid' => 135931326,
@@ -116,6 +122,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed EU Tanzania Tea Ikanga Data", "to" => ".xlsx", "filename" => "2021-05-26_EU-Tea-Tanzania_anom_Njombe_Ikanga_farmers"],
             ],
             'report_url' => '/files/Data-delivery-EU-Tanzania_v1_Njombe_Ikanga_farmers.html',
+            'submission_date' => null,
         ],
         [
             'sid' => 154440305,
@@ -132,6 +139,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed EU Tanzania Tea Non Ikanga Data", "to" => ".xlsx", "filename" => "2021-06-02_EU_Tea_Tanzania_anom_Njombe_nonIkanga_farmers"],
             ],
             'report_url' => '/files/Data-delivery-EU-Tanzania_v1_Njombe_nonIkanga_farmers.html',
+            'submission_date' => null,
         ],
         [
             'sid' => 195440268,
@@ -148,6 +156,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed RGL Anom Rice Data", "to" => ".xlsx", "filename" => "2021_RGL_anom_rice"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 202340055,
@@ -164,6 +173,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed RGL Anom Beans Data", "to" => ".xlsx", "filename" => "2021_RGL_anom_beans"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 87951728,
@@ -180,6 +190,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Rubutco Tea Data", "to" => ".xlsx", "filename" => "2020-11-20_Rubutco_Anom.csv"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 134600045,
@@ -196,6 +207,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed NKG Coffee Data", "to" => ".xlsx", "filename" => "2021-04-07_Kenya_NKG_Anom"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 135541659,
@@ -212,6 +224,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed NKG Coffee Data", "to" => ".xlsx", "filename" => "2021-04-12_Honduras_NKG_Anom"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 146683436,
@@ -228,6 +241,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed NKG Coffee Data", "to" => ".xlsx", "filename" => "2021-04-12_Uganda_NKG_Anom"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 137051412,
@@ -244,6 +258,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed NKG Coffee Data", "to" => ".xlsx", "filename" => "2021-04-15_Mexico_NKG_Anom"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 160395970,
@@ -260,6 +275,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed AIF Maize Data", "to" => ".xlsx", "filename" => "2021-05-14_AIF_Anom_nyagatare_and_kirehe"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 70530002,
@@ -276,6 +292,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Alluvial Rice Data", "to" => ".xlsx", "filename" => "2021-06-29_Alluvial_anom"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 40690006,
@@ -292,6 +309,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Coscharis Rice Data", "to" => ".xlsx", "filename" => "2021-06-29_Coscharis_anom"],
             ],
             'report_url' => null,
+            'submission_date' => null,
         ],
         [
             'sid' => 4310019,
@@ -308,6 +326,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Agri Wallet Potatoes Data", "to" => ".xlsx", "filename" => "04102019_AGRI_WALLET_anonymized"],
             ],
             'report_url' => null,
+            'submission_date' => "2019-10-04",
         ],
         [
             'sid' => 70020001,
@@ -324,6 +343,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Sparkx Rice Data", "to" => ".xlsx", "filename" => "12122019_Sparkx_Anom"],
             ],
             'report_url' => null,
+            'submission_date' => "2019-12-12",
         ],
         [
             'sid' => 11050005,
@@ -340,6 +360,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed USOMI Millet Data", "to" => ".xlsx", "filename" => "12122019_USOMI"],
             ],
             'report_url' => null,
+            'submission_date' => "2019-12-12",
         ],
         [
             'sid' => 20191017, # not real sid from flow
@@ -356,6 +377,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed NFC Tree Data", "to" => ".xlsx", "filename" => "17102019_NFC"],
             ],
             'report_url' => null,
+            'submission_date' => "2019-10-17",
         ],
         [
             'sid' => 102680038,
@@ -372,6 +394,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Batian Nuts Macadamia Data", "to" => ".xlsx", "filename" => "20082020_Batian_Anom"],
             ],
             'report_url' => null,
+            'submission_date' => "2020-08-20",
         ],
         [
             'sid' => 28970006,
@@ -388,6 +411,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Bulamu Coffee Data", "to" => ".xlsx", "filename" => "20190904_Bulamu_Anom"],
             ],
             'report_url' => null,
+            'submission_date' => "2019-09-04",
         ],
         [
             'sid' => 20191211, # not real id
@@ -404,6 +428,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Coscharis 2 Rice Data", "to" => ".xlsx", "filename" => "11122019_Coscharis_Anom"],
             ],
             'report_url' => null,
+            'submission_date' => "2019-12-11",
         ],
         [
             'sid' => 51260001,
@@ -420,6 +445,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Musoni Maize Data", "to" => ".xlsx", "filename" => "26032020_Musoni_Maize"],
             ],
             'report_url' => null,
+            'submission_date' => "2020-03-26",
         ],
         [
             'sid' => 512600019, # not real id
@@ -436,6 +462,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Musoni Sorghum Data", "to" => ".xlsx", "filename" => "26032020_Musoni_Sorghum"],
             ],
             'report_url' => null,
+            'submission_date' => "2020-03-26",
         ],
         [
             'sid' => 18960013,
@@ -452,6 +479,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed McCormick Black Pepper Data", "to" => ".xlsx", "filename" => "30012020_McCormick_Anom"],
             ],
             'report_url' => null,
+            'submission_date' => "2020-01-30",
         ],
         [
             'sid' => 920191212, # not real id
@@ -468,11 +496,12 @@ return [
                 ["type" => "raw", "text" => "Analyzed Alluvial 2 Rice Data", "to" => ".xlsx", "filename" => "12122019_Alluvial"],
             ],
             'report_url' => null,
+            'submission_date' => "2019-12-12",
         ],
 
         // [ // example
-        //     'sid' => xxx,
-        //     'fid' => xxx,
+        //     'sid' => 12345,
+        //     'fid' => 54321,
         //     'file' => $path . 'xvx.csv',
         //     'kind' => 'zzz',
         //     'country' => 'zzz',
@@ -485,6 +514,7 @@ return [
         //         ["type" => "raw", "text" => "Analyzed XXX Data", "to" => ".xlsx", "filename" => "xvx"],
         //     ],
         //     'report_url' => null,
+        //     'submission_date' => null, // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         // ],
     ],
     'relations' => [
