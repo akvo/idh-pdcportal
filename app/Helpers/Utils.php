@@ -212,9 +212,9 @@ class Utils {
                 return $sbm;
             })->pluck('name')->sort()->values()->first();
         }
-        if ($var->type === 'number') {
+        if ($var->type === 'number' || $var->type === 'text') {
             $date = collect($submission_dates)->map(function ($sbm) {
-                return strval((int)$sbm);
+                return is_numeric($sbm) ? strval((int)$sbm) : $sbm;
             })->sort()->values()->first();
         }
         return $date;

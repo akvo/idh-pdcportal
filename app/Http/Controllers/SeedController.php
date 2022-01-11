@@ -57,6 +57,9 @@ class SeedController extends Controller
             if (collect(config('variable.option_type'))->contains($header)) {
                 $type = 'option';
             }
+            if (collect(config('variable.text_type'))->contains($header)) {
+                $type = 'text';
+            }
             return [
                 'name' => $header,
                 'type' => $type,
@@ -78,7 +81,11 @@ class SeedController extends Controller
                 $value = null;
                 $variable_id = $variables[$header['name']];
                 $input = $record[$header['name']];
-                // echo $input;
+                if ($header['type'] === 'text') {
+                    // custom only for submission date
+                    $value = ($input === "NA" || $input === null || $input === '' || empty($input)) ? null : (float) str_replace("-", "", $input);
+                    dd($value);
+                }
                 if ($header['type'] === 'number') {
                     $value = ($input === "NA" || $input === null || $input === '' || empty($input)) ? null : (float) $input;
                 }

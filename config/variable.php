@@ -84,6 +84,10 @@ return [
         'hh_gender_farmer',
         'hh_farmer_gender',
     ],
+    // this config used to define value under defined column name are text
+    'text_type' => [
+        'submission date',
+    ],
     // this config used to define value under defined column name are number
     'number_type' => [
         'f_number_of_crops',
