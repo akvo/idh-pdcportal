@@ -39,7 +39,7 @@ const Maps = (title, data, compare = false) => {
       ...TextStyle,
     },
     visualMap: {
-      bottom: "40px",
+      bottom: "20px",
       left: "center",
       orient: "horizontal",
       itemHeight: "200px",

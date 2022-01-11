@@ -171,6 +171,7 @@ class Home extends Component {
                 kind={maps.kind}
                 config={maps.config}
               />
+              <p className="visual-map-text">Number of users</p>
             </Col>
             <Col md={12}>
               <DataTable

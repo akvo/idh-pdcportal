@@ -201,14 +201,17 @@ class ApiController extends Controller
                 return $item;
             });
 
+            $month_text = $submission_month > 1 ? " months" : " month";
             $overview = [
                 // Cards::create(Utils::getValues($id, 'f_first_crop'), 'BAR', "Farmer First Crop"),
+
                 Cards::create([
-                    Cards::create($submission_month.' month ago', 'MONTH', 'In '.Carbon::parse($submission)->format('M Y'), 12, 'Survey conducted')
+                    Cards::create($submission_month.$month_text.' ago', 'MONTH', 'In '.Carbon::parse($submission)->format('M Y'), 12, 'Survey conducted')
                 ], 'CARDS', false, 6),
                 Cards::create([$first_crop_card], 'CARDS', false, 6),
                 Cards::create($maps, 'MAPS', "Household Surveyed", 6),
                 Cards::create($farmer_sample, 'PIE', "The farmer surveyed part of the sample", 6),
+
                 // Cards::create([
                 //     Cards::create(round(collect($farm_size)->avg(), 2), 'NUM', 'Acres is the average farm size')
                 // ], 'CARDS', false),
