@@ -1,12 +1,12 @@
 ---
 version: v1.0
-name: Akvo Tech consultancy
+name: IDH PDC Portal
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: 'Build, test & deploy'
+  - name: "Build, test & deploy"
     task:
       secrets:
         - name: GCP
@@ -17,7 +17,7 @@ blocks:
         commands:
           - checkout
       jobs:
-        - name: 'Build&Test'
+        - name: "Build&Test"
           commands:
             - export AUTH0_PASSWORD=${PASSWORD}
             - export GCLOUD_ACCOUNT_FILE=$(pwd)/akvo-lumen-a52cb7c6668a.json
@@ -38,4 +38,4 @@ blocks:
             - ./ci/build-semaphore.sh && ./ci/deploy-semaphore.sh
       env_vars:
         - name: CLOUDSDK_CORE_DISABLE_PROMPTS
-          value: '1'
+          value: "1"
