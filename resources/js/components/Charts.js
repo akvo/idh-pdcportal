@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import isEmpty from "lodash/isEmpty";
 
 const NoDataAlert = ({ props }) => {
-  console.log(props);
   return (
     <div className="no-data-alert-container">
       <div className="chart-title">{props?.title || "No Title"}</div>

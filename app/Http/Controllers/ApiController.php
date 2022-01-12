@@ -90,7 +90,7 @@ class ApiController extends Controller
         //     Cards::create($owned_land, 'PERCENT', "Of the farmers own the land they use to grow crops"),
         // ];
         // return [
-        //     Cards::create($maps, 'MAPS', "Household Surveyed", 6),
+        //     Cards::create($maps, 'MAPS', "Location of surveyed households", 6),
         //     Cards::create(Utils::getValues($id, 'farmer_sample'), 'PIE', "Was the farmer surveyed part of the sample?", 4),
         //     Cards::create($firstSubcards, 'CARDS', false, 2),
         //     Cards::create($secondSubcards, 'CARDS', false, 2),
@@ -113,7 +113,7 @@ class ApiController extends Controller
         });
 
         return [
-            Cards::create($maps, 'MAPS', "Household Surveyed", 4, false, 1),
+            Cards::create($maps, 'MAPS', "Location of surveyed households", 4, false, 1),
             Cards::create($farmer_sample, 'PIE', "Was the farmer surveyed part of the sample?", 4, false, 2),
 
             Cards::create($total, 'NUM', "Of the farmers are included in the analysis", 4, false, 3),
@@ -210,7 +210,7 @@ class ApiController extends Controller
                     Cards::create($submission_month.$month_text.' ago', 'MONTH', 'In '.Carbon::parse($submission)->format('M Y'), 12, 'Survey conducted')
                 ], 'CARDS', false, 6),
                 Cards::create([$first_crop_card], 'CARDS', false, 6),
-                Cards::create($maps, 'MAPS', "Household Surveyed", 6),
+                Cards::create($maps, 'MAPS', "Location of surveyed households", 6),
                 Cards::create($farmer_sample, 'PIE', "The farmer surveyed part of the sample", 6),
 
                 // Cards::create([
