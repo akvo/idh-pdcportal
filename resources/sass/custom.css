@@ -704,3 +704,27 @@ span.span-link {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.no-data-alert-container {
+  padding: 1.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-data-alert-container .chart-title {
+  color: #222;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.no-data-alert-container .alert-body-wrapper {
+  width: 65%;
+  margin-top: 5rem;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  column-gap: 20px;
+}
