@@ -166,25 +166,6 @@ class Country extends Component {
                   </div>
                 </div>
               </div>
-              {/* <div className="sub-content">
-                {companies.map((x, i) => (
-                  <Link
-                    key={i}
-                    to={
-                      "/country/" +
-                      country.toLowerCase() +
-                      "/" +
-                      x.id +
-                      "/overview"
-                    }
-                    className={x.id === companyId ? "active" : ""}
-                  >
-                    {x.case_number !== null
-                      ? x.case_number + " " + x.company
-                      : x.company}
-                  </Link>
-                ))}
-              </div> */}
             </Col>
           </Row>
           <Row id="component-will-stop">

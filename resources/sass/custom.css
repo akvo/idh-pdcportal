@@ -263,6 +263,8 @@ a.dropdown-toggle.nav-link div {
   color: #fff !important;
   font-weight: 700 !important;
   font-size: 18px;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .case-dropdown-toggle:focus {
