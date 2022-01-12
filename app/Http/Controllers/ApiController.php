@@ -155,6 +155,7 @@ class ApiController extends Controller
             $submission = Utils::getLastSubmissionDate($id);
             if (is_null($submission) || !(int) $submission) {
                 $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+                $submission = $submission ? $submission["submission_date"] : null;
             }
             $dateNow = date_create(now());
             $submissionDate = date_create($submission);
