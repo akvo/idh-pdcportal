@@ -56,7 +56,7 @@ class Charts extends Component {
       click: this.clickEvent,
     };
     if (this.props.config.column === 0) {
-      return (
+      return !isEmpty(this.props.dataset) ? (
         <ReactEcharts
           option={options}
           notMerge={true}
@@ -64,6 +64,8 @@ class Charts extends Component {
           onEvents={onEvents}
           style={this.props.config.style}
         />
+      ) : (
+        <NoDataAlert props={this.props} />
       );
     }
     return (

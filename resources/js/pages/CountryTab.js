@@ -91,12 +91,17 @@ class CountryTab extends Component {
         response = response.tabs.map((tab) => {
           let data = tab.charts.map((d, ix) => {
             let maxheight = 60;
+            let chartHeight =
+              d?.data?.length > 5 ? maxheight + d?.data?.length : maxheight;
             let chart = {
               identifier: d.kind + "-" + id + "-" + ix,
               title: d.title,
-              data: d.data,
+              data: d.data.map((x) => {
+                x.name = x?.name === "" ? "NA" : x.name;
+                return x;
+              }),
               kind: d.kind,
-              config: generateData(d.width, false, maxheight + "vh"),
+              config: generateData(d.width, false, chartHeight + "vh"),
               width: d.width,
             };
             if (chart.kind === "CARDS") {

@@ -79,6 +79,7 @@ export const Bar = (
   if (withGender) {
     let labelFormatter = {
       type: "bar",
+      barWidth: 15,
       label: {
         formatter: function (params) {
           return params.data.category;
@@ -202,6 +203,7 @@ export const Bar = (
         name: typeof title !== "undefined" ? splitTitle(title) : "",
         data: data,
         type: "bar",
+        barWidth: 15,
         label: {
           formatter: function (params) {
             return params.data.name;
