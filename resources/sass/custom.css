@@ -235,6 +235,41 @@ a.dropdown-toggle.nav-link div {
   border: solid #fff 4px;
 }
 
+.case-dropdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.case-dropdown-wrapper {
+  min-width: 500px;
+  min-height: 10px;
+  background: #36aa40;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.case-dropdown-wrapper .case-text {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.case-dropdown-toggle {
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 18px;
+}
+
+.case-dropdown-toggle:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .card-header {
   font-weight: 500 !important;
 }
