@@ -86,7 +86,7 @@ class ApiController extends Controller
             return Str::contains($data['name'], "No");
         })->values();
         // $secondSubcards = [
-        //     Cards::create($no_second_crop, 'PERCENT', "Of the farmers had more than one crop"),
+        //     Cards::create($no_second_crop, 'PERCENT', "Of the farmers grow more than one crop"),
         //     Cards::create($owned_land, 'PERCENT', "Of the farmers own the land they use to grow crops"),
         // ];
         // return [
@@ -120,7 +120,7 @@ class ApiController extends Controller
             // Cards::create($main_percentage, 'PERCENT', "Of the farmers main crop was ".$first_crop['name'], 4, false, 4),
             Cards::create($farm_size_avg, 'NUM', "Acres is the average farm size", 4, false, 5),
 
-            Cards::create($no_second_crop, 'PERCENT', "Of the farmers had more than one crop", 4, false, 6),
+            Cards::create($no_second_crop, 'PERCENT', "Of the farmers grow more than one crop", 4, false, 6),
             Cards::create($owned_land, 'PERCENT', "Of the farmers own the land they use to grow crops", 4, false, 7),
 
             Cards::create($landownership, 'BAR', "Farmers' land ownership status", 4, false, 8),
@@ -543,10 +543,10 @@ class ApiController extends Controller
                     Cards::create(strval($total_farm_sizes ? round($only_farm_sizes['total']/$total_farm_sizes, 2)*100 : 0), 'PERCENT', 'Of the farm is on average dedicated to '.$only_farm_sizes['name'])
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(strval($total_second_crop_no_filter ? round($total_second_crop/$total_second_crop_no_filter, 2)*100 : 0), 'PERCENT', 'Of the farmers had more than one crop')
+                    Cards::create(strval($total_second_crop_no_filter ? round($total_second_crop/$total_second_crop_no_filter, 2)*100 : 0), 'PERCENT', 'Of the farmers grow more than one crop')
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(strval(round($total_livestock_filter/$total_livestock_data, 2)*100), 'PERCENT', 'Of the farmers have livestock')
+                    Cards::create(strval(round($total_livestock_filter/$total_livestock_data, 2)*100), 'PERCENT', 'Of the farmers keep livestock')
                 ], 'CARDS', false, 3),
             ]);
 
