@@ -17,15 +17,15 @@ String.prototype.toTitle = function () {
 };
 
 function NavLink({ country, company, tab, active }) {
-  const tabName = tab.replace("-", " ").toTitle();
+  const tabName = tab?.name?.replace("-", " ").toTitle();
   country = country.toLowerCase();
   return (
     <Nav.Link
       as={Link}
-      to={"/country/" + country + "/" + company + "/" + tab}
+      to={"/country/" + country + "/" + company + "/" + tab?.link}
       active={active}
     >
-      {tab === "resources" ? (
+      {tab?.link === "resources" ? (
         <FontAwesomeIcon icon={["fas", "download"]} />
       ) : (
         ""
@@ -108,14 +108,34 @@ class Country extends Component {
     }
     let tab = params.tab;
     let tabs = [
-      "overview",
-      "farmer-profile",
-      "farm-characteristics",
-      "farm-practices",
-      "hh-profile",
-      "gender",
+      {
+        link: "overview",
+        name: "overview",
+      },
+      {
+        link: "farmer-profile",
+        name: "farmer profile",
+      },
+      {
+        link: "farm-characteristics",
+        name: "farm characteristics",
+      },
+      {
+        link: "farm-practices",
+        name: "farm practices",
+      },
+      {
+        link: "hh-profile",
+        name: "household profile",
+      },
+      {
+        link: "gender",
+        name: "gender",
+      },
     ];
-    tabs = resource.access ? [...tabs, "download"] : tabs;
+    tabs = resource.access
+      ? [...tabs, { link: "download", name: "download" }]
+      : tabs;
     return (
       <Fragment>
         <Jumbotron className="has-navigation">
@@ -173,7 +193,7 @@ class Country extends Component {
               {tabs.map((x, i) => (
                 <NavLink
                   key={i}
-                  active={tab === x}
+                  active={tab === x?.link}
                   country={country}
                   company={companyId}
                   tab={x}
