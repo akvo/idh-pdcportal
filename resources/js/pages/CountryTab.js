@@ -96,10 +96,12 @@ class CountryTab extends Component {
             let chart = {
               identifier: d.kind + "-" + id + "-" + ix,
               title: d.title,
-              data: d.data.map((x) => {
-                x.name = x?.name === "" ? "NA" : x.name;
-                return x;
-              }),
+              data: Array.isArray(d.data)
+                ? d?.data?.map((x) => {
+                    x.name = x?.name === "" ? "NA" : x.name;
+                    return x;
+                  })
+                : d?.data,
               kind: d.kind,
               config: generateData(d.width, false, chartHeight + "vh"),
               width: d.width,
