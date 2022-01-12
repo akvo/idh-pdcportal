@@ -436,10 +436,10 @@ class ApiController extends Controller
             if ($variables['f_third_crop']) {
                 $income_by_third_crop = collect(Utils::mergeValues(Utils::getValues($id, $variables['f_other_crop_income'], false), $variables['f_third_crop']));
                 $income_by_third_crop['data'] = Utils::setPercentMergeValue($income_by_third_crop['data'], 3);
-                $farmpractices->push(Cards::create($lost_kg, 'HISTOGRAM', 'Crop loss (kilograms) - focus crop', 6));
-                $farmpractices->push(Cards::create($income_by_third_crop['data'], 'BAR', 'Third highest income crop - other (%)', 6));
+                // $farmpractices->push(Cards::create($lost_kg, 'HISTOGRAM', 'Crop loss (kilograms) - focus crop', 6));
+                $farmpractices->push(Cards::create($income_by_third_crop['data'], 'BAR', 'Third highest income crop - other (%)', 12));
             } else {
-                $farmpractices->push(Cards::create($lost_kg, 'HISTOGRAM', 'Crop loss (kilograms) - focus crop', 12));
+                // $farmpractices->push(Cards::create($lost_kg, 'HISTOGRAM', 'Crop loss (kilograms) - focus crop', 12));
             }
 
             $input_usage = Utils::getValues($id, $variables['f_inputs_usage']);
