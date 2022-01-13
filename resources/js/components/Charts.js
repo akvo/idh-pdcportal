@@ -22,9 +22,7 @@ const NoDataAlert = ({ props }) => {
         <div>
           <h5>No data has been collected</h5>
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ipsum
-            dignissim aliquam velit, nulla at mattis. Ut at semper adipiscing
-            nullam.
+            This variable is not collected as part of data collection activity.
           </div>
         </div>
       </Alert>
