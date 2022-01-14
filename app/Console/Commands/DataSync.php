@@ -12,14 +12,17 @@ class DataSync extends Command
      *
      * @var string
      */
-    protected $signature = 'data:sync {form_id?} {--all}';
+    protected $signature = 'data:sync
+                            {form_id? : sync data by given form id ?}
+                            {--all : sync all data by data config}
+                            {--forms : sync only forms table by data config}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Sync database with new dataset';
 
     /**
      * Create a new command instance.
@@ -38,27 +41,42 @@ class DataSync extends Command
      */
     public function handle(SeedController $seeder)
     {
+        $startSeed = microtime(true);
         $fid = $this->argument('form_id');
         $all = $this->option('all');
+        $forms = $this->option('forms');
         $sources = config('data.sources');
         if ($all) {
-            $fid = 'all';
             echo("Total data to seed: ".count($sources).PHP_EOL);
         }
-        if ($fid !== 'all') {
+        if ($fid) {
             $sources = collect($sources)->where('fid', $fid)->values();
         }
-        foreach ($sources as $key => $data) {
-            $start = microtime(true);
 
-            echo(PHP_EOL."Iteration: ".$key.PHP_EOL);
-            echo("Seeding Form fid: ".$data['fid'].PHP_EOL);
-            $seeder->createForm($data);
-            echo("Done: ".$data['fid'].PHP_EOL);
+        if ($all || $fid) {
+            foreach ($sources as $key => $data) {
+                $start = microtime(true);
 
-            $time_elapsed_secs = microtime(true) - $start;
-            $this->info("Time : ".date("H:i:s", $time_elapsed_secs));
+                echo(PHP_EOL."Iteration: ".$key.PHP_EOL);
+                echo("Seeding Form fid: ".$data['fid'].PHP_EOL);
+                $seeder->createForm($data);
+                echo("Done: ".$data['fid'].PHP_EOL);
+
+                $time_elapsed_secs = microtime(true) - $start;
+                $this->info("Time : ".date("H:i:s", $time_elapsed_secs));
+            }
         }
+
+        if ($forms) {
+            echo("Sync Form Table".PHP_EOL);
+            foreach ($sources as $key => $data) {
+                echo("Form id: ".$data['fid'].PHP_EOL);
+                $seeder->syncFormTable($data);
+            }
+        }
+
+        $time_elapsed_secs_seed = microtime(true) - $startSeed;
+        $this->info("Total time : ".date("H:i:s", $time_elapsed_secs_seed));
         return "finish";
     }
 }

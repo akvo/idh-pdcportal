@@ -22,14 +22,9 @@ class SeedController extends Controller
         return "finish";
     }
 
-    public function createForm($data)
+    // This function used tp sync only forms table by data config
+    public function syncFormTable($data)
     {
-        // delete if exist, before seed new data
-        $check = \App\Models\Form::where('fid', $data['fid'])->first();
-        if ($check) {
-            // delete form instance to clear all the answers
-            $delete = \App\Models\FormInstance::where('form_id', $check->id)->delete();
-        }
         // if there's is form with defined id, update else create
         $form = \App\Models\Form::updateOrCreate(
             [
@@ -41,6 +36,19 @@ class SeedController extends Controller
                 'company' => $data['company']
             ]
         );
+        return $form;
+    }
+
+    public function createForm($data)
+    {
+        // delete if exist, before seed new data
+        $check = \App\Models\Form::where('fid', $data['fid'])->first();
+        if ($check) {
+            // delete form instance to clear all the answers
+            $delete = \App\Models\FormInstance::where('form_id', $check->id)->delete();
+        }
+        $form = $this->syncFormTable($data);
+
         $csv = Reader::createFromPath(base_path().$data['file'], 'r');
         $csv->setHeaderOffset(0);
         $headers = $csv->getHeader();
