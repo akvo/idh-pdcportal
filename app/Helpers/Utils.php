@@ -25,6 +25,9 @@ class Utils {
     public static function getValues($form_id, $variable_name, $pluck=true, $withGender=false, $percent=true, $variables=null)
     {
         $var = Variable::where('name',$variable_name)->first();
+        if (!$var) {
+            return [];
+        }
         $data = self::getVarValue($form_id, $var);
         if ($var->type === 'option' && !$withGender) {
             $data = $data->pluck('options');
@@ -41,21 +44,23 @@ class Utils {
         if ($var->type === 'option' && $withGender) {
             $genderVar = Variable::where('name', $variables['hh_gender_farmer'])->first();
             $data = $data->transform(function ($item) use ($genderVar) {
-                $item['gender'] = Answer::where([
+                $answer = Answer::where([
                     ['form_instance_id', $item->form_instance_id],
                     ['form_id', $item->form_id],
                     ['variable_id', $genderVar->id]
                 ])->with('options')->get()
                 ->pluck('options')->flatten()
-                ->pluck('option_id')[0];
+                ->pluck('option_id');
+                $item['gender'] = count($answer) > 0 ? $answer[0] : "NA";
                 $item['option_id'] = collect($item->options)->pluck('option_id')[0];
                 $item = Arr::except($item, ['options']);
                 return $item;
             })->groupBy('option_id')->map(function ($item) {
                 $item = $item->countBy('gender')
                             ->transform(function($val, $key) {
+                                $option = Option::where('id',$key)->first();
                                 return [
-                                    'name' => Option::where('id',$key)->first()->text,
+                                    'name' => $option ? $option->text : "NA",
                                     'value' => $val
                                 ];
                             })->values();
@@ -95,8 +100,9 @@ class Utils {
         $answers = $answers->map(function($a) use ($var, $cnt) {
             $opt = $a->where('variable_id', $var->id)->first();
             $val = $a->where('variable_id', $cnt->id)->first();
+            $option = $opt ? $opt->options->first() : null;
             return [
-                'name' => $opt->options->first()->option->name,
+                'name' =>  $option ? $option->option->name : "NA",
                 'value' => $val->value,
             ];
         })->groupBy('name')->map(function($data, $key){
@@ -138,13 +144,16 @@ class Utils {
     }
 
     public static function mergeValues($values, $variable_name, $only=false) {
+        if (count($values) === 0) {
+            return ['data' => []];
+        }
         $current = $values[0]['variable_id'];
         $current = Variable::where('id', $current)->first();
         $variable = Variable::where('name', $variable_name)->first();
         $values = $values->map(function($data) use ($current, $variable) {
             $option = Answer::where('form_instance_id', $data['form_instance_id'])
                 ->where('variable_id', $variable->id)->with('options.option')->first();
-            $option = $option->options->first()->option->name;
+            $option = $option ? $option->options->first() ? $option->options->first()->option->name : "NA" : "NA";
             return [
                 $variable->name => $option,
                 $current->name => $data['value'],
@@ -196,17 +205,25 @@ class Utils {
     public static function getLastSubmissionDate($form_id)
     {
         $submission_dates = Utils::getValues($form_id, 'submission date');
-        $date = collect($submission_dates)->map(function ($sbm) {
-            $sbm['name'] = explode(' ', $sbm['name'])[0];
-            return $sbm;
-        })->pluck('name')->sort()->values()->first();
+        $var = Variable::where('name', 'submission date')->first();
+        if ($var->type === 'option') {
+            $date = collect($submission_dates)->map(function ($sbm) {
+                $sbm['name'] = explode(' ', $sbm['name'])[0];
+                return $sbm;
+            })->pluck('name')->sort()->values()->first();
+        }
+        if ($var->type === 'number' || $var->type === 'text') {
+            $date = collect($submission_dates)->map(function ($sbm) {
+                return is_numeric($sbm) ? strval((int)$sbm) : $sbm;
+            })->sort()->values()->first();
+        }
         return $date;
     }
 
     public static function setPercentMergeValue($data, $top=false)
     {
-        $total = $data->max('total');
-        $data = $data->transform(function ($item) use ($total) {
+        $total = collect($data)->max('total');
+        $data = collect($data)->transform(function ($item) use ($total) {
             if ($item['name'] !== 'all') {
                 $percent = round(($item['total']/$total)*100, 2);
                 $item['value'] = $percent;

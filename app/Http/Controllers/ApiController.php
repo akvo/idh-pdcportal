@@ -24,10 +24,23 @@ class ApiController extends Controller
         $data = collect($data)->map(function($list, $key) use ($sources) {
             $list = $list->map(function ($item) use ($sources) {
                 $source = $sources->where('fid', $item['fid'])->first();
-                $date = Utils::getLastSubmissionDate($item['id']);
-                $item['submission'] = Carbon::parse($date)->format('M Y');
+                // comment for now, to get date from submission_date from data config
+                // $date = Utils::getLastSubmissionDate($item['id']);
+                // if (is_null($date) || !(int) $date) {
+                //     $date = $source['submission_date'];
+                // }
+                $date = $source['submission_date'];
+                // exception, if fail to parse date from last submission data
+                // then use submission_date from data config
+                try {
+                    $date = Carbon::parse($date);
+                } catch (\Throwable $th) {
+                    $date = Carbon::parse($source['submission_date']);
+                }
+                // end of exception submission date
+                $item['submission'] = $date->format('M Y');
                 $item['case_number'] = $source['case_number'];
-                $item['date'] = Carbon::parse($date)->format('Y-m-d');
+                $item['date'] = $date->format('Y-m-d');
                 return $item;
             })->values();
             return [
@@ -48,10 +61,11 @@ class ApiController extends Controller
 
         // mapping variable change
         $variableConfig = config('variable');
-        $variables = $variableConfig['old_variable'];
-        $isVariableChange = collect($variableConfig['fids'])->contains($form->fid);
+        $variables = $variableConfig['standard_variable'];
+        $custom_variable_mapping = collect($variableConfig['mapping']);
+        $isVariableChange = collect($custom_variable_mapping->pluck('fid'))->contains($form->fid);
         if ($isVariableChange) {
-            $variables = collect($variableConfig['mapping'])->where('fid', $form->fid)->first()['variable'];
+            $variables = $custom_variable_mapping->where('fid', $form->fid)->first()['variable'];
         }
 
         $first_crop = Utils::getValues($id, $variables['f_first_crop']);
@@ -82,11 +96,11 @@ class ApiController extends Controller
             return Str::contains($data['name'], "No");
         })->values();
         // $secondSubcards = [
-        //     Cards::create($no_second_crop, 'PERCENT', "Of the farmers had more than one crop"),
+        //     Cards::create($no_second_crop, 'PERCENT', "Of the farmers grow more than one crop"),
         //     Cards::create($owned_land, 'PERCENT', "Of the farmers own the land they use to grow crops"),
         // ];
         // return [
-        //     Cards::create($maps, 'MAPS', "Household Surveyed", 6),
+        //     Cards::create($maps, 'MAPS', "Location of surveyed households", 6),
         //     Cards::create(Utils::getValues($id, 'farmer_sample'), 'PIE', "Was the farmer surveyed part of the sample?", 4),
         //     Cards::create($firstSubcards, 'CARDS', false, 2),
         //     Cards::create($secondSubcards, 'CARDS', false, 2),
@@ -109,14 +123,14 @@ class ApiController extends Controller
         });
 
         return [
-            Cards::create($maps, 'MAPS', "Household Surveyed", 4, false, 1),
+            Cards::create($maps, 'MAPS', "Location of surveyed households", 4, false, 1),
             Cards::create($farmer_sample, 'PIE', "Was the farmer surveyed part of the sample?", 4, false, 2),
 
             Cards::create($total, 'NUM', "Of the farmers are included in the analysis", 4, false, 3),
             // Cards::create($main_percentage, 'PERCENT', "Of the farmers main crop was ".$first_crop['name'], 4, false, 4),
             Cards::create($farm_size_avg, 'NUM', "Acres is the average farm size", 4, false, 5),
 
-            Cards::create($no_second_crop, 'PERCENT', "Of the farmers had more than one crop", 4, false, 6),
+            Cards::create($no_second_crop, 'PERCENT', "Of the farmers grow more than one crop", 4, false, 6),
             Cards::create($owned_land, 'PERCENT', "Of the farmers own the land they use to grow crops", 4, false, 7),
 
             Cards::create($landownership, 'BAR', "Farmers' land ownership status", 4, false, 8),
@@ -126,18 +140,17 @@ class ApiController extends Controller
 
     public function countryData(Request $request) {
         $id = (int) $request->id;
-        $form = Form::where('id',$id)
-        ->withCount('formInstances')
-        ->first();
+        $form = Form::where('id',$id)->withCount('formInstances')->first();
         $total = $form->form_instances_count;
         // $household = Utils::getValues($id, 'hh_size');
 
         // mapping variable change
         $variableConfig = config('variable');
-        $variables = $variableConfig['old_variable'];
-        $isVariableChange = collect($variableConfig['fids'])->contains($form->fid);
+        $variables = $variableConfig['standard_variable'];
+        $custom_variable_mapping = collect($variableConfig['mapping']);
+        $isVariableChange = collect($custom_variable_mapping->pluck('fid'))->contains($form->fid);
         if ($isVariableChange) {
-            $variables = collect($variableConfig['mapping'])->where('fid', $form->fid)->first()['variable'];
+            $variables = $custom_variable_mapping->where('fid', $form->fid)->first()['variable'];
         }
 
         if ($request->tab === "resources") {
@@ -147,9 +160,26 @@ class ApiController extends Controller
             ];
         }
 
+        # OVERVIEW
         if ($request->tab === "overview") {
-            $submission = Utils::getLastSubmissionDate($id);
-            // $submission_month = Carbon::now()->format('m') - Carbon::parse($submission)->format('m');
+            // comment for now, to get date from submission_date from data config
+            // $submission = Utils::getLastSubmissionDate($id);
+            // if (is_null($submission) || !(int) $submission) {
+            //     $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+            //     $submission = $submission ? $submission["submission_date"] : null;
+            // }
+            $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+            $submission = $submission ? $submission["submission_date"] : null;
+
+            // exception, if fail to parse date from last submission data
+            // then use submission_date from data config
+            try {
+                Carbon::parse($submission);
+            } catch (\Throwable $th) {
+                $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+                $submission = $submission ? $submission["submission_date"] : null;
+            }
+            // end of exception submission date
             $dateNow = date_create(now());
             $submissionDate = date_create($submission);
             $diff = date_diff($dateNow, $submissionDate);
@@ -185,7 +215,7 @@ class ApiController extends Controller
                 strtolower("No Heshe Is An Alternative For A Sample Farmer That Was Unavailable"),
                 strtolower("No, He/She Is An Alternative For A (Sample) Farmer That Was Unavailable")
             ];
-            $farmer_sample = Utils::getValues($id, $variables['farmer_sample'])->map(function ($item) use ($alternatives) {
+            $farmer_sample = collect(Utils::getValues($id, $variables['farmer_sample']))->map(function ($item) use ($alternatives) {
                 if (in_array(strtolower($item['name']), $alternatives)) {
                     $item['name'] = "Alternative";
                 }
@@ -195,14 +225,17 @@ class ApiController extends Controller
                 return $item;
             });
 
+            $month_text = $submission_month > 1 ? " months" : " month";
             $overview = [
                 // Cards::create(Utils::getValues($id, 'f_first_crop'), 'BAR', "Farmer First Crop"),
+
                 Cards::create([
-                    Cards::create($submission_month.' month ago', 'MONTH', 'In '.Carbon::parse($submission)->format('M Y'), 12, 'Survey conducted')
+                    Cards::create($submission_month.$month_text.' ago', 'MONTH', 'In '.Carbon::parse($submission)->format('M Y'), 12, 'Survey conducted')
                 ], 'CARDS', false, 6),
                 Cards::create([$first_crop_card], 'CARDS', false, 6),
-                Cards::create($maps, 'MAPS', "Household Surveyed", 6),
+                Cards::create($maps, 'MAPS', "Location of surveyed households", 6),
                 Cards::create($farmer_sample, 'PIE', "The farmer surveyed part of the sample", 6),
+
                 // Cards::create([
                 //     Cards::create(round(collect($farm_size)->avg(), 2), 'NUM', 'Acres is the average farm size')
                 // ], 'CARDS', false),
@@ -216,6 +249,7 @@ class ApiController extends Controller
             ];
         }
 
+        # HH PROFILE
         if ($request->tab === "hh-profile") {
             /*
             $variableLevels = collect([
@@ -282,7 +316,7 @@ class ApiController extends Controller
                 ];
             });
 
-            $shortage_months = Utils::getValues($id, $variables['fs_shortage_months'], false, true, false, $variables); // by gender
+            $shortage_months = Utils::getValues($id, $variables['fs_shortage_months'], false, true, true, $variables); // by gender
 
             $hhsize_male = Utils::getValues($id, $variables['hh_size_male'])->sum();
             $hhsize_female = Utils::getValues($id, $variables['hh_size_female'])->sum();
@@ -341,14 +375,17 @@ class ApiController extends Controller
             ];
         }
 
+        # FARMER PROFILE
         if ($request->tab === "farmer-profile") {
             $age = Utils::getValues($id, $variables['hh_age_farmer'], false);
             // return value into age instead using year
-            if ($isVariableChange && count($age) > 0 && $age->first()->value > 1000) {
-                $age = $age->map(function ($item) {
-                    $item['value'] = date('Y') - $item['value'];
-                    return $item;
-                });
+            if (count($age) > 0) {
+                if ($age->first()->value > 1000) {
+                    $age = $age->map(function ($item) {
+                        $item['value'] = date('Y') - $item['value'];
+                        return $item;
+                    });
+                }
             }
 
             $genderAge = ["data" => []];
@@ -361,6 +398,7 @@ class ApiController extends Controller
             $farmerProfile = [
                 // Cards::create(Utils::getValues($id, 'hh_education_farmer'), 'BAR', 'Education Level', 6),
                 // Cards::create($landownership, 'BAR', "Farmers' land ownership status", 6),
+
                 Cards::create(Utils::getValues($id, $variables['hh_gender_farmer']), 'PIE', "Gender", 6),
                 Cards::create($genderAge, 'HISTOGRAM', 'Age of Farmer', 6),
                 Cards::create(Utils::getValues($id, $variables['hh_education_farmer'], false, true, false, $variables), 'BAR', 'Education Level by Gender (%)', 6),
@@ -375,11 +413,10 @@ class ApiController extends Controller
             ];
         }
 
+        # FARM PRACTICES
         if ($request->tab === "farm-practices") {
             $f_harvests = Utils::getValues($id, $variables['f_harvests']);
-
             $f_lost_kg = Utils::getValues($id, $variables['f_lost (kilograms)'], false);
-            // $f_crop_tmp = ($isVariableChange) ? 'f_second_crop' : 'f_first_crop';
             // $lost_kg = Utils::mergeValues($f_lost_kg, $variables['f_first_crop'], strtolower($form->kind));
             if (!$isVariableChange) {
                 $lost_kg = Utils::mergeValues($f_lost_kg, $variables['f_first_crop']);
@@ -422,10 +459,10 @@ class ApiController extends Controller
             if ($variables['f_third_crop']) {
                 $income_by_third_crop = collect(Utils::mergeValues(Utils::getValues($id, $variables['f_other_crop_income'], false), $variables['f_third_crop']));
                 $income_by_third_crop['data'] = Utils::setPercentMergeValue($income_by_third_crop['data'], 3);
-                $farmpractices->push(Cards::create($lost_kg, 'HISTOGRAM', 'Crop loss (kilograms) - focus crop', 6));
-                $farmpractices->push(Cards::create($income_by_third_crop['data'], 'BAR', 'Third highest income crop - other (%)', 6));
+                // $farmpractices->push(Cards::create($lost_kg, 'HISTOGRAM', 'Crop loss (kilograms) - focus crop', 6));
+                $farmpractices->push(Cards::create($income_by_third_crop['data'], 'BAR', 'Third highest income crop - other (%)', 12));
             } else {
-                $farmpractices->push(Cards::create($lost_kg, 'HISTOGRAM', 'Crop loss (kilograms) - focus crop', 12));
+                // $farmpractices->push(Cards::create($lost_kg, 'HISTOGRAM', 'Crop loss (kilograms) - focus crop', 12));
             }
 
             $input_usage = Utils::getValues($id, $variables['f_inputs_usage']);
@@ -485,13 +522,15 @@ class ApiController extends Controller
             ];
         }
 
+        # FARM CHARACTERISTICS
         if ($request->tab === "farm-characteristics") {
             $farm_size = Utils::getValues($id, $variables['f_size (acre)']);
 
             $fsdmId = Variable::where('name', $variables['f_sdm_size (acre)'])->first();
             $farm_sizes = Utils::getValues($id, $variables['f_size (acre)'], false)->map(function ($item) use ($fsdmId) {
                 $fsdmVal = Answer::where('form_instance_id', $item['form_instance_id'])
-                    ->where('variable_id', $fsdmId->id)->first()->value;
+                    ->where('variable_id', $fsdmId->id)->first();
+                $fsdmVal = $fsdmVal ? $fsdmVal->value : 0;
                 return [
                     'id' => $item->id,
                     'form_instance_id' => $item->form_instance_id,
@@ -501,8 +540,8 @@ class ApiController extends Controller
                 ];
             });
             $farm_sizes = collect(Utils::mergeValues($farm_sizes, $variables['f_first_crop']));
-            $total_farm_sizes = $farm_sizes['data']->max('total');
-            $only_farm_sizes = $farm_sizes['data']->where('name', strtolower($form->kind))->first();
+            $total_farm_sizes = collect($farm_sizes['data'])->max('total');
+            $only_farm_sizes = collect($farm_sizes['data'])->where('name', strtolower($form->kind))->first();
 
             $second_crop = collect(Utils::getValues($id, $variables['f_second_crop']));
             $total_second_crop_no_filter = $second_crop->pluck('value')->sum();
@@ -524,13 +563,13 @@ class ApiController extends Controller
                     Cards::create(round(collect($farm_size)->avg(), 2), 'NUM', 'Acres is the average farm size')
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(strval(round($only_farm_sizes['total']/$total_farm_sizes, 2)*100), 'PERCENT', 'Of the farm is on average dedicated to '.$only_farm_sizes['name'])
+                    Cards::create(strval($total_farm_sizes ? round($only_farm_sizes['total']/$total_farm_sizes, 2)*100 : 0), 'PERCENT', 'Of the farm is on average dedicated to '.$only_farm_sizes['name'])
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(round($total_second_crop/$total_second_crop_no_filter, 2)*100, 'PERCENT', 'Of the farmers had more than one crop')
+                    Cards::create(strval($total_second_crop_no_filter ? round($total_second_crop/$total_second_crop_no_filter, 2)*100 : 0), 'PERCENT', 'Of the farmers grow more than one crop')
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(round($total_livestock_filter/$total_livestock_data, 2)*100, 'PERCENT', 'Of the farmers have livestock')
+                    Cards::create(strval(round($total_livestock_filter/$total_livestock_data, 2)*100), 'PERCENT', 'Of the farmers keep livestock')
                 ], 'CARDS', false, 3),
             ]);
 
@@ -587,6 +626,7 @@ class ApiController extends Controller
             ];
         }
 
+        # GENDER
         if ($request->tab === "gender") {
             $female = Utils::getValues($id, $variables['hh_size_female'], false);
             $education_female = Utils::mergeValues($female, $variables['g_education']);
@@ -609,6 +649,7 @@ class ApiController extends Controller
             ];
         }
 
+        # DOWNLOAD
         if ($request->tab === "download") {
             $sources = collect(config('data.sources'));
             $source = $sources->where('fid', $form->fid)->first();
