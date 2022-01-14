@@ -24,10 +24,12 @@ class ApiController extends Controller
         $data = collect($data)->map(function($list, $key) use ($sources) {
             $list = $list->map(function ($item) use ($sources) {
                 $source = $sources->where('fid', $item['fid'])->first();
-                $date = Utils::getLastSubmissionDate($item['id']);
-                if (is_null($date) || !(int) $date) {
-                    $date = $source['submission_date'];
-                }
+                // comment for now, to get date from submission_date from data config
+                // $date = Utils::getLastSubmissionDate($item['id']);
+                // if (is_null($date) || !(int) $date) {
+                //     $date = $source['submission_date'];
+                // }
+                $date = $source['submission_date'];
                 // exception, if fail to parse date from last submission data
                 // then use submission_date from data config
                 try {
@@ -160,11 +162,15 @@ class ApiController extends Controller
 
         # OVERVIEW
         if ($request->tab === "overview") {
-            $submission = Utils::getLastSubmissionDate($id);
-            if (is_null($submission) || !(int) $submission) {
-                $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
-                $submission = $submission ? $submission["submission_date"] : null;
-            }
+            // comment for now, to get date from submission_date from data config
+            // $submission = Utils::getLastSubmissionDate($id);
+            // if (is_null($submission) || !(int) $submission) {
+            //     $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+            //     $submission = $submission ? $submission["submission_date"] : null;
+            // }
+            $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+            $submission = $submission ? $submission["submission_date"] : null;
+
             // exception, if fail to parse date from last submission data
             // then use submission_date from data config
             try {
