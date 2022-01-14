@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use League\Csv\Reader;
 use League\Csv\Writer;
+use Carbon\Carbon;
 
 class SeedController extends Controller
 {
@@ -91,7 +92,7 @@ class SeedController extends Controller
                 $input = $record[$header['name']];
                 if ($header['type'] === 'text') {
                     // custom only for submission date
-                    $value = ($input === "NA" || $input === null || $input === '' || empty($input)) ? null : (float) str_replace("-", "", $input);
+                    $value = ($input === "NA" || $input === null || $input === '' || empty($input)) ? null : (float) Carbon::parse($input)->format('Ymd');
                 }
                 if ($header['type'] === 'number') {
                     $value = ($input === "NA" || $input === null || $input === '' || empty($input)) ? null : (float) $input;

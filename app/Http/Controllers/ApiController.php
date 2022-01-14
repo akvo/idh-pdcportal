@@ -28,9 +28,17 @@ class ApiController extends Controller
                 if (is_null($date) || !(int) $date) {
                     $date = $source['submission_date'];
                 }
-                $item['submission'] = Carbon::parse($date)->format('M Y');
+                // exception, if fail to parse date from last submission data
+                // then use submission_date from data config
+                try {
+                    $date = Carbon::parse($date);
+                } catch (\Throwable $th) {
+                    $date = Carbon::parse($source['submission_date']);
+                }
+                // end of exception submission date
+                $item['submission'] = $date->format('M Y');
                 $item['case_number'] = $source['case_number'];
-                $item['date'] = Carbon::parse($date)->format('Y-m-d');
+                $item['date'] = $date->format('Y-m-d');
                 return $item;
             })->values();
             return [
@@ -157,6 +165,15 @@ class ApiController extends Controller
                 $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
                 $submission = $submission ? $submission["submission_date"] : null;
             }
+            // exception, if fail to parse date from last submission data
+            // then use submission_date from data config
+            try {
+                Carbon::parse($submission);
+            } catch (\Throwable $th) {
+                $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+                $submission = $submission ? $submission["submission_date"] : null;
+            }
+            // end of exception submission date
             $dateNow = date_create(now());
             $submissionDate = date_create($submission);
             $diff = date_diff($dateNow, $submissionDate);

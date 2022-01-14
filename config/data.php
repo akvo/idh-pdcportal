@@ -190,7 +190,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed Rubutco Tea Data", "to" => ".xlsx", "filename" => "2020-11-20_Rubutco_Anom.csv"],
             ],
             'report_url' => null,
-            'submission_date' => "2020-11-20",
+            'submission_date' => "2020-10-20",
         ],
         [
             'sid' => 134600045,
@@ -224,7 +224,7 @@ return [
                 ["type" => "raw", "text" => "Analyzed NKG Coffee Data", "to" => ".xlsx", "filename" => "2021-04-12_Honduras_NKG_Anom"],
             ],
             'report_url' => null,
-            'submission_date' => "2021-01-20",
+            'submission_date' => "2021-03-01",
         ],
         [
             'sid' => 146683436,
