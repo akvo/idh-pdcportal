@@ -498,6 +498,23 @@ return [
             'report_url' => null,
             'submission_date' => "2019-10-12",
         ],
+        [
+            'sid' => 2041040322,  # not real id
+            'fid' => 2042040322,  # not real id
+            'file' => $path . '2022_sucafina_anom_coffee-All_farmers_and_all_counties.csv',
+            'kind' => 'Coffee',
+            'country' => 'Kenya',
+            'company' => 'Sucafina',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Sucafina Coffee Data", "to" => ".xlsx", "filename" => "2022_sucafina_anom_coffee-All_farmers_and_all_counties"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2022-03-04",
+        ],
 
         // [ // example
         //     'sid' => 12345,
