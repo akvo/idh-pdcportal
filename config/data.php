@@ -515,6 +515,23 @@ return [
             'report_url' => null,
             'submission_date' => "2022-03-04",
         ],
+        [
+            'sid' => 2044070322,
+            'fid' => 2045070322,
+            'file' => $path . '10032022_sucden_anom.csv',
+            'kind' => 'Cocoa',
+            'country' => "Côte d'Ivoire",
+            'company' => 'Sucden',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Sucden Cocoa Data", "to" => ".xlsx", "filename" => "10032022_sucden_anom"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2022-03-07", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
         // [ // example
         //     'sid' => 12345,
