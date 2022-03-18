@@ -504,8 +504,8 @@ return [
             'file' => $path . '2022_sucafina_anom_coffee-All_farmers_and_all_counties.csv',
             'kind' => 'Coffee',
             'country' => 'Kenya',
-            'company' => 'Sucafina',
-            'case_number' => null,
+            'company' => 'Kenyacof',
+            'case_number' => 118,
             'cascade' => [
                 'name' => 'pi_location_cascade_first_level',
             ],
@@ -523,7 +523,7 @@ return [
             'country' => "cote-divoire",
             'country_name' => "Côte d'Ivoire",
             'company' => 'Sucden',
-            'case_number' => null,
+            'case_number' => 112,
             'cascade' => [
                 'name' => 'pi_location_cascade_first_level',
             ],
