@@ -41,6 +41,8 @@ class ApiController extends Controller
                 $item['submission'] = $date->format('M Y');
                 $item['case_number'] = $source['case_number'];
                 $item['date'] = $date->format('Y-m-d');
+                // add custom country name
+                $item['country_name'] = isset($source['country_name']) ? $source['country_name'] : $item['name'];
                 return $item;
             })->values();
             return [
@@ -144,6 +146,11 @@ class ApiController extends Controller
         $total = $form->form_instances_count;
         // $household = Utils::getValues($id, 'hh_size');
 
+        $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+        // custom country name
+        $countryName = isset($submission['country_name']) ? $submission['country_name'] : $form->country;
+        $submission = $submission ? $submission["submission_date"] : null;
+
         // mapping variable change
         $variableConfig = config('variable');
         $variables = $variableConfig['standard_variable'];
@@ -155,7 +162,7 @@ class ApiController extends Controller
 
         if ($request->tab === "resources") {
             return [
-                'summary' => [$total, $form->kind, $form->country, $form->company],
+                'summary' => [$total, $form->kind, $countryName, $form->company],
                 'tabs' => []
             ];
         }
@@ -168,8 +175,6 @@ class ApiController extends Controller
             //     $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
             //     $submission = $submission ? $submission["submission_date"] : null;
             // }
-            $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
-            $submission = $submission ? $submission["submission_date"] : null;
 
             // exception, if fail to parse date from last submission data
             // then use submission_date from data config
@@ -241,7 +246,7 @@ class ApiController extends Controller
                 // ], 'CARDS', false),
             ];
             return [
-                'summary' => [$total, $form->kind, $form->country, $form->company],
+                'summary' => [$total, $form->kind, $countryName, $form->company],
                 'tabs' => [[
                     'name' => 'overview',
                     'charts' => $overview,
@@ -367,7 +372,7 @@ class ApiController extends Controller
             //     )
             // );
             return [
-                'summary' => [$total, $form->kind, $form->country, $form->company],
+                'summary' => [$total, $form->kind, $countryName, $form->company],
                 'tabs' => [[
                     'name' => 'hh_profile',
                     'charts' => $hhProfile,
@@ -405,7 +410,7 @@ class ApiController extends Controller
                 Cards::create(Utils::getValues($id, $variables['f_ownership'], false, true, false, $variables), 'BAR', "Farmers' land ownership status by Gender (%)", 6),
             ];
             return [
-                'summary' => [$total, $form->kind, $form->country, $form->company],
+                'summary' => [$total, $form->kind, $countryName, $form->company],
                 'tabs' => [[
                     'name' => 'farmer_profile',
                     'charts' => $farmerProfile,
@@ -514,7 +519,7 @@ class ApiController extends Controller
             // })->values();
 
             return [
-                'summary' => [$total, $form->kind, $form->country, $form->company],
+                'summary' => [$total, $form->kind, $countryName, $form->company],
                 'tabs' => [[
                     'name' => 'farm_practices',
                     'charts' => $farmpractices
@@ -618,7 +623,7 @@ class ApiController extends Controller
             }
 
             return [
-                'summary' => [$total, $form->kind, $form->country, $form->company],
+                'summary' => [$total, $form->kind, $countryName, $form->company],
                 'tabs' => [[
                     'name' => 'farm_characteristics',
                     'charts' => $farmcharacteristics
@@ -641,7 +646,7 @@ class ApiController extends Controller
             ];
 
             return [
-                'summary' => [$total, $form->kind, $form->country, $form->company],
+                'summary' => [$total, $form->kind, $countryName, $form->company],
                 'tabs' => [[
                     'name' => 'gender',
                     'charts' => $genders
@@ -655,7 +660,7 @@ class ApiController extends Controller
             $source = $sources->where('fid', $form->fid)->first();
 
             return [
-                'summary' => [$total, $form->kind, $form->country, $form->company],
+                'summary' => [$total, $form->kind, $countryName, $form->company],
                 'tabs' => [[
                     'name' => 'download',
                     'files' => $source['files'],

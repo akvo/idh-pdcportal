@@ -97,9 +97,9 @@ class Country extends Component {
     });
     let country = params.country.toTitle();
     let companies = this.props.value.page.filters.find(
-      (x) => x.name === country
+      (x) => x?.name?.toLowerCase() === country?.toLowerCase()
     );
-    companies = intersectionBy(companies.childrens, access, "id");
+    companies = intersectionBy(companies?.childrens, access, "id");
     let companyId = parseInt(params.companyId);
     let dropdownTitle = companies.find((x) => x.id === companyId);
     let resource = access.find((x) => x.id === companyId);
@@ -136,12 +136,16 @@ class Country extends Component {
     tabs = resource.access
       ? [...tabs, { link: "download", name: "download" }]
       : tabs;
+
+    // custom country name
+    const countryName = companies?.[0]?.country_name;
+
     return (
       <Fragment>
         <Jumbotron className="has-navigation">
           <Row className="page-header">
             <Col md={12} className="page-title text-center">
-              <h2>Project in {country}</h2>
+              <h2>Project in {countryName || country}</h2>
             </Col>
           </Row>
           <Row>
@@ -158,8 +162,8 @@ class Country extends Component {
                         {dropdownTitle?.case_number
                           ? dropdownTitle.case_number +
                             " " +
-                            dropdownTitle.company
-                          : dropdownTitle.company}
+                            dropdownTitle?.company
+                          : dropdownTitle?.company}
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
                         {companies.map((x, i) => (
@@ -177,8 +181,8 @@ class Country extends Component {
                             }
                           >
                             {x.case_number
-                              ? x.case_number + " " + x.company
-                              : x.company}
+                              ? x.case_number + " " + x?.company
+                              : x?.company}
                           </Dropdown.Item>
                         ))}
                       </Dropdown.Menu>

@@ -207,7 +207,7 @@ class Home extends Component {
                     selector: (row) => (
                       <a
                         target="_blank"
-                        href={`/country/${row.country.toLowerCase()}/${
+                        href={`/country/${row.country_link.toLowerCase()}/${
                           row.id
                         }/overview`}
                         className="btn btn-sm btn-primary btn-block"
