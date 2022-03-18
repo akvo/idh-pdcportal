@@ -520,7 +520,8 @@ return [
             'fid' => 2045070322,
             'file' => $path . '10032022_sucden_anom.csv',
             'kind' => 'Cocoa',
-            'country' => "Côte d'Ivoire",
+            'country' => "cote-divoire",
+            'country_name' => "Côte d'Ivoire",
             'company' => 'Sucden',
             'case_number' => null,
             'cascade' => [
@@ -539,6 +540,7 @@ return [
         //     'file' => $path . 'xvx.csv',
         //     'kind' => 'zzz',
         //     'country' => 'zzz',
+        //     'country_name' => "Côte d'Ivoire", // to provide country name with symbol
         //     'company' => 'zzz',
         //     'case_number' => null,
         //     'cascade' => [
