@@ -177,12 +177,12 @@ class CountryTab extends Component {
     let country = this.props.value.page.filters.find(
       (x) => x.name === params.country.toTitle()
     );
-    let company = country.childrens.find(
+    let company = country?.childrens.find(
       (x) => x.id === parseInt(params.companyId)
     );
     // filename
     let file =
-      params.country + "-" + company.company.toLowerCase().replace(" ", "_");
+      params.country + "-" + company?.company?.toLowerCase().replace(" ", "_");
     file = file.toLowerCase();
     file = file.replace(" ", "_");
     // const reports = [{ type: "raw", text: "Analyzed Farmer Data", to: ".xlsx" }];
@@ -271,7 +271,7 @@ class CountryTab extends Component {
     });
     return (
       <>
-        <Col className="mt-2" md={10} md={10}>
+        <Col className="mt-2" md={10}>
           <Row className="d-flex justify-content-center">{reportResults}</Row>
         </Col>
 
