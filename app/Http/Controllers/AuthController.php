@@ -21,9 +21,13 @@ class AuthController extends Controller
         ]);
         $token = Str::random(60);
         $role= 'guest';
+        /*
+         * Treat all users as "Guest Users"
+         * Request: 19 Apr 2022
         foreach(config('mail.members') as $domain) {
             $role = Str::contains($request->email, $domain) ? 'staff' : $role;
         }
+         */
         $user = \App\Models\User::create([
             'name' => $request->firstName .' '. $request->lastName,
             'email' => $request->email,
