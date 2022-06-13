@@ -15,6 +15,10 @@ use App\Helpers\Utils;
 use App\Helpers\Cards;
 use Carbon\Carbon;
 
+/**
+ * NOTES:
+ * isVariableChange going to be used if config variable.php --> "mapping" defined
+ */
 class ApiController extends Controller
 {
     public function filters(Form $form)
@@ -199,10 +203,8 @@ class ApiController extends Controller
 
             $first_crop = collect(Utils::getValues($id, $variables['f_first_crop']));
             $first_crop_total = $first_crop->pluck('value')->sum();
-            if ($isVariableChange) {
-                // filter value where name = "" available
-                $first_crop = $first_crop->where('name', '!=', '');
-            }
+            // filter value where name = "" available, should we replace that with "NA"?
+            $first_crop = $first_crop->where('name', '!=', '');
             $first_crop_value = $first_crop->max('value');
             $first_crop_name = $first_crop->where('value', $first_crop_value)->first()['name'];
 
@@ -546,7 +548,11 @@ class ApiController extends Controller
             });
             $farm_sizes = collect(Utils::mergeValues($farm_sizes, $variables['f_first_crop']));
             $total_farm_sizes = collect($farm_sizes['data'])->max('total');
-            $only_farm_sizes = collect($farm_sizes['data'])->where('name', strtolower($form->kind))->first();
+            $only_farm_sizes = collect($farm_sizes['data'])->map(function($item) {
+                $item['name'] == strtolower($item['name']);
+                return $item;
+            })->where('name', strtolower($form->kind))->first();
+            $dedicated_name = $only_farm_sizes['name'] ? $only_farm_sizes['name'] : $form->kind;
 
             $second_crop = collect(Utils::getValues($id, $variables['f_second_crop']));
             $total_second_crop_no_filter = $second_crop->pluck('value')->sum();
@@ -568,7 +574,9 @@ class ApiController extends Controller
                     Cards::create(round(collect($farm_size)->avg(), 2), 'NUM', 'Acres is the average farm size')
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(strval($total_farm_sizes ? round($only_farm_sizes['total']/$total_farm_sizes, 2)*100 : 0), 'PERCENT', 'Of the farm is on average dedicated to '.$only_farm_sizes['name'])
+                    Cards::create(strval($total_farm_sizes ? round($only_farm_sizes['total']/$total_farm_sizes, 2)*100 : 0),
+                    'PERCENT',
+                    'Of the farm is on average dedicated to '.$dedicated_name)
                 ], 'CARDS', false, 3),
                 Cards::create([
                     Cards::create(strval($total_second_crop_no_filter ? round($total_second_crop/$total_second_crop_no_filter, 2)*100 : 0), 'PERCENT', 'Of the farmers grow more than one crop')
