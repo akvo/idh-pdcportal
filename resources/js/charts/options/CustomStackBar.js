@@ -1,17 +1,13 @@
 import {
   Color,
-  Icons,
   Easing,
   Legend,
   ToolBox,
   TextStyle,
   backgroundColor,
   splitTitle,
-  dataZoom,
-  noDataText,
 } from "../chart-options.js";
-import sumBy from "lodash/sumBy";
-import sortBy from "lodash/sortBy";
+import { sumBy, sortBy } from "lodash";
 
 // const bgcolors = ['#00b3b6', '#f2f2f2', '#ddd'];
 const bgcolors = ["#68BED1", "#f2f2f2", "#ddd"];

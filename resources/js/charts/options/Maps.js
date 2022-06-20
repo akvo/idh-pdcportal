@@ -1,19 +1,14 @@
 import {
   Color,
   Easing,
-  Legend,
   TextStyle,
   ToolBox,
-  ToolBoxMaps,
-  backgroundColor,
   splitTitle,
   dataZoom,
 } from "../chart-options.js";
-import maxBy from "lodash/maxBy";
-import minBy from "lodash/minBy";
+import { maxBy, minBy } from "lodash";
 
 const Maps = (title, data, compare = false) => {
-  const world = require("../" + data.maps + ".js");
   let records = data.records;
   let option = {
     title: {

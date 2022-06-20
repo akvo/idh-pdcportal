@@ -6,10 +6,8 @@ import {
   ToolBox,
   backgroundColor,
   splitTitle,
-  noDataText,
 } from "../chart-options.js";
-import sumBy from "lodash/sumBy";
-import sortBy from "lodash/sortBy";
+import { sumBy, sortBy } from "lodash";
 
 export const Pie = (title, data) => {
   // if (!data.length) {

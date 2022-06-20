@@ -6,8 +6,6 @@ import {
   ToolBox,
   backgroundColor,
   splitTitle,
-  dataZoom,
-  noDataText,
 } from "../chart-options.js";
 
 export const Histogram = (title, data) => {

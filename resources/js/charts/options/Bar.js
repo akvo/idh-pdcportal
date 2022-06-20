@@ -1,18 +1,13 @@
 import {
   Color,
-  Icons,
   Easing,
   Legend,
   ToolBox,
   TextStyle,
   backgroundColor,
   splitTitle,
-  dataZoom,
-  noDataText,
 } from "../chart-options.js";
-import sum from "lodash/sum";
-import sortBy from "lodash/sortBy";
-import some from "lodash/some";
+import { sum, sortBy, some } from "lodash";
 import { textWordWrap } from "../../data/utils.js";
 
 export const Bar = (

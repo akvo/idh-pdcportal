@@ -5,7 +5,7 @@ import { Col, Alert } from "react-bootstrap";
 import ReactEcharts from "echarts-for-react";
 import { generateOptions } from "../charts/chart-generator.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import isEmpty from "lodash/isEmpty";
+import { isEmpty } from "lodash";
 
 const NoDataAlert = ({ props }) => {
   return (
@@ -29,6 +29,7 @@ const NoDataAlert = ({ props }) => {
     </div>
   );
 };
+
 class Charts extends Component {
   constructor(props) {
     super(props);
