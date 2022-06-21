@@ -1,12 +1,10 @@
-import React, { Component, Fragment } from "react";
-import { createStore } from "redux";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { mapStateToProps, mapDispatchToProps } from "../reducers/actions";
 import Navigation from "./Navigation";
 import Filters from "./Filters";
 import { Container } from "react-bootstrap";
-import axios from "axios";
 import Loading from "./Loading";
 import Home from "../pages/Home";
 import Country from "../pages/Country";
@@ -21,7 +19,7 @@ import Verify from "../pages/Verify";
 import NotFound from "../pages/NotFound";
 import { getApi, auth } from "../data/api";
 import Methodology from "../pages/Methodology";
-import PrivateRoute from "./PrivateRoute.js";
+// import PrivateRoute from "./PrivateRoute.js";
 
 class Page extends Component {
   constructor(props) {
