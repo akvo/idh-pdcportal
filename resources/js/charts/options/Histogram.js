@@ -9,9 +9,6 @@ import {
 } from "../chart-options.js";
 
 export const Histogram = (title, data) => {
-  // if (!data.length) {
-  //   return noDataText;
-  // }
   let legend = data.data.map((x) => x.name);
   let tableData = [];
   data.data.map((x) => {
@@ -23,11 +20,13 @@ export const Histogram = (title, data) => {
     header: ["Category", title, "Count"],
     data: tableData,
   };
-  let values = data.data.map((x) => {
+  const values = data.data.map((x) => {
+    // Filter age > 100 and age < 0
+    const filtered = x.data.filter((x) => x[0] >= 0 && x[0] <= 100);
     return {
       name: x.name,
       type: "bar",
-      data: x.data,
+      data: filtered,
       markPoint: {
         data: [
           { type: "max", name: "min" },
