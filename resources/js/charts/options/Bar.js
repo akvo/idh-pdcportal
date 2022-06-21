@@ -7,7 +7,7 @@ import {
   backgroundColor,
   splitTitle,
 } from "../chart-options.js";
-import { sum, sortBy, some } from "lodash";
+import { sum, sortBy, some, orderBy } from "lodash";
 import { textWordWrap } from "../../data/utils.js";
 
 const labelFormatter = {
@@ -59,6 +59,13 @@ export const Bar = (
     data: tableData,
   };
   data = sortBy(data, unsorted ? "name" : "value");
+  /* TOP 5 */
+  if (!withGender) {
+    data = orderBy(data, "value", "desc");
+    data = data.filter((_, xi) => xi < 5);
+    data = orderBy(data, "value", "asc");
+  }
+  /* End Top 5 */
   let axisLabels = data.map((x) => x.name);
   let values = data.map((x) => x.value);
   let avg = 0;
@@ -110,11 +117,11 @@ export const Bar = (
         show: compare ? false : true,
         text: title ? splitTitle(title) : "",
         right: "center",
-        top: "30px",
+        top: "10px",
         ...TextStyle,
       },
       grid: {
-        top: 100,
+        top: 120,
         right: 50,
         left: horizontal ? 50 : leftMargin,
         show: true,
@@ -164,12 +171,13 @@ export const Bar = (
     title: {
       show: compare ? false : true,
       text: splitTitle(title),
+      subtext: "Displaying top 5 results",
       right: "center",
-      top: "30px",
+      top: "10px",
       ...TextStyle,
     },
     grid: {
-      top: 100,
+      top: 120,
       right: 50,
       left: horizontal ? 50 : leftMargin,
       show: true,
