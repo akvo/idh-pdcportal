@@ -81,7 +81,7 @@ export const splitTitle = (title) => {
   for (const w in words) {
     let word = words[w];
     let b = w + 1;
-    if (b % 13 == 0) {
+    if (b % 16 == 0) {
       word = word + "\n";
     }
     wordsArr.push(word);

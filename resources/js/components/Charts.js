@@ -7,6 +7,8 @@ import { generateOptions } from "../charts/chart-generator.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isEmpty } from "lodash";
 
+const barHeight = 125;
+
 const NoDataAlert = ({ props }) => {
   return (
     <div className="no-data-alert-container">
@@ -45,15 +47,20 @@ class Charts extends Component {
   }
 
   render() {
-    let options = generateOptions(
+    const options = generateOptions(
       this.props.kind,
       this.props.title,
       this.props.dataset,
       this.props.compare
     );
-    let onEvents = {
+    const onEvents = {
       click: this.clickEvent,
     };
+    let style = this.props.config.style;
+    if (this.props.kind === "BAR") {
+      const height = this.props.dataset.length * barHeight;
+      style = { ...style, height: `${height}px`, minHeight: style.height };
+    }
     if (this.props.config.column === 0) {
       return !isEmpty(this.props.dataset) ? (
         <ReactEcharts
@@ -75,7 +82,7 @@ class Charts extends Component {
               option={options}
               notMerge={true}
               lazyUpdate={true}
-              style={this.props.config.style}
+              style={style}
               onEvents={onEvents}
             />
           ) : (

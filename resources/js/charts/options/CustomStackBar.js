@@ -36,6 +36,7 @@ export const CustomStackBar = (title, data, compare = false) => {
       percent: xi ? x.percent : x.percent - addup,
     }));
   }
+  data = data.filter((x) => x.percent);
   const series = data.map((x, i) => {
     return {
       name: x.name,
