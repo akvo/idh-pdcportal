@@ -1,19 +1,35 @@
 import {
   Color,
-  Icons,
   Easing,
   Legend,
   ToolBox,
   TextStyle,
   backgroundColor,
   splitTitle,
-  dataZoom,
-  noDataText,
 } from "../chart-options.js";
-import sum from "lodash/sum";
-import sortBy from "lodash/sortBy";
-import some from "lodash/some";
+import { sum, sortBy, some, orderBy } from "lodash";
 import { textWordWrap } from "../../data/utils.js";
+
+const labelFormatter = {
+  type: "bar",
+  barWidth: "30%",
+  label: {
+    formatter: function (params) {
+      return params.data.category;
+    },
+    position: "insideLeft",
+    // show: horizontal ? false : true,
+    show: false,
+    color: "#222",
+    fontFamily: "Raleway",
+    padding: 5,
+    backgroundColor: "rgba(255,255,255,.8)",
+    textStyle: {
+      ...TextStyle.textStyle,
+      fontSize: 12,
+    },
+  },
+};
 
 export const Bar = (
   title,
@@ -43,6 +59,13 @@ export const Bar = (
     data: tableData,
   };
   data = sortBy(data, unsorted ? "name" : "value");
+  /* TOP 5 */
+  if (!withGender) {
+    data = orderBy(data, "value", "desc");
+    data = data.filter((_, xi) => xi < 5);
+    data = orderBy(data, "value", "asc");
+  }
+  /* End Top 5 */
   let axisLabels = data.map((x) => x.name);
   let values = data.map((x) => x.value);
   let avg = 0;
@@ -50,7 +73,7 @@ export const Bar = (
     avg = sum(values) / values.length;
     avg = avg < 100 ? true : false;
   }
-  let horizontalxAxis = {
+  const horizontalxAxis = {
     data: axisLabels,
     axisLabel: {
       // show: horizontal ? true : false,
@@ -63,7 +86,7 @@ export const Bar = (
       show: horizontal ? true : false,
     },
   };
-  let horizontalyAxis = {
+  const horizontalyAxis = {
     axisLabel: {
       show: true,
     },
@@ -72,57 +95,35 @@ export const Bar = (
     },
   };
 
-  let leftMargin = 100;
+  let leftMargin = 150;
   leftMargin =
     data.filter((x) => x.name.length >= 20).length !== 0 ? 200 : leftMargin;
 
   if (withGender) {
-    let labelFormatter = {
-      type: "bar",
-      barWidth: 15,
-      label: {
-        formatter: function (params) {
-          return params.data.category;
-        },
-        position: "insideLeft",
-        // show: horizontal ? false : true,
-        show: false,
-        color: "#222",
-        fontFamily: "Raleway",
-        padding: 5,
-        backgroundColor: "rgba(255,255,255,.8)",
-        textStyle: {
-          ...TextStyle.textStyle,
-          fontSize: 12,
-        },
-      },
-    };
-    let dimensions = ["category", "Male", "Female"];
-    let source = data.map((x) => {
-      let m = x.gender.find((y) => y.name.toLowerCase() === "male");
-      let f = x.gender.find((y) => y.name.toLowerCase() === "female");
+    const dimensions = ["category", "Male", "Female"];
+    const source = data.map((x) => {
+      const m = x.gender.find((y) => y.name.toLowerCase() === "male");
+      const f = x.gender.find((y) => y.name.toLowerCase() === "female");
       return {
         category: x.name,
-        Male: typeof m !== "undefined" ? m["value"] : 0,
-        Female: typeof f !== "undefined" ? f["value"] : 0,
-        Male_count: typeof m !== "undefined" ? m["count"] : 0,
-        Female_count: typeof f !== "undefined" ? f["count"] : 0,
+        Male: m?.value || 0,
+        Female: f?.value || 0,
+        Male_count: m?.count || 0,
+        Female_count: f?.count || 0,
       };
     });
     return {
       title: {
         show: compare ? false : true,
-        text: typeof title !== "undefined" ? splitTitle(title) : "",
+        text: title ? splitTitle(title) : "",
         right: "center",
-        top: "30px",
+        top: "10px",
         ...TextStyle,
       },
       grid: {
-        top: 100,
+        top: 120,
         right: 50,
-        // right: 10,
-        // left: horizontal ? 35 : 10,
-        left: horizontal ? 35 : leftMargin,
+        left: horizontal ? 50 : leftMargin,
         show: true,
         label: {
           color: "#222",
@@ -170,16 +171,15 @@ export const Bar = (
     title: {
       show: compare ? false : true,
       text: splitTitle(title),
+      subtext: "Displaying top 5 results",
       right: "center",
-      top: "30px",
+      top: "10px",
       ...TextStyle,
     },
     grid: {
-      top: 100,
+      top: 120,
       right: 50,
-      // right: 10,
-      // left: horizontal ? 35 : 10,
-      left: horizontal ? 35 : leftMargin,
+      left: horizontal ? 50 : leftMargin,
       show: true,
       label: {
         color: "#222",
@@ -200,10 +200,10 @@ export const Bar = (
     yAxis: horizontal ? horizontalyAxis : horizontalxAxis,
     series: [
       {
-        name: typeof title !== "undefined" ? splitTitle(title) : "",
+        name: title ? splitTitle(title) : "",
         data: data,
         type: "bar",
-        barWidth: 15,
+        barWidth: "60%",
         label: {
           formatter: function (params) {
             return params.data.name;

@@ -5,7 +5,9 @@ import { Col, Alert } from "react-bootstrap";
 import ReactEcharts from "echarts-for-react";
 import { generateOptions } from "../charts/chart-generator.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import isEmpty from "lodash/isEmpty";
+import { isEmpty } from "lodash";
+
+const barHeight = 120;
 
 const NoDataAlert = ({ props }) => {
   return (
@@ -29,6 +31,7 @@ const NoDataAlert = ({ props }) => {
     </div>
   );
 };
+
 class Charts extends Component {
   constructor(props) {
     super(props);
@@ -44,15 +47,23 @@ class Charts extends Component {
   }
 
   render() {
-    let options = generateOptions(
+    const options = generateOptions(
       this.props.kind,
       this.props.title,
       this.props.dataset,
       this.props.compare
     );
-    let onEvents = {
+    const onEvents = {
       click: this.clickEvent,
     };
+    let style = this.props.config.style;
+    if (this.props.kind === "BAR") {
+      // const height = this.props.dataset.length * barHeight;
+      /* Top 5 */
+      const height = 5 * barHeight;
+      /* End Top 5 */
+      style = { ...style, height: `${height}px` };
+    }
     if (this.props.config.column === 0) {
       return !isEmpty(this.props.dataset) ? (
         <ReactEcharts
@@ -74,7 +85,7 @@ class Charts extends Component {
               option={options}
               notMerge={true}
               lazyUpdate={true}
-              style={this.props.config.style}
+              style={style}
               onEvents={onEvents}
             />
           ) : (

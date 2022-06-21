@@ -1,14 +1,10 @@
 import {
   Color,
-  Icons,
   Easing,
-  Legend,
   TextStyle,
   ToolBox,
-  dataZoom,
   backgroundColor,
   splitTitle,
-  noDataText,
 } from "../chart-options.js";
 
 export const Scatter = (title, data) => {

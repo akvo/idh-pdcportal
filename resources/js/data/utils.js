@@ -1,5 +1,4 @@
-import countBy from "lodash/countBy";
-import maxBy from "lodash/maxBy";
+import { maxBy, countBy } from "lodash";
 
 export const getHighest = (records, object_key) => {
   records = countBy(records, object_key);

@@ -539,13 +539,13 @@ return [
             'file' => $path . '2022_lmm_anom_maize_sorghum.csv',
             'kind' => 'Maize & Sorghum',
             'country' => "Uganda",
-            'company' => 'LMM',
+            'company' => 'Landmark Millers',
             'case_number' => null,
             'cascade' => [
                 'name' => 'pi_location_cascade_first_level',
             ],
             'files' => [
-                ["type" => "raw", "text" => "Analyzed LMM Maize & Sorghum", "to" => ".xlsx", "filename" => "2022_lmm_anom_maize_sorghum"],
+                ["type" => "raw", "text" => "Analyzed Landmark Millers Maize & Sorghum", "to" => ".xlsx", "filename" => "2022_lmm_anom_maize_sorghum"],
             ],
             'report_url' => null,
             'submission_date' => "2022-05-21", // fill this submission date if no submission date on dataset, format YYYY-MM-DD

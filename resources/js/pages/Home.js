@@ -8,10 +8,10 @@ import { generateData } from "../charts/chart-generator.js";
 import { flatFilters } from "../data/utils.js";
 import JumbotronWelcome from "../components/JumbotronWelcome";
 import { auth } from "../data/api.js";
-import orderBy from "lodash/orderBy";
+import { orderBy } from "lodash";
 import DataTable from "react-data-table-component";
 
-const MapsOverride = (TableView, noValue) => {
+const MapsOverride = (TableView) => {
   let config = {
     legend: {
       orient: "vertical",
@@ -80,7 +80,7 @@ class Home extends Component {
     }
     if (token) {
       auth(token).then((res) => {
-        const { status, message } = res;
+        const { status } = res;
         if (status === 401) {
           this.props.user.logout();
           this.setState({ redirect: true });
@@ -104,8 +104,8 @@ class Home extends Component {
       return <Redirect to="/login" />;
     }
 
-    let user = this.props.value.user;
-    let page = this.props.value.page;
+    const user = this.props.value.user;
+    const page = this.props.value.page;
     let data = page.filters.map((x) => {
       return {
         name: x.name,
@@ -128,7 +128,7 @@ class Home extends Component {
     });
 
     data = data.map((x) => {
-      let first = source.find((s) => s.country === x.name);
+      const first = source.find((s) => s.country === x.name);
       let link = false;
       if (first) {
         link =
@@ -147,7 +147,7 @@ class Home extends Component {
       });
     }
 
-    let maps = {
+    const maps = {
       title: "",
       data: {
         maps: "world",

@@ -6,16 +6,8 @@ import LoadingContainer from "../components/LoadingContainer";
 import Charts from "../components/Charts.js";
 import Cards from "../components/Cards.js";
 import Tables from "../components/Tables.js";
-import {
-  Row,
-  Col,
-  Card,
-  Form,
-  Button,
-  Jumbotron,
-  Spinner,
-} from "react-bootstrap";
-import { queueApi, getApi, userDownload } from "../data/api.js";
+import { Row, Col, Form, Jumbotron } from "react-bootstrap";
+import { getApi, userDownload } from "../data/api.js";
 import { generateData } from "../charts/chart-generator.js";
 
 const generateSummary = ([total, kind, country, company]) => (
