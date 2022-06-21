@@ -38,15 +38,10 @@ function NavLink({ country, company, tab, active }) {
 class Country extends Component {
   constructor(props) {
     super(props);
-    this.handleScroll = this.handleScroll.bind(this);
     this.state = {
       loading: true,
       redirect: false,
     };
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
   }
 
   componentDidMount() {
@@ -57,28 +52,13 @@ class Country extends Component {
     }
     if (token) {
       auth(token).then((res) => {
-        const { status, message } = res;
+        const { status } = res;
         if (status === 401) {
           this.props.user.logout();
           this.setState({ redirect: true });
         }
         return res;
       });
-    }
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll() {
-    const posStop = window.pageYOffset > 275;
-    const stick = document.getElementById("component-will-stop");
-    if (stick) {
-      const hasStop = stick.classList.contains("nav-stop");
-      if (posStop && !hasStop) {
-        stick.classList.add("nav-stop");
-      }
-      if (!posStop && hasStop) {
-        stick.classList.remove("nav-stop");
-      }
     }
   }
 
@@ -90,7 +70,6 @@ class Country extends Component {
       return <Loading />;
     }
     let params = this.props.match.params;
-    let user = this.props.value.user;
     let access = this.props.value.user.forms;
     access = access.map((x) => {
       return { ...x, id: x.form_id };

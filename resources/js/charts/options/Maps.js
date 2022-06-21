@@ -4,11 +4,11 @@ import {
   TextStyle,
   ToolBox,
   splitTitle,
-  dataZoom,
 } from "../chart-options.js";
 import { maxBy, minBy } from "lodash";
 
 const Maps = (title, data, compare = false) => {
+  require("../" + data.maps + ".js");
   let records = data.records;
   let option = {
     title: {
