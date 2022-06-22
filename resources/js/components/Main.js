@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -16,16 +16,13 @@ import {
 library.add(fas, faCheckCircle, faPlusCircle, faArrowCircleDown);
 const store = createStore(states, applyMiddleware(middleware));
 
-class Main extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        {" "}
-        <Page />{" "}
-      </Provider>
-    );
-  }
-}
+const Main = () => {
+  return (
+    <Provider store={store}>
+      <Page />
+    </Provider>
+  );
+};
 
 export default Main;
 
