@@ -572,7 +572,7 @@ return [
             'fid' => 2020220604,
             'file' => $path . '2022_afrokai_anom_potatoes.csv',
             'kind' => 'Potatoes',
-            'country' => "Uganda",
+            'country' => "Rwanda",
             'company' => 'Afrokai Anom Potatoes',
             'case_number' => null,
             'cascade' => [
