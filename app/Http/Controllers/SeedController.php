@@ -23,7 +23,7 @@ class SeedController extends Controller
         return "finish";
     }
 
-    // This function used tp sync only forms table by data config
+    // This function used to sync only forms table by data config
     public function syncFormTable($data)
     {
         // if there's is form with defined id, update else create

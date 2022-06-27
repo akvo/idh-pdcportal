@@ -550,6 +550,40 @@ return [
             'report_url' => null,
             'submission_date' => "2022-05-21", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2022060401,
+            'fid' => 1020220604,
+            'file' => $path . '2022_afrokai_anom_maize_sorghum.csv',
+            'kind' => 'Maize & Sorghum',
+            'country' => "Uganda",
+            'company' => 'Afrokai Anom Maize & Sorghum',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Afrokai Maize & Sorghum", "to" => ".xlsx", "filename" => "2022_afrokai_anom_maize_sorghum"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2022-06-04", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2022060402,
+            'fid' => 2020220604,
+            'file' => $path . '2022_afrokai_anom_potatoes.csv',
+            'kind' => 'Potatoes',
+            'country' => "Rwanda",
+            'company' => 'Afrokai Anom Potatoes',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Afrokai Potatoes", "to" => ".xlsx", "filename" => "2022_afrokai_anom_potatoes"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2022-06-04", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
         // [ // example
         //     'sid' => 12345,
