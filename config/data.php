@@ -584,6 +584,23 @@ return [
             'report_url' => null,
             'submission_date' => "2022-06-04", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2022062501,
+            'fid' => 1020220625,
+            'file' => $path . '2022_CF_anom_sunflowerseeds.csv',
+            'kind' => 'Sunflower Seeds',
+            'country' => "Tanzania",
+            'company' => 'Connected Farmers',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Connected Farmers Sunflower Seeds", "to" => ".xlsx", "filename" => "2022_CF_anom_sunflowerseeds"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2022-06-25", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
         // [ // example
         //     'sid' => 12345,
