@@ -211,8 +211,8 @@ class Manage extends Component {
         {forms.map((x, i) => (
           <ListGroup.Item key={"form-" + x.id}>
             <Row>
-              <Col md={6}>{x.name}</Col>
-              <Col md={6} align={"right"}>
+              <Col md={8}>{`${x.name} - ${x.company} - ${x.submission}`}</Col>
+              <Col md={4} align={"right"}>
                 <DropdownButton
                   variant={variant[x.access]}
                   alignRight
@@ -341,7 +341,7 @@ class Manage extends Component {
             ""
           )}
           <Row className="justify-content-md-center">
-            <Col md={selected.id !== 0 ? 7 : 12}>
+            <Col md={selected.id !== 0 ? 6 : 12}>
               <Card>
                 <Card.Header>
                   <FontAwesomeIcon className="mr-2" icon={["fas", "user"]} />{" "}
@@ -365,7 +365,7 @@ class Manage extends Component {
               </Card>
             </Col>
             {selected.id !== 0 ? (
-              <Col md={5}>
+              <Col md={6}>
                 <Card>
                   <Card.Header>User</Card.Header>
                   <ListGroup variant="flush">
@@ -385,7 +385,7 @@ class Manage extends Component {
                             alignRight
                             size="sm"
                             variant="secondary"
-                            title={selected.role}
+                            title={selected.role.toTitle()}
                             id="dropdown-menu-align-right"
                             className="dropdown-show-sm"
                           >
