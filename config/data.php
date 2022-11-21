@@ -601,6 +601,23 @@ return [
             'report_url' => null,
             'submission_date' => "2022-06-25", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2022112101,
+            'fid' => 1020221121,
+            'file' => null,
+            'kind' => 'Sweet Corn and French Beans',
+            'country' => 'Kenya',
+            'company' => 'Framworks',
+            'case_number' => 5215,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Framworks Sweet Corn and French Beans Data", "to" => ".xlsx", "filename" => "2022_Farmworks_anom_french_beans_sweet_corn"],
+            ],
+            'report_url' => null,
+            'submission_date' => null, // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
         // [ // example
         //     'sid' => 12345,
