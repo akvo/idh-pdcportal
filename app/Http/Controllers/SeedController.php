@@ -48,7 +48,15 @@ class SeedController extends Controller
             // delete form instance to clear all the answers
             $delete = \App\Models\FormInstance::where('form_id', $check->id)->delete();
         }
+        echo("Sync Form Table: ".$data['fid'].PHP_EOL);
         $form = $this->syncFormTable($data);
+
+        if (!$data['file']) {
+            # skip seeding data if no data file source defined in config
+            echo("404 - DATASET FILE NOT FOUND".PHP_EOL);
+            echo("NO DATA TO SYNC FOR :".$data['fid'].PHP_EOL);
+            return false;
+        }
 
         $csv = Reader::createFromPath(base_path().$data['file'], 'r');
         $csv->setHeaderOffset(0);
