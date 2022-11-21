@@ -32,6 +32,31 @@ const NoDataAlert = ({ props }) => {
   );
 };
 
+const RenderChart = ({
+  props,
+  options,
+  style,
+  onEvents,
+  notMerge,
+  lazyUpdate,
+}) => {
+  if (!isEmpty(props.dataset)) {
+    if (props.dataset?.data?.length === 0) {
+      return <NoDataAlert props={props} />;
+    }
+    return (
+      <ReactEcharts
+        option={options}
+        notMerge={notMerge}
+        lazyUpdate={lazyUpdate}
+        style={style}
+        onEvents={onEvents}
+      />
+    );
+  }
+  return <NoDataAlert props={props} />;
+};
+
 class Charts extends Component {
   constructor(props) {
     super(props);
@@ -65,32 +90,28 @@ class Charts extends Component {
       style = { ...style, height: `${height}px` };
     }
     if (this.props.config.column === 0) {
-      return !isEmpty(this.props.dataset) ? (
-        <ReactEcharts
-          option={options}
+      return (
+        <RenderChart
+          props={this.props}
+          options={options}
           notMerge={true}
           lazyUpdate={true}
           onEvents={onEvents}
           style={this.props.config.style}
         />
-      ) : (
-        <NoDataAlert props={this.props} />
       );
     }
     return (
       <Col md={this.props.config.column} className={"mx-auto"}>
         <div className="card-chart">
-          {!isEmpty(this.props.dataset) ? (
-            <ReactEcharts
-              option={options}
-              notMerge={true}
-              lazyUpdate={true}
-              style={style}
-              onEvents={onEvents}
-            />
-          ) : (
-            <NoDataAlert props={this.props} />
-          )}
+          <RenderChart
+            props={this.props}
+            options={options}
+            notMerge={true}
+            lazyUpdate={true}
+            onEvents={onEvents}
+            style={this.props.config.style}
+          />
           {this.props.config.line ? <hr /> : ""}
         </div>
       </Col>
