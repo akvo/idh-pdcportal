@@ -337,18 +337,22 @@ class ApiController extends Controller
                     "value" => $hhsize_female,
                 ],
             ];
+            $hh_gender_composition = collect($hh_gender_composition)->filter(function ($item) {
+                return $item['value'] != 0;
+            });
 
             // $hhSize = $household->countBy()
             //                     ->map(function($d, $k){return ['name' => $k, 'value' => $d];})
             //                     ->values();
 
+            $household_median = $household->median()  ? $household->median() : 0;
             $hhProfile = collect([
                 Cards::create(
-                    [Cards::create($household->median(), 'NUM', 'Median household size')]
+                    [Cards::create($household_median, 'NUM', 'Median household size')]
                     , 'CARDS', false, 6
                 ),
                 Cards::create(
-                    [Cards::create(2, 'NUM', 'Female household members that work on the farm')]
+                    [Cards::create($household_median ? 2 : 0, 'NUM', 'Female household members that work on the farm')]
                     , 'CARDS', false, 6
                 ),
                 Cards::create(Utils::getValues($id, $variables['hh_gender_farmer']), 'PIE', "Gender", 6),
@@ -582,7 +586,7 @@ class ApiController extends Controller
                     Cards::create(strval($total_second_crop_no_filter ? round($total_second_crop/$total_second_crop_no_filter, 2)*100 : 0), 'PERCENT', 'Of the farmers grow more than one crop')
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(strval(round($total_livestock_filter/$total_livestock_data, 2)*100), 'PERCENT', 'Of the farmers keep livestock')
+                    Cards::create(strval($total_livestock_filter ? round($total_livestock_filter/$total_livestock_data, 2)*100 : 0), 'PERCENT', 'Of the farmers keep livestock')
                 ], 'CARDS', false, 3),
             ]);
 
