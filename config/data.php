@@ -616,7 +616,24 @@ return [
                 ["type" => "raw", "text" => "Analyzed Framworks Sweet Corn and French Beans Data", "to" => ".xlsx", "filename" => "2022_Farmworks_anom_french_beans_sweet_corn"],
             ],
             'report_url' => null,
-            'submission_date' => null, // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+            'submission_date' => "2022-11-12", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2022120101,
+            'fid' => 1020221201,
+            'file' => null,
+            'kind' => ' Tomato and Cabbage',
+            'country' => 'Kenya',
+            'company' => 'Growpact',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Growpact Tomato and Cabbage Data", "to" => ".xlsx", "filename" => "2022_growpact_anom_tomato_cabbage"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2022-11-18", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
 
         // [ // example
