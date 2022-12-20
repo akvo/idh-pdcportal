@@ -622,7 +622,7 @@ return [
             'sid' => 2022120101,
             'fid' => 1020221201,
             'file' => null,
-            'kind' => ' Tomato and Cabbage',
+            'kind' => 'Tomato and Cabbage',
             'country' => 'Kenya',
             'company' => 'Growpact',
             'case_number' => null,
@@ -634,6 +634,40 @@ return [
             ],
             'report_url' => null,
             'submission_date' => "2022-11-18", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2022122001,
+            'fid' => 1020221220,
+            'file' => null,
+            'kind' => 'Mango',
+            'country' => 'Kenya',
+            'company' => 'Goshen Mango',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Goshen Mango Data", "to" => ".xlsx", "filename" => "2022_Goshen_anom_mango"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2022-12-09", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2022122002,
+            'fid' => 2020221220,
+            'file' => null,
+            'kind' => 'Pineapple',
+            'country' => 'Kenya',
+            'company' => 'Goshen Pineapple',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Goshen Pineapple Data", "to" => ".xlsx", "filename" => "2022_Goshen_anom_pineapple"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2022-12-09", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
 
         // [ // example
