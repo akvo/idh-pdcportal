@@ -638,7 +638,7 @@ return [
         [
             'sid' => 2022122001,
             'fid' => 1020221220,
-            'file' => null,
+            'file' => $path . '2022_Goshen_anom_mango.csv',
             'kind' => 'Mango',
             'country' => 'Kenya',
             'company' => 'Goshen Mango',
@@ -655,7 +655,7 @@ return [
         [
             'sid' => 2022122002,
             'fid' => 2020221220,
-            'file' => null,
+            'file' => $path . '2022_Goshen_anom_pineapple.csv',
             'kind' => 'Pineapple',
             'country' => 'Kenya',
             'company' => 'Goshen Pineapple',
