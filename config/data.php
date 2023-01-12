@@ -669,6 +669,23 @@ return [
             'report_url' => null,
             'submission_date' => "2022-12-09", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2022121701,
+            'fid' => 1020221217,
+            'file' => $path . '2022_CHC_anom_maize_soybeans.csv',
+            'kind' => 'Maize & Soybean',
+            'country' => 'Zambia',
+            'company' => 'CHC Zambia',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed CHC Maize & Soybean Data", "to" => ".xlsx", "filename" => "2022_CHC_anom_maize_soybeans"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2022-12-17", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
         // [ // example
         //     'sid' => 12345,
