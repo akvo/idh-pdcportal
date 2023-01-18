@@ -246,7 +246,7 @@ class ApiController extends Controller
             if (isset($data_config['multi_crop']) && $data_config['multi_crop']) {
                 $multi_crop_variable = isset($data_config['multi_crop_variable']) ? $data_config['multi_crop_variable'] : null;
                 $multi_crop_pie = Utils::getValues($form['id'], $multi_crop_variable);
-                array_push($overview, Cards::create($multi_crop_pie, 'REGULAR-PIE', "Multi Crops Percentage", 12));
+                array_push($overview, Cards::create($multi_crop_pie, 'REGULAR-PIE', "Farmers by crops", 12));
             }
 
             $more_overview = [
