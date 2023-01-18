@@ -37,6 +37,8 @@ export const Pie = (title, data) => {
     legend: {
       data: legends,
       ...Legend,
+      itemGap: 20,
+      itemWidth: 10,
     },
     series: [
       {

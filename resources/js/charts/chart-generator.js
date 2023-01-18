@@ -1,6 +1,6 @@
 import Bar from "./options/Bar";
 import Histogram from "./options/Histogram";
-// import Pie from "./options/Pie";
+import Pie from "./options/Pie";
 import Scatter from "./options/Scatter";
 import Maps from "./options/Maps";
 import CustomStackBar from "./options/CustomStackBar";
@@ -22,8 +22,9 @@ export const generateOptions = (type, title, data, compare = false) => {
     case "MAPS":
       return Maps(title, data, compare);
     case "PIE":
-      // return Pie(title, data);
       return CustomStackBar(title, data, compare);
+    case "REGULAR-PIE":
+      return Pie(title, data);
     case "SCATTER":
       return Scatter(title, data);
     case "HISTOGRAM":
