@@ -538,6 +538,8 @@ return [
             'fid' => 1020220521,
             'file' => $path . '2022_lmm_anom_maize_sorghum.csv',
             'kind' => 'Maize & Sorghum',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop_maize_sorghum',
             'country' => "Uganda",
             'company' => 'Landmark Millers',
             'case_number' => null,
@@ -555,6 +557,8 @@ return [
             'fid' => 1020220604,
             'file' => $path . '2022_afrokai_anom_maize_sorghum.csv',
             'kind' => 'Maize & Sorghum',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop_maize_sorghum',
             'country' => "Uganda",
             'company' => 'Afrokai Anom Maize & Sorghum',
             'case_number' => null,
@@ -674,6 +678,8 @@ return [
             'fid' => 1020221217,
             'file' => $path . '2022_CHC_anom_maize_soybeans.csv',
             'kind' => 'Maize & Soybean',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop_maize_soybean',
             'country' => 'Zambia',
             'company' => 'CHC Zambia',
             'case_number' => null,
@@ -692,6 +698,8 @@ return [
         //     'fid' => 54321,
         //     'file' => $path . 'xvx.csv',
         //     'kind' => 'zzz',
+        //     'multi_crop' => false, // true if more than 1 crop (or remove)
+        //     'multi_crop_variable' => 'focus_crop_maize_sorghum', // add this if more than 1 crop
         //     'country' => 'zzz',
         //     'country_name' => "Côte d'Ivoire", // to provide country name with symbol
         //     'company' => 'zzz',
