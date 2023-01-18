@@ -150,10 +150,11 @@ class ApiController extends Controller
         $total = $form->form_instances_count;
         // $household = Utils::getValues($id, 'hh_size');
 
-        $submission = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+        $data_config = collect(config('data.sources'))->where('fid', $form['fid'])->first();
+
         // custom country name
-        $countryName = isset($submission['country_name']) ? $submission['country_name'] : $form->country;
-        $submission = $submission ? $submission["submission_date"] : null;
+        $countryName = isset($data_config['country_name']) ? $data_config['country_name'] : $form->country;
+        $submission = $data_config ? $data_config["submission_date"] : null;
 
         // mapping variable change
         $variableConfig = config('variable');
@@ -233,20 +234,29 @@ class ApiController extends Controller
             });
 
             $month_text = $submission_month > 1 ? " months" : " month";
+            // Multi crop pie chart
+            $multi_crop_pie = null;
             $overview = [
                 // Cards::create(Utils::getValues($id, 'f_first_crop'), 'BAR', "Farmer First Crop"),
-
                 Cards::create([
                     Cards::create($submission_month.$month_text.' ago', 'MONTH', 'In '.Carbon::parse($submission)->format('M Y'), 12, 'Survey conducted')
                 ], 'CARDS', false, 6),
                 Cards::create([$first_crop_card], 'CARDS', false, 6),
+            ];
+            if (isset($data_config['multi_crop']) && $data_config['multi_crop']) {
+                $multi_crop_variable = isset($data_config['multi_crop_variable']) ? $data_config['multi_crop_variable'] : null;
+                $multi_crop_pie = Utils::getValues($form['id'], $multi_crop_variable);
+                array_push($overview, Cards::create($multi_crop_pie, 'REGULAR-PIE', "Multi Crops Percentage", 12));
+            }
+
+            $more_overview = [
                 Cards::create($maps, 'MAPS', "Location of surveyed households", 6),
                 Cards::create($farmer_sample, 'PIE', "The farmer surveyed part of the sample", 6),
-
                 // Cards::create([
                 //     Cards::create(round(collect($farm_size)->avg(), 2), 'NUM', 'Acres is the average farm size')
                 // ], 'CARDS', false),
             ];
+            $overview = array_merge($overview, $more_overview);
             return [
                 'summary' => [$total, $form->kind, $countryName, $form->company],
                 'tabs' => [[
