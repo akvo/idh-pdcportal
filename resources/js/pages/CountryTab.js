@@ -13,12 +13,11 @@ import { generateData } from "../charts/chart-generator.js";
 const generateSummary = ([total, kind, country, company]) => (
   <div>
     This dashboard is created from the primary data of{" "}
-    <b className="text-highlight">
-      {total} {kind}
-    </b>{" "}
-    farmers in <b className="text-highlight">{country}</b>. This data was
-    collected during the SDM generation for{" "}
-    <b className="text-highlight">{company}</b>.
+    <b className="text-highlight">{total}</b> farmers in{" "}
+    <b className="text-highlight">{country}</b>.<br />
+    This data was collected during the SDM generation for{" "}
+    <b className="text-highlight">{company}</b>, focusing on{" "}
+    <b className="text-highlight">{kind}</b> farmers.
   </div>
 );
 
