@@ -32,7 +32,7 @@ export const Pie = (title, data) => {
     },
     tooltip: {
       trigger: "item",
-      formatter: "{a} <br/>{b}: {c} ({d}%)",
+      formatter: "{b}: {c} ({d}%)",
     },
     legend: {
       data: legends,
