@@ -29,12 +29,13 @@ export const generateOptions = (type, title, data, compare = false) => {
       return Scatter(title, data);
     case "HISTOGRAM":
       return Histogram(title, data);
-    case "HORIZONTAL BAR":
+    case "HORIZONTAL-BAR":
       return Bar(title, data, true, false, compare);
-    case "UNSORTED HORIZONTAL BAR":
+    case "UNSORTED-HORIZONTAL-BAR":
       return Bar(title, data, true, true, compare);
+    case "REGULAR-HORIZONTAL-BAR": // no top 5 filter
+      return Bar(title, data, true, false, compare, false);
     default:
-      // return Bar(title, data);
       return Bar(title, data, false, false, compare);
   }
 };

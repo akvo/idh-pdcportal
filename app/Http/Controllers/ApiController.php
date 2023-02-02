@@ -246,7 +246,14 @@ class ApiController extends Controller
             if (isset($data_config['multi_crop']) && $data_config['multi_crop']) {
                 $multi_crop_variable = isset($data_config['multi_crop_variable']) ? $data_config['multi_crop_variable'] : null;
                 $multi_crop_pie = Utils::getValues($form['id'], $multi_crop_variable);
-                array_push($overview, Cards::create($multi_crop_pie, 'REGULAR-PIE', "Farmers by crops", 12));
+                $total_data = collect($multi_crop_pie)->pluck('value')->sum();
+                $multi_crop_pie = collect($multi_crop_pie)->map(function ($item) use ($total_data) {
+                    $percent = round(($item['value']/$total_data)*100, 2);
+                    $item['count'] = $item['value'];
+                    $item['value'] = $percent;
+                    return $item;
+                });
+                array_push($overview, Cards::create($multi_crop_pie, 'REGULAR-HORIZONTAL-BAR', "Farmers by crops", 12));
             }
 
             $more_overview = [
@@ -369,7 +376,7 @@ class ApiController extends Controller
                 Cards::create($hh_gender_composition, 'PIE', "Household gender composition", 6),
                 Cards::create([$head_gender_tmp], 'TABLE', "Gender roles in the household and on the farm", 12),
                 Cards::create($shortage_months, 'BAR', "Months of food insecurity disaggregated by gender", 12),
-                // Cards::create($hhSize, 'UNSORTED HORIZONTAL BAR', "Household Size", 6)
+                // Cards::create($hhSize, 'UNSORTED-HORIZONTAL-BAR', "Household Size", 6)
             ]);
             // $hhGenderAvg->each(function($avg) use ($hhGenderAvg, $hhProfile){
             //     $title = " is the average of HH size (" . Str::title($avg['name']) . ")";

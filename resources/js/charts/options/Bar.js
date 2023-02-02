@@ -36,7 +36,8 @@ export const Bar = (
   data,
   horizontal = false,
   unsorted = false,
-  compare = false
+  compare = false,
+  topFive = true
 ) => {
   // if (!data.length) {
   //   return noDataText;
@@ -60,12 +61,15 @@ export const Bar = (
   };
   data = sortBy(data, unsorted ? "name" : "value");
   /* TOP 5 */
-  if (!withGender) {
+  if (!withGender && topFive) {
     data = orderBy(data, "value", "desc");
     data = data.filter((_, xi) => xi < 5);
-    data = orderBy(data, "value", "asc");
   }
   /* End Top 5 */
+  if (!withGender) {
+    // if horizontal short by desc
+    data = orderBy(data, "value", horizontal ? "desc" : "asc");
+  }
   let axisLabels = data.map((x) => x.name);
   let values = data.map((x) => x.value);
   let avg = 0;
@@ -167,15 +171,21 @@ export const Bar = (
     };
   }
 
-  return {
-    title: {
-      show: compare ? false : true,
-      text: splitTitle(title),
+  let chartTitle = {
+    show: compare ? false : true,
+    text: splitTitle(title),
+    right: "center",
+    top: "10px",
+    ...TextStyle,
+  };
+  if (topFive) {
+    chartTitle = {
+      ...chartTitle,
       subtext: "Displaying top 5 results",
-      right: "center",
-      top: "10px",
-      ...TextStyle,
-    },
+    };
+  }
+  return {
+    title: chartTitle,
     grid: {
       top: 120,
       right: 50,
