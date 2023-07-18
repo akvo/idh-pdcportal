@@ -692,6 +692,25 @@ return [
             'report_url' => null,
             'submission_date' => "2022-12-17", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2023071801,
+            'fid' => 1020230718,
+            'file' => $path . '2023_guinness_anom_sorghum.csv',
+            'kind' => 'Sorghum',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Nigeria',
+            'company' => 'Guinness Nigeria',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Guinness Sorghum Data", "to" => ".xlsx", "filename" => "2023_guinness_anom_sorghum"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-07-09", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
         // [ // example
         //     'sid' => 12345,
