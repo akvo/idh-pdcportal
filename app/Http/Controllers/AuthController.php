@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Log as Logs;
 use App\Helpers\Mails;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
@@ -130,8 +131,7 @@ class AuthController extends Controller
         return response([
             'user' => $user,
             'access_token' => $token
-        ]);
-
+        ])->cookie('token', $token, 60);
     }
 
     public function info(Request $request)
@@ -145,10 +145,11 @@ class AuthController extends Controller
         $new_expire = date("Y-m-d H:i:s", strtotime("+1 hours"));
         $interval = date_diff(date_create($new_update), date_create($updated_at));
         if ($interval->h >= 1) {
-            $deleteAuth = $auth->delete();
+            $cookie = Cookie::forget('name');
+            $auth->delete();
             return response([
                 'message' => 'Login session timeout',
-            ], 401);
+            ], 401)->withCookie($cookie);
         }
         // end of check last user activity
         $auth->updated_at = $new_update;

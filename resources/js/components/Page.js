@@ -41,6 +41,8 @@ class Page extends Component {
         ? new Date(parseInt(cachetime) + 60 * 60 * 1000)
         : new Date(0); // 1 hour
     // cachetime = cachetime !== null ? new Date(parseInt(cachetime) + 1 * 15 * 1000) : new Date(0); // 15 second
+    console.info("time", now > cachetime);
+    console.info("version", cache_version !== current_version);
     if (now > cachetime || cache_version !== current_version) {
       localStorage.clear();
       this.props.user.logout();

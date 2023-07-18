@@ -1,6 +1,6 @@
 import Bar from "./options/Bar";
 import Histogram from "./options/Histogram";
-// import Pie from "./options/Pie";
+import Pie from "./options/Pie";
 import Scatter from "./options/Scatter";
 import Maps from "./options/Maps";
 import CustomStackBar from "./options/CustomStackBar";
@@ -22,18 +22,20 @@ export const generateOptions = (type, title, data, compare = false) => {
     case "MAPS":
       return Maps(title, data, compare);
     case "PIE":
-      // return Pie(title, data);
       return CustomStackBar(title, data, compare);
+    case "REGULAR-PIE":
+      return Pie(title, data);
     case "SCATTER":
       return Scatter(title, data);
     case "HISTOGRAM":
       return Histogram(title, data);
-    case "HORIZONTAL BAR":
+    case "HORIZONTAL-BAR":
       return Bar(title, data, true, false, compare);
-    case "UNSORTED HORIZONTAL BAR":
+    case "UNSORTED-HORIZONTAL-BAR":
       return Bar(title, data, true, true, compare);
+    case "REGULAR-HORIZONTAL-BAR": // no top 5 filter
+      return Bar(title, data, true, false, compare, false);
     default:
-      // return Bar(title, data);
       return Bar(title, data, false, false, compare);
   }
 };

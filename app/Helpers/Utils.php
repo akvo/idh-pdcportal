@@ -34,8 +34,9 @@ class Utils {
             $data = $data->flatten()
                         ->countBy('option_id')
                         ->transform(function($val, $key) {
+                            $opt_name = Option::where('id',$key)->first()->text;
                             return [
-                                'name' => Option::where('id',$key)->first()->text,
+                                'name' => $opt_name ? $opt_name : "NA",
                                 'value' => $val
                             ];
                         })->values();

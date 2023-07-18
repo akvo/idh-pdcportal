@@ -538,6 +538,8 @@ return [
             'fid' => 1020220521,
             'file' => $path . '2022_lmm_anom_maize_sorghum.csv',
             'kind' => 'Maize & Sorghum',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop_maize_sorghum',
             'country' => "Uganda",
             'company' => 'Landmark Millers',
             'case_number' => null,
@@ -555,6 +557,8 @@ return [
             'fid' => 1020220604,
             'file' => $path . '2022_afrokai_anom_maize_sorghum.csv',
             'kind' => 'Maize & Sorghum',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop_maize_sorghum',
             'country' => "Uganda",
             'company' => 'Afrokai Anom Maize & Sorghum',
             'case_number' => null,
@@ -674,6 +678,8 @@ return [
             'fid' => 1020221217,
             'file' => $path . '2022_CHC_anom_maize_soybeans.csv',
             'kind' => 'Maize & Soybean',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop_maize_soybean',
             'country' => 'Zambia',
             'company' => 'CHC Zambia',
             'case_number' => null,
@@ -686,12 +692,33 @@ return [
             'report_url' => null,
             'submission_date' => "2022-12-17", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2023071801,
+            'fid' => 1020230718,
+            'file' => $path . '2023_guinness_anom_sorghum.csv',
+            'kind' => 'Sorghum',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Nigeria',
+            'company' => 'Guinness Nigeria',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Guinness Sorghum Data", "to" => ".xlsx", "filename" => "2023_guinness_anom_sorghum"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-07-09", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
         // [ // example
         //     'sid' => 12345,
         //     'fid' => 54321,
         //     'file' => $path . 'xvx.csv',
         //     'kind' => 'zzz',
+        //     'multi_crop' => false, // true if more than 1 crop (or remove)
+        //     'multi_crop_variable' => 'focus_crop_maize_sorghum', // add this if more than 1 crop
         //     'country' => 'zzz',
         //     'country_name' => "Côte d'Ivoire", // to provide country name with symbol
         //     'company' => 'zzz',
