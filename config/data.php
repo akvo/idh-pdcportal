@@ -711,6 +711,44 @@ return [
             'report_url' => null,
             'submission_date' => "2023-07-09", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2023072601,
+            'fid' => 1020230726,
+            'file' => $path . '2023_TGI_anom_sesame.csv',
+            'kind' => 'Sesame',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Nigeria',
+            'company' => 'TGI',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed TGI Sesame Data", "to" => ".xlsx", "filename" => "2023_TGI_anom_sesame"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-07-16", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2023072602,
+            'fid' => 2020230726,
+            'file' => $path . '2023_TGI_anom_soy.csv',
+            'kind' => 'Soy',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Nigeria',
+            'company' => 'TGI',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed TGI Soy Data", "to" => ".xlsx", "filename" => "2023_TGI_anom_soy"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-07-16", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
         // [ // example
         //     'sid' => 12345,
