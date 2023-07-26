@@ -719,7 +719,7 @@ return [
             'multi_crop' => false,
             'multi_crop_variable' => null,
             'country' => 'Nigeria',
-            'company' => 'TGI',
+            'company' => 'TGI Sesame',
             'case_number' => null,
             'cascade' => [
                 'name' => 'pi_location_cascade_first_level',
@@ -738,7 +738,7 @@ return [
             'multi_crop' => false,
             'multi_crop_variable' => null,
             'country' => 'Nigeria',
-            'company' => 'TGI',
+            'company' => 'TGI Soy',
             'case_number' => null,
             'cascade' => [
                 'name' => 'pi_location_cascade_first_level',
