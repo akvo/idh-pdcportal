@@ -749,6 +749,48 @@ return [
             'report_url' => null,
             'submission_date' => "2023-07-16", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2023081401,
+            'fid' => 1020230814,
+            'file' => $path . '2023_USSL_anom_maize_endline.csv',
+            'kind' => 'Maize',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Tanzania',
+            'company' => 'USSL Maize Endline',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed USSL Maize Endline Data", "to" => ".xlsx", "filename" => "2023_USSL_anom_maize_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-08-05", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+
+
+        # test remove variable
+        // [
+        //     'sid' => 2023080701,
+        //     'fid' => 1020230807,
+        //     'file' => $path . 'test_rv_2023_guinness_anom_sorghum.csv',
+        //     'kind' => 'Sorghum',
+        //     'multi_crop' => false,
+        //     'multi_crop_variable' => null,
+        //     'country' => 'Nigeria',
+        //     'company' => 'Test Guinness Nigeria Removed Variable',
+        //     'case_number' => null,
+        //     'cascade' => [
+        //         'name' => 'pi_location_cascade_first_level',
+        //     ],
+        //     'files' => [
+        //         ["type" => "raw", "text" => "Analyzed Test Guinness Sorghum with Removed Variable Data", "to" => ".xlsx", "filename" => "test_rv_2023_guinness_anom_sorghum"],
+        //     ],
+        //     'report_url' => null,
+        //     'submission_date' => "2023-07-09", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        // ],
+        # end of test remove variable
 
         // [ // example
         //     'sid' => 12345,
