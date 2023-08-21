@@ -768,6 +768,44 @@ return [
             'report_url' => null,
             'submission_date' => "2023-08-05", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2023082101,
+            'fid' => 1020230821,
+            'file' => $path . '2023_rgl_anom_beans.csv',
+            'kind' => 'Beans',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Tanzania',
+            'company' => 'RGL Anom Beans 2023',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed RGL Anom Beans 2023 Data", "to" => ".xlsx", "filename" => "2023_rgl_anom_beans"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-08-12", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2023082102,
+            'fid' => 2020230821,
+            'file' => $path . '2023_rgl_anom_rice.csv',
+            'kind' => 'Rice',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Tanzania',
+            'company' => 'RGL Anom Rice 2023',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed RGL Anom Rice 2023 Data", "to" => ".xlsx", "filename" => "2023_rgl_anom_rice"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-08-13", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
