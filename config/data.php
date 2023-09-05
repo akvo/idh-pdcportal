@@ -806,6 +806,63 @@ return [
             'report_url' => null,
             'submission_date' => "2023-08-13", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2023090501,
+            'fid' => 1020230905,
+            'file' => $path . '2023_Smart_Logistics_anom_beans_endline.csv',
+            'kind' => 'Beans',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Kenya',
+            'company' => 'Smart Logistics Beans 2023',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Smart Logistics Beans 2023 Data", "to" => ".xlsx", "filename" => "2023_Smart_Logistics_anom_beans_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-08-26", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2023090502,
+            'fid' => 2020230905,
+            'file' => $path . '2023_Syngenta_anom_potatoes_endline.csv',
+            'kind' => 'Potatoes',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Kenya',
+            'company' => 'Syngenta Potatoes 2023',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Syngenta Potatoes 2023 Data", "to" => ".xlsx", "filename" => "2023_Syngenta_anom_potatoes_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-08-27", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2023090503,
+            'fid' => 3020230905,
+            'file' => $path . '2023_Syngenta_anom_tomatoes_endline.csv',
+            'kind' => 'Tomatoes',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Kenya',
+            'company' => 'Syngenta Tomatoes 2023',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Syngenta Tomatoes 2023 Data", "to" => ".xlsx", "filename" => "2023_Syngenta_anom_tomatoes_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-08-26", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
