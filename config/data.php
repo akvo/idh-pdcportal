@@ -869,7 +869,7 @@ return [
             'file' => $path . '2023_SD_anom_Maize-and-Soybean_baseline.csv',
             'kind' => 'Maize and Soybean',
             'country' => 'Ethiopia',
-            'company' => 'SD',
+            'company' => 'SD 2023',
             'case_number' => null,
             'cascade' => [
                 'name' => 'pi_location_cascade_first_level',
