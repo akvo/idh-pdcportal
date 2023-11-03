@@ -863,6 +863,23 @@ return [
             'report_url' => null,
             'submission_date' => "2023-08-26", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2023110301,
+            'fid' => 1020231103,
+            'file' => $path . '2023_SD_anom_Maize-and-Soybean_baseline.csv',
+            'kind' => 'Maize and Soybean',
+            'country' => 'Ethiopia',
+            'company' => 'SD',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed SD Maize and Soybean Data", "to" => ".xlsx", "filename" => "2023_SD_anom_Maize-and-Soybean_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2023-10-22", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
