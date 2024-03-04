@@ -85,7 +85,7 @@ return [
                 'name' => 'pi_location_cascade_first_level',
             ],
             'files' => [
-                ["type" => "raw", "text" => "Analyzed Syngenta Tomatoes Data", "to" => ".xlsx" , "filename" => "kenya-syngenta_tomatoes"],
+                ["type" => "raw", "text" => "Analyzed Syngenta Tomatoes Data", "to" => ".xlsx", "filename" => "kenya-syngenta_tomatoes"],
             ],
             'report_url' => '',
             'submission_date' => "2021-03-23",
@@ -879,6 +879,23 @@ return [
             ],
             'report_url' => null,
             'submission_date' => "2023-10-22", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2024030401,
+            'fid' => 1020240304,
+            'file' => $path . '2024_Alluvial_anom_rice_endline.csv',
+            'kind' => 'Rice',
+            'country' => 'Nigeria',
+            'company' => 'Alluvial 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Alluvial Rice Data", "to" => ".xlsx", "filename" => "2024_Alluvial_anom_rice_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-02-20", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
 
 
