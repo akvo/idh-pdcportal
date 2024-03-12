@@ -892,10 +892,27 @@ return [
                 'name' => 'pi_location_cascade_first_level',
             ],
             'files' => [
-                ["type" => "raw", "text" => "Analyzed Alluvial Rice Data", "to" => ".xlsx", "filename" => "2024_Alluvial_anom_rice_endline"],
+                ["type" => "raw", "text" => "Analyzed Alluvial 2024 Rice Data", "to" => ".xlsx", "filename" => "2024_Alluvial_anom_rice_endline"],
             ],
             'report_url' => null,
             'submission_date' => "2024-02-20", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2024031201,
+            'fid' => 1020240312,
+            'file' => $path . '2024_Coscharis_anom_rice_endline.csv',
+            'kind' => 'Rice',
+            'country' => 'Nigeria',
+            'company' => 'Coscharis 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Coscharis 2024 Rice Data", "to" => ".xlsx", "filename" => "2024_Coscharis_anom_rice_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-02-23", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
 
 
