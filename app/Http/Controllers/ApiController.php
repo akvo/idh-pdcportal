@@ -25,7 +25,7 @@ class ApiController extends Controller
     {
         $sources = collect(config('data.sources'));
         $data = $form->withCount('formInstances as total')->get()->groupBy('country');
-        $data = collect($data)->map(function($list, $key) use ($sources) {
+        $data = collect($data)->map(function ($list, $key) use ($sources) {
             $list = $list->map(function ($item) use ($sources) {
                 $source = $sources->where('fid', $item['fid'])->first();
                 // comment for now, to get date from submission_date from data config
@@ -60,9 +60,9 @@ class ApiController extends Controller
     public function compareData(Request $request)
     {
         $id = (int) $request->id;
-        $form = Form::where('id',$id)
-                       ->withCount('formInstances')
-                       ->first();
+        $form = Form::where('id', $id)
+            ->withCount('formInstances')
+            ->first();
         $total = $form->form_instances_count;
 
         // mapping variable change
@@ -85,20 +85,20 @@ class ApiController extends Controller
         $farm_size = Utils::getValues($id, $variables['f_size (acre)']);
         $second_crop = Utils::getValues($id, $variables['f_second_crop']);
         $landownership = Utils::getValues($id, $variables['f_ownership']);
-        $owned_land = collect($landownership)->where('name','I Own All The Land')->first();
+        $owned_land = collect($landownership)->where('name', 'I Own All The Land')->first();
         $owned_land = round(($owned_land['value'] / $total) * 100, 0);
         $maps = [
             'records' => Utils::getValues($id, $variables['pi_location_cascade_county']),
             'maps' => strtolower($form->country)
         ];
-        $main_percentage = round($first_crop['value']/ $total, 2) * 100;
+        $main_percentage = round($first_crop['value'] / $total, 2) * 100;
         $farm_size_avg = round(collect($farm_size)->avg(), 2);
         // $firstSubcards = [
         //     Cards::create($total, 'NUM', "Of the farmers are included in the analysis"),
         //     Cards::create($main_percentage, 'PERCENT', "Of the farmers main crop was ".$first_crop['name']),
         //     Cards::create($farm_size_avg, 'NUM', "Acres is the average farm size")
         // ];
-        $livestock = collect(Utils::getValues($id, $variables['f_livestock']))->reject(function($data){
+        $livestock = collect(Utils::getValues($id, $variables['f_livestock']))->reject(function ($data) {
             return Str::contains($data['name'], "No");
         })->values();
         // $secondSubcards = [
@@ -144,9 +144,10 @@ class ApiController extends Controller
         ];
     }
 
-    public function countryData(Request $request) {
+    public function countryData(Request $request)
+    {
         $id = (int) $request->id;
-        $form = Form::where('id',$id)->withCount('formInstances')->first();
+        $form = Form::where('id', $id)->withCount('formInstances')->first();
         $total = $form->form_instances_count;
         // $household = Utils::getValues($id, 'hh_size');
 
@@ -211,12 +212,12 @@ class ApiController extends Controller
 
             $first_crop_card_value = 0;
             if ($first_crop_total !== 0) {
-                $first_crop_card_value = $first_crop_value/$first_crop_total;
+                $first_crop_card_value = $first_crop_value / $first_crop_total;
             }
-            $first_crop_card = Cards::create(strval(round($first_crop_card_value, 2)*100).'%', 'NUM', 'Of the farmers’ main crop was '.$first_crop_name);
+            $first_crop_card = Cards::create(strval(round($first_crop_card_value, 2) * 100) . '%', 'NUM', 'Of the farmers’ main crop was ' . $first_crop_name);
 
             if ($isVariableChange) {
-                $first_crop_card = Cards::create(strval(round($first_crop_card_value, 2)*100).'%', 'NUM', 'Of the farmers’ second largest crop was '.$first_crop_name);
+                $first_crop_card = Cards::create(strval(round($first_crop_card_value, 2) * 100) . '%', 'NUM', 'Of the farmers’ second largest crop was ' . $first_crop_name);
             }
 
             $alternatives = [
@@ -239,7 +240,7 @@ class ApiController extends Controller
             $overview = [
                 // Cards::create(Utils::getValues($id, 'f_first_crop'), 'BAR', "Farmer First Crop"),
                 Cards::create([
-                    Cards::create($submission_month.$month_text.' ago', 'MONTH', 'In '.Carbon::parse($submission)->format('M Y'), 12, 'Survey conducted')
+                    Cards::create($submission_month . $month_text . ' ago', 'MONTH', 'In ' . Carbon::parse($submission)->format('M Y'), 12, 'Survey conducted')
                 ], 'CARDS', false, 6),
                 Cards::create([$first_crop_card], 'CARDS', false, 6),
             ];
@@ -248,7 +249,7 @@ class ApiController extends Controller
                 $multi_crop_pie = Utils::getValues($form['id'], $multi_crop_variable);
                 $total_data = collect($multi_crop_pie)->pluck('value')->sum();
                 $multi_crop_pie = collect($multi_crop_pie)->map(function ($item) use ($total_data) {
-                    $percent = round(($item['value']/$total_data)*100, 2);
+                    $percent = round(($item['value'] / $total_data) * 100, 2);
                     $item['count'] = $item['value'];
                     $item['value'] = $percent;
                     return $item;
@@ -331,12 +332,12 @@ class ApiController extends Controller
                 ]
             ];
             $head_gender_tmp["rows"] = $head_gender->map(function ($item) {
-                $male = $item['gender']->where('name', 'Male')->first()['value'];
-                $female = $item['gender']->where('name', 'Female')->first()['value'];
+                $male = $item['gender']->where('name', 'Male')->first();
+                $female = $item['gender']->where('name', 'Female')->first();
                 return [
                     "name" => strtolower($item['name']) === 'male' ? 'Male headed household' : 'Female headed household',
-                    "male" => $male ? $male : 0,
-                    "female" => $female ? $female : 0,
+                    "male" => $male ? $male['value'] : 0,
+                    "female" => $female ? $female['value'] : 0,
                 ];
             });
 
@@ -365,12 +366,16 @@ class ApiController extends Controller
             $household_median = $household->median()  ? $household->median() : 0;
             $hhProfile = collect([
                 Cards::create(
-                    [Cards::create($household_median, 'NUM', 'Median household size')]
-                    , 'CARDS', false, 6
+                    [Cards::create($household_median, 'NUM', 'Median household size')],
+                    'CARDS',
+                    false,
+                    6
                 ),
                 Cards::create(
-                    [Cards::create($household_median ? 2 : 0, 'NUM', 'Female household members that work on the farm')]
-                    , 'CARDS', false, 6
+                    [Cards::create($household_median ? 2 : 0, 'NUM', 'Female household members that work on the farm')],
+                    'CARDS',
+                    false,
+                    6
                 ),
                 Cards::create(Utils::getValues($id, $variables['hh_gender_farmer']), 'PIE', "Gender", 6),
                 Cards::create($hh_gender_composition, 'PIE', "Household gender composition", 6),
@@ -481,7 +486,7 @@ class ApiController extends Controller
             ]);
             $median_harvest = $f_harvests->median();
             if ($median_harvest) {
-                $farmpractices->push(Cards::create([Cards::create($median_harvest, 'NUM', 'Median number of harvests')], 'CARDS',false, 12));
+                $farmpractices->push(Cards::create([Cards::create($median_harvest, 'NUM', 'Median number of harvests')], 'CARDS', false, 12));
             }
 
             if ($variables['f_third_crop']) {
@@ -569,11 +574,11 @@ class ApiController extends Controller
             });
             $farm_sizes = collect(Utils::mergeValues($farm_sizes, $variables['f_first_crop']));
             $total_farm_sizes = collect($farm_sizes['data'])->max('total');
-            $only_farm_sizes = collect($farm_sizes['data'])->map(function($item) {
+            $only_farm_sizes = collect($farm_sizes['data'])->map(function ($item) {
                 $item['name'] == strtolower($item['name']);
                 return $item;
             })->where('name', strtolower($form->kind))->first();
-            $dedicated_name = $only_farm_sizes['name'] ? $only_farm_sizes['name'] : $form->kind;
+            $dedicated_name = $only_farm_sizes ? $only_farm_sizes['name'] : $form->kind;
 
             $second_crop = collect(Utils::getValues($id, $variables['f_second_crop']));
             $total_second_crop_no_filter = $second_crop->pluck('value')->sum();
@@ -583,27 +588,30 @@ class ApiController extends Controller
 
             $livestock_data = collect(Utils::getValues($id, $variables['f_livestock']));
             $total_livestock_data = $livestock_data->pluck('value')->sum();
-            $livestock_filter = $livestock_data->reject(function($item){
+            $livestock_filter = $livestock_data->reject(function ($item) {
                 return Str::contains($item['name'], "No") || $item['name'] == "" || strtolower($item['name']) === strtolower("I Dont Have Additional Income From Livestock Or Poultry");
             })->values();
             $total_livestock_filter = $livestock_filter->pluck('value')->sum();
             $livestock = Utils::setPercentValue($livestock_filter);
             $max_livestock = $livestock_filter->sortByDesc('value')->values()->first();
 
+            $only_farm_sizes_total = $only_farm_sizes ? $only_farm_sizes['total'] : 0;
             $farmcharacteristics = collect([
                 Cards::create([
                     Cards::create(round(collect($farm_size)->avg(), 2), 'NUM', 'Acres is the average farm size')
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(strval($total_farm_sizes ? round($only_farm_sizes['total']/$total_farm_sizes, 2)*100 : 0),
-                    'PERCENT',
-                    'Of the farm is on average dedicated to '.$dedicated_name)
+                    Cards::create(
+                        strval($total_farm_sizes ? round($only_farm_sizes_total / $total_farm_sizes, 2) * 100 : 0),
+                        'PERCENT',
+                        'Of the farm is on average dedicated to ' . $dedicated_name
+                    )
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(strval($total_second_crop_no_filter ? round($total_second_crop/$total_second_crop_no_filter, 2)*100 : 0), 'PERCENT', 'Of the farmers grow more than one crop')
+                    Cards::create(strval($total_second_crop_no_filter ? round($total_second_crop / $total_second_crop_no_filter, 2) * 100 : 0), 'PERCENT', 'Of the farmers grow more than one crop')
                 ], 'CARDS', false, 3),
                 Cards::create([
-                    Cards::create(strval($total_livestock_filter ? round($total_livestock_filter/$total_livestock_data, 2)*100 : 0), 'PERCENT', 'Of the farmers keep livestock')
+                    Cards::create(strval($total_livestock_filter ? round($total_livestock_filter / $total_livestock_data, 2) * 100 : 0), 'PERCENT', 'Of the farmers keep livestock')
                 ], 'CARDS', false, 3),
             ]);
 
@@ -613,9 +621,9 @@ class ApiController extends Controller
                 $type_percent = 0;
                 if ($type->count() > 0) {
                     $max_type = $type->sortByDesc('value')->values()->first();
-                    $type_percent = round(($max_type['value']/$type->pluck('value')->sum())*100, 2);
+                    $type_percent = round(($max_type['value'] / $type->pluck('value')->sum()) * 100, 2);
                 }
-                $farmcharacteristics->push(Cards::create($type, 'PIE', $type_percent.'% of the farmers grow '.$max_type['name'].' '.$form->kind, 6));
+                $farmcharacteristics->push(Cards::create($type, 'PIE', $type_percent . '% of the farmers grow ' . $max_type['name'] . ' ' . $form->kind, 6));
             }
 
             if (!is_array($variables['f_crops'])) {
@@ -625,8 +633,8 @@ class ApiController extends Controller
                 $crops = Utils::setPercentValue($crops);
                 $crop_names = $crops->pluck('name');
                 $crops_text = join(', ', $crop_names->toArray());
-                $farmcharacteristics->push(Cards::create($crops, 'BAR', $crops_text.' are the most grow crops by the surveyed farmers', 6));
-                $farmcharacteristics->push(Cards::create($livestock, 'BAR','Of the farmers that own livestock the largest part own '.$max_livestock['name'].': '.$max_livestock['value'].'%'));
+                $farmcharacteristics->push(Cards::create($crops, 'BAR', $crops_text . ' are the most grow crops by the surveyed farmers', 6));
+                $farmcharacteristics->push(Cards::create($livestock, 'BAR', 'Of the farmers that own livestock the largest part own ' . $max_livestock['name'] . ': ' . $max_livestock['value'] . '%'));
             }
 
             if (is_array($variables['f_crops'])) {
@@ -647,8 +655,8 @@ class ApiController extends Controller
                 $crops = Utils::setPercentValue($crops);
                 $crop_names = $crops->pluck('name');
                 $crops_text = join(', ', $crop_names->toArray());
-                $farmcharacteristics->push(Cards::create($crops, 'BAR', $crops_text.' are the most grow crops by the surveyed farmers', 6));
-                $farmcharacteristics->push(Cards::create($livestock, 'BAR','Of the farmers that own livestock the largest part own '.$max_livestock['name'].': '.$max_livestock['value'].'%', 6));
+                $farmcharacteristics->push(Cards::create($crops, 'BAR', $crops_text . ' are the most grow crops by the surveyed farmers', 6));
+                $farmcharacteristics->push(Cards::create($livestock, 'BAR', 'Of the farmers that own livestock the largest part own ' . $max_livestock['name'] . ': ' . $max_livestock['value'] . '%', 6));
             }
 
             return [
@@ -697,7 +705,5 @@ class ApiController extends Controller
                 ]]
             ];
         }
-
     }
-
 }
