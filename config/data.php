@@ -914,6 +914,23 @@ return [
             'report_url' => null,
             'submission_date' => "2024-02-23", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2024032001,
+            'fid' => 1020240320,
+            'file' => $path . '2024_AIF_anom_maize_endline.csv',
+            'kind' => 'Maize',
+            'country' => 'Rwanda',
+            'company' => 'AIF 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed AIF 2024 Maize Data", "to" => ".xlsx", "filename" => "2024_AIF_anom_maize_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-03-09", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
