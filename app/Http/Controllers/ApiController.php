@@ -484,7 +484,10 @@ class ApiController extends Controller
                 // Cards::create([Cards::create($avgSoldCrops, 'NUM', 'is the average Sold Crops')], 'CARDS',false, 6),
                 // Cards::create($livestock, 'BAR','Livestock'),
             ]);
-            $median_harvest = $f_harvests->median();
+            $median_harvest = 0;
+            if (count($f_harvests)) {
+                $median_harvest = $f_harvests->median();
+            }
             if ($median_harvest) {
                 $farmpractices->push(Cards::create([Cards::create($median_harvest, 'NUM', 'Median number of harvests')], 'CARDS', false, 12));
             }
@@ -561,8 +564,11 @@ class ApiController extends Controller
 
             $fsdmId = Variable::where('name', $variables['f_sdm_size (acre)'])->first();
             $farm_sizes = Utils::getValues($id, $variables['f_size (acre)'], false)->map(function ($item) use ($fsdmId) {
-                $fsdmVal = Answer::where('form_instance_id', $item['form_instance_id'])
-                    ->where('variable_id', $fsdmId->id)->first();
+                $fsdmVal = 0;
+                if ($fsdmId) {
+                    $fsdmVal = Answer::where('form_instance_id', $item['form_instance_id'])
+                        ->where('variable_id', $fsdmId->id)->first();
+                }
                 $fsdmVal = $fsdmVal ? $fsdmVal->value : 0;
                 return [
                     'id' => $item->id,
