@@ -950,6 +950,23 @@ return [
             'report_url' => null,
             'submission_date' => "2024-04-19", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2024051502,
+            'fid' => 2020240515,
+            'file' => $path . '2024_Afro-kai-Limited_anom_potatoes_endline.csv',
+            'kind' => 'Potatoes',
+            'country' => "Uganda",
+            'company' => 'Afrokai Anom Potatoes 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Afrokai Potatoes 2024 Data", "to" => ".xlsx", "filename" => "2024_Afro-kai-Limited_anom_potatoes_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-04-16", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
