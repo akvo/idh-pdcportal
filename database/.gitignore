@@ -1,3 +1,4 @@
 /sources
 *.sqlite
 *.sqlite-journal
+.DS_Store
