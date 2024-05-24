@@ -1020,6 +1020,25 @@ return [
             'report_url' => null,
             'submission_date' => "2024-05-08", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2024052403,
+            'fid' => 3020240524,
+            'file' => $path . '2024_Growpact_anom_tomatoes_and_cabbages_endline.csv',
+            'kind' => 'Tomatoes & Cabbages',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop_carbagges_tomatoes',
+            'country' => "Kenya",
+            'company' => 'Growpact Anom Tomatoes & Cabbages 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Growpact Tomatoes & Cabbages 2024 2024 Data", "to" => ".xlsx", "filename" => "2024_Growpact_anom_tomatoes_and_cabbages_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-05-14", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
