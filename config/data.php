@@ -1003,6 +1003,23 @@ return [
             'report_url' => null,
             'submission_date' => "2024-05-06", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2024052402,
+            'fid' => 2020240524,
+            'file' => $path . '2024_Agrictrade_anom_rice_endline.csv',
+            'kind' => 'Rice',
+            'country' => "Ghana",
+            'company' => 'Agrictrade Anom Rice 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Agrictrade Rice 2024 Data", "to" => ".xlsx", "filename" => "2024_Agrictrade_anom_rice_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-05-08", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
