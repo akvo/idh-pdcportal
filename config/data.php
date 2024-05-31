@@ -1039,6 +1039,23 @@ return [
             'report_url' => null,
             'submission_date' => "2024-05-14", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2024053101,
+            'fid' => 1020240531,
+            'file' => $path . '2024_Farmworks_anom_French_beans_endline.csv',
+            'kind' => 'French Beans',
+            'country' => "Kenya",
+            'company' => 'Framworks',
+            'case_number' => 5215,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Framworks French Beans 2024 Data", "to" => ".xlsx", "filename" => "2024_Farmworks_anom_French_beans_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-05-25", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
