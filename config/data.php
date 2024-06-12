@@ -612,7 +612,7 @@ return [
             'kind' => 'Sweet Corn and French Beans',
             'country' => 'Kenya',
             'company' => 'Framworks 2022',
-            'case_number' => 5215,
+            'case_number' => null,
             'cascade' => [
                 'name' => 'pi_location_cascade_first_level',
             ],
