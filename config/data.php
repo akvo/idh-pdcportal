@@ -1056,6 +1056,40 @@ return [
             'report_url' => null,
             'submission_date' => "2024-05-25", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2024062601,
+            'fid' => 1020240626,
+            'file' => $path . '2024_Goshen_anom_Mangoes_endline.csv',
+            'kind' => 'Mango',
+            'country' => 'Kenya',
+            'company' => 'Goshen Mango 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Goshen Mango 2024 Data", "to" => ".xlsx", "filename" => "2024_Goshen_anom_Mangoes_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-06-15", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2024062602,
+            'fid' => 2020240626,
+            'file' => $path . '2024_Goshen_anom_Pineapples_endline.csv',
+            'kind' => 'Pineapple',
+            'country' => 'Kenya',
+            'company' => 'Goshen Pineapple 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Goshen Pineapple 2024 Data", "to" => ".xlsx", "filename" => "2024_Goshen_anom_Pineapples_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-06-14", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
