@@ -48,6 +48,9 @@ const RenderChart = ({
   notMerge,
   lazyUpdate,
 }) => {
+  if (props?.dataset?.maps === "india" || !options) {
+    return <NoDataAlert props={props} />;
+  }
   if (!isEmpty(props.dataset)) {
     if (props.dataset?.data?.length === 0) {
       return <NoDataAlert props={props} />;
@@ -98,9 +101,6 @@ class Charts extends Component {
       style = { ...style, height: `${height}px` };
     }
     if (this.props.config.column === 0) {
-      if (!options) {
-        return <NoDataAlert props={this.props} />;
-      }
       return (
         <RenderChart
           props={this.props}
@@ -114,21 +114,17 @@ class Charts extends Component {
     }
     return (
       <Col md={this.props.config.column} className={"mx-auto"}>
-        {!options ? (
-          <NoDataAlert props={this.props} />
-        ) : (
-          <div className="card-chart">
-            <RenderChart
-              props={this.props}
-              options={options}
-              notMerge={true}
-              lazyUpdate={true}
-              onEvents={onEvents}
-              style={this.props.config.style}
-            />
-            {this.props.config.line ? <hr /> : ""}
-          </div>
-        )}
+        <div className="card-chart">
+          <RenderChart
+            props={this.props}
+            options={options}
+            notMerge={true}
+            lazyUpdate={true}
+            onEvents={onEvents}
+            style={this.props.config.style}
+          />
+          {this.props.config.line ? <hr /> : ""}
+        </div>
       </Col>
     );
   }
