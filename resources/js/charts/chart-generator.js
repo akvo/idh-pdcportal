@@ -20,7 +20,12 @@ export const generateData = (col, line, height) => {
 export const generateOptions = (type, title, data, compare = false) => {
   switch (type) {
     case "MAPS":
-      return Maps(title, data, compare);
+      try {
+        return Maps(title, data, compare);
+      } catch (err) {
+        console.error(err);
+        return false;
+      }
     case "PIE":
       return CustomStackBar(title, data, compare);
     case "REGULAR-PIE":

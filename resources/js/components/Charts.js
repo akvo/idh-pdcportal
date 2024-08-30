@@ -21,12 +21,20 @@ const NoDataAlert = ({ props }) => {
         <div>
           <FontAwesomeIcon icon={["fas", "times-circle"]} size="4x" />
         </div>
-        <div>
-          <h5>No data has been collected</h5>
+        {props?.kind?.toLowerCase() === "maps" ? (
           <div>
-            This variable is not collected as part of data collection activity.
+            <h5>Unable to Load Map</h5>
+            <div>Apologies, we're currently unable to load the map.</div>
           </div>
-        </div>
+        ) : (
+          <div>
+            <h5>No data has been collected</h5>
+            <div>
+              This variable is not collected as part of data collection
+              activity.
+            </div>
+          </div>
+        )}
       </Alert>
     </div>
   );
@@ -90,6 +98,9 @@ class Charts extends Component {
       style = { ...style, height: `${height}px` };
     }
     if (this.props.config.column === 0) {
+      if (!options) {
+        return <NoDataAlert props={this.props} />;
+      }
       return (
         <RenderChart
           props={this.props}
@@ -103,17 +114,21 @@ class Charts extends Component {
     }
     return (
       <Col md={this.props.config.column} className={"mx-auto"}>
-        <div className="card-chart">
-          <RenderChart
-            props={this.props}
-            options={options}
-            notMerge={true}
-            lazyUpdate={true}
-            onEvents={onEvents}
-            style={this.props.config.style}
-          />
-          {this.props.config.line ? <hr /> : ""}
-        </div>
+        {!options ? (
+          <NoDataAlert props={this.props} />
+        ) : (
+          <div className="card-chart">
+            <RenderChart
+              props={this.props}
+              options={options}
+              notMerge={true}
+              lazyUpdate={true}
+              onEvents={onEvents}
+              style={this.props.config.style}
+            />
+            {this.props.config.line ? <hr /> : ""}
+          </div>
+        )}
       </Col>
     );
   }
