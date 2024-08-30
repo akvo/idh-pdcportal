@@ -1090,6 +1090,40 @@ return [
             'report_url' => null,
             'submission_date' => "2024-06-14", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2024083001,
+            'fid' => 1020240830,
+            'file' => $path . '2024_Avanti_anom_Carrots_endline.csv',
+            'kind' => 'Carrot',
+            'country' => 'India',
+            'company' => 'Avanti Carrot 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Avanti Carrot 2024 Data", "to" => ".xlsx", "filename" => "2024_Avanti_anom_Carrots_endline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-08-19", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
+        [
+            'sid' => 2024083002,
+            'fid' => 2020240830,
+            'file' => $path . '2024_Avanti_anom_Dairy_baseline.csv',
+            'kind' => 'Dairy',
+            'country' => 'India',
+            'company' => 'Avanti Dairy 2024',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Avanti Dairy 2024 Data", "to" => ".xlsx", "filename" => "2024_Avanti_anom_Dairy_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2024-08-12", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
