@@ -53,6 +53,9 @@ class ApiController extends Controller
                 'name' => $key,
                 'childrens' => $list->makeHidden('country')
             ];
+        })->filter(function ($item) {
+            // TODO :: Need to fix and remove this
+            return $item['name'] != "India";
         })->values();
         return $data;
     }
