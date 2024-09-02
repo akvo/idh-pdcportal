@@ -48,9 +48,9 @@ const RenderChart = ({
   notMerge,
   lazyUpdate,
 }) => {
-  if (props?.dataset?.maps === "india" || !options) {
-    return <NoDataAlert props={props} />;
-  }
+  // if (props?.dataset?.maps === "india" || !options) {
+  //   return <NoDataAlert props={props} />;
+  // }
   if (!isEmpty(props.dataset)) {
     if (props.dataset?.data?.length === 0) {
       return <NoDataAlert props={props} />;
