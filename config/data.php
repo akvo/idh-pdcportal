@@ -934,7 +934,7 @@ return [
         [
             'sid' => 2024051501,
             'fid' => 1020240515,
-            'file' => $path . '2024_Afro-kai-Limited_anom_maize_and_sorghum_endline.csv',
+            'file' => $path . '2024_Afro-kai-Limited_anom_maize_and_sorghum_endline_v2.csv',
             'kind' => 'Maize & Sorghum',
             'multi_crop' => true,
             'multi_crop_variable' => 'focus_crop_maize_sorghum',
@@ -945,7 +945,7 @@ return [
                 'name' => 'pi_location_cascade_first_level',
             ],
             'files' => [
-                ["type" => "raw", "text" => "Analyzed Afrokai Maize & Sorghum 2024 Data", "to" => ".xlsx", "filename" => "2024_Afro-kai-Limited_anom_maize_and_sorghum_endline"],
+                ["type" => "raw", "text" => "Analyzed Afrokai Maize & Sorghum 2024 Data", "to" => ".xlsx", "filename" => "2024_Afro-kai-Limited_anom_maize_and_sorghum_endline_v2"],
             ],
             'report_url' => null,
             'submission_date' => "2024-04-19", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
@@ -953,7 +953,7 @@ return [
         [
             'sid' => 2024051502,
             'fid' => 2020240515,
-            'file' => $path . '2024_Afro-kai-Limited_anom_potatoes_endline.csv',
+            'file' => $path . '2024_Afro-kai-Limited_anom_potatoes_endline_v2.csv',
             'kind' => 'Potatoes',
             'country' => "Uganda",
             'company' => 'Afrokai Anom Potatoes 2024',
@@ -962,7 +962,7 @@ return [
                 'name' => 'pi_location_cascade_first_level',
             ],
             'files' => [
-                ["type" => "raw", "text" => "Analyzed Afrokai Potatoes 2024 Data", "to" => ".xlsx", "filename" => "2024_Afro-kai-Limited_anom_potatoes_endline"],
+                ["type" => "raw", "text" => "Analyzed Afrokai Potatoes 2024 Data", "to" => ".xlsx", "filename" => "2024_Afro-kai-Limited_anom_potatoes_endline_v2"],
             ],
             'report_url' => null,
             'submission_date' => "2024-04-16", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
@@ -970,7 +970,7 @@ return [
         [
             'sid' => 2024051503,
             'fid' => 3020240515,
-            'file' => $path . '2024_Landmark_anom_maize_and_sorghom_endline.csv',
+            'file' => $path . '2024_landmark_anom_maize_and_sorghom_endline_v2.csv',
             'kind' => 'Maize & Sorghum',
             'multi_crop' => true,
             'multi_crop_variable' => 'focus_crop_maize_sorghum',
@@ -981,7 +981,7 @@ return [
                 'name' => 'pi_location_cascade_first_level',
             ],
             'files' => [
-                ["type" => "raw", "text" => "Analyzed Landmark Millers Maize & Sorghum 2024 Data", "to" => ".xlsx", "filename" => "2024_Landmark_anom_maize_and_sorghom_endline"],
+                ["type" => "raw", "text" => "Analyzed Landmark Millers Maize & Sorghum 2024 Data", "to" => ".xlsx", "filename" => "2024_landmark_anom_maize_and_sorghom_endline_v2"],
             ],
             'report_url' => null,
             'submission_date' => "2024-04-20", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
