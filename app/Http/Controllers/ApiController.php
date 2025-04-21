@@ -666,7 +666,9 @@ class ApiController extends Controller
                 $crop_names = $crops->pluck('name');
                 $crops_text = join(', ', $crop_names->toArray());
                 $farmcharacteristics->push(Cards::create($crops, 'BAR', $crops_text . ' are the most grow crops by the surveyed farmers', 6));
-                $farmcharacteristics->push(Cards::create($livestock, 'BAR', 'Of the farmers that own livestock the largest part own ' . $max_livestock['name'] . ': ' . $max_livestock['value'] . '%', 6));
+                if ($max_livestock) {
+                    $farmcharacteristics->push(Cards::create($livestock, 'BAR', 'Of the farmers that own livestock the largest part own ' . $max_livestock['name'] . ': ' . $max_livestock['value'] . '%', 6));
+                }
             }
 
             return [

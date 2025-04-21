@@ -1124,6 +1124,25 @@ return [
             'report_url' => null,
             'submission_date' => "2024-08-12", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2025042101,
+            'fid' => 1020042025,
+            'file' => $path . '2025_Okomu_anom_palm_oil_baseline.csv',
+            'kind' => 'Palm Oil',
+            'multi_crop' => false,
+            'multi_crop_variable' => null,
+            'country' => 'Nigeria',
+            'company' => 'Okomu 2025',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Okumu Palm Oil 2025 Data", "to" => ".xlsx", "filename" => "2025_Okomu_anom_palm_oil_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2025-04-07", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
