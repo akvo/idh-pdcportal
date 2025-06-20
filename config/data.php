@@ -1143,6 +1143,25 @@ return [
             'report_url' => null,
             'submission_date' => "2025-04-07", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2025062001,
+            'fid' => 1020062025,
+            'file' => $path . '2025_Luna_and_Gada_anom_Maize_onion_sunflower_baseline.csv',
+            'kind' => 'Maize, Onion & Sunflower',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop',
+            'country' => 'Ethiopia',
+            'company' => 'Luna and Gada 2025',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Luna and Gada Maize Onion Sunflower 2025 Data", "to" => ".xlsx", "filename" => "2025_Luna_and_Gada_anom_Maize_onion_sunflower_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2025-06-10", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
