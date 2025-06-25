@@ -1162,6 +1162,25 @@ return [
             'report_url' => null,
             'submission_date' => "2025-06-10", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2025062501,
+            'fid' => 1025062025,
+            'file' => $path . '2025_Kunifira_and_OACF_anom_Maize_and_Soybean_baseline.csv',
+            'kind' => 'Maize & Soybean',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop',
+            'country' => 'Ethiopia',
+            'company' => 'Kunifira and OACF 2025',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Kunifira and OACF Maize Soybean 2025 Data", "to" => ".xlsx", "filename" => "2025_Kunifira_and_OACF_anom_Maize_and_Soybean_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2025-06-18", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
