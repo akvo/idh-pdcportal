@@ -1181,6 +1181,25 @@ return [
             'report_url' => null,
             'submission_date' => "2025-06-18", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2025081501,
+            'fid' => 1015082025,
+            'file' => $path . '2025_Mbeya_Comapies_anom_Maize_Rice_Beans_Sunflower_baseline.csv',
+            'kind' => 'Maize, Rice, Beans & Sunflower',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop',
+            'country' => 'Tanzania',
+            'company' => 'Mbeya Comapies 2025',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_cascade_first_level',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Mbeya Comapies Maize, Rice, Beans & Sunflower 2025 Data", "to" => ".xlsx", "filename" => "2025_Mbeya_Comapies_anom_Maize_Rice_Beans_Sunflower_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2025-08-02", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
