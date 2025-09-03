@@ -1200,6 +1200,25 @@ return [
             'report_url' => null,
             'submission_date' => "2025-08-02", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2025090301,
+            'fid' => 1003092025,
+            'file' => $path . '2025_RMC_and_AKM_Comapies_anom_Maize_Rice_Sunflower_Soybean_baseline.csv',
+            'kind' => 'Maize, Rice, Sunflower & Soybean',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop',
+            'country' => 'Tanzania',
+            'company' => 'RMC and AKM Comapies 2025',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_first_admin',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed RMC and AKM Comapies Maize, Rice, Sunflower & Soybean 2025 Data", "to" => ".xlsx", "filename" => "2025_RMC_and_AKM_Comapies_anom_Maize_Rice_Sunflower_Soybean_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2025-08-22", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
