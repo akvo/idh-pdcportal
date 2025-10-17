@@ -1219,6 +1219,25 @@ return [
             'report_url' => null,
             'submission_date' => "2025-08-22", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2025101701,
+            'fid' => 1017102025,
+            'file' => $path . '2025_kaibagwa_vonkavy_anom_maize_beans_sunflower_baseline.csv',
+            'kind' => 'Maize, Beans & Sunflower',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop',
+            'country' => 'Tanzania',
+            'company' => 'Kibaigwa & Vonkavy 2025',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_first_admin',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Kibaigwa & Vonkavy Maize, Beans & Sunflower 2025 Data", "to" => ".xlsx", "filename" => "2025_kaibagwa_vonkavy_anom_maize_beans_sunflower_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2025-10-03", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
