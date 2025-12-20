@@ -1238,6 +1238,25 @@ return [
             'report_url' => null,
             'submission_date' => "2025-10-03", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2025122001,
+            'fid' => 1020122025,
+            'file' => $path . '2025_JKCC_anom_robusta_arabica_baseline.csv',
+            'kind' => 'Robusta & Arabica',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop',
+            'country' => 'Uganda',
+            'company' => 'JKCC 2025',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_admin1',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed JKCC Anom Robusta Arabica 2025 Data", "to" => ".xlsx", "filename" => "2025_JKCC_anom_robusta_arabica_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2025-12-07", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
