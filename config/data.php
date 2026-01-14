@@ -1257,6 +1257,25 @@ return [
             'report_url' => null,
             'submission_date' => "2025-12-07", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
         ],
+        [
+            'sid' => 2026011401,
+            'fid' => 1014012026,
+            'file' => $path . '2025_quarit_phibela_anom_maize_soybean_sunflower_baseline.csv',
+            'kind' => 'Maize, Soybean & Sunflower',
+            'multi_crop' => true,
+            'multi_crop_variable' => 'focus_crop',
+            'country' => 'Ethiopia',
+            'company' => 'Quarit & Phibella 2025',
+            'case_number' => null,
+            'cascade' => [
+                'name' => 'pi_location_first_admin',
+            ],
+            'files' => [
+                ["type" => "raw", "text" => "Analyzed Quarit & Phibella Anom Maize Soybean Sunflower 2025 Data", "to" => ".xlsx", "filename" => "2025_quarit_phibela_anom_maize_soybean_sunflower_baseline"],
+            ],
+            'report_url' => null,
+            'submission_date' => "2025-12-17", // fill this submission date if no submission date on dataset, format YYYY-MM-DD
+        ],
 
 
         # test remove variable
