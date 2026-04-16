@@ -4,7 +4,7 @@ name: IDH PDC Portal
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu2004
+    os_image: ubuntu2204
 blocks:
   - name: "Build, test & deploy"
     task:
